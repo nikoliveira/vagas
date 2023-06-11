@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "dev": "node --watch src/app.mjs",
+    "start": "node src/app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
