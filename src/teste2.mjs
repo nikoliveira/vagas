@@ -1,4 +1,4 @@
-import { fakeData } from './src/fakeData.mjs';
+import { fakeData } from './fakeData.mjs';
 
 export function addUser(req, res) {
   const { job, name } = req.body;
@@ -16,7 +16,7 @@ export function addUser(req, res) {
   res.send(newUser);
 }
 
-function randomId() {
+export function randomId() {
   let uuid = 'xxxxxxxx-xxxx-yxyx-yxxx-xxxxxxxxxxxx';
 
   return uuid.replace(/[xy]/g, function (c) {
