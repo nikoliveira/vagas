@@ -1,15 +1,20 @@
-var data =  require("./fakeData");
+const data = require("./fakeData");
 
-module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+const deleteUser = (req, res) => {
+    const name = req.query.name;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
+    if (!name) {
+        return res.status(400).send('Não foi informado nenhum usuário.');
     }
 
-    res.send("success");
+    const userIndex = data.findIndex(user => user.name.includes(name));
 
+    if (userIndex === -1) {
+        res.status(404).send('Usuário informado não encontrado.');
+    } else {
+        data.splice(userIndex, 1);
+        res.status(200).send('sucesso');
+    }
 };
+
+module.exports = deleteUser;

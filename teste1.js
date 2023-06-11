@@ -7,10 +7,10 @@ const getUser = (req, res, next) => {
         return res.status(400).send('Não foi informado nenhum usuário.');
     }
 
-    const search_user = data.filter(user => user.name.includes(name));
+    let searchUser = data.filter(user => user.name.includes(name));
 
-    if (search_user.length > 0) {
-        res.status(200).send(search_user);
+    if (searchUser.length > 0) {
+        res.status(200).send(searchUser);
     } else {
         res.status(404).send('Usuário informado não encontrado.');
     }
