@@ -1,3 +1,14 @@
+# Considerações.
+Como o objetivo era apenas fazer o crud, tomei a liberdade para implementar
+typescript e dependencias de desenvolvimento.
+
+## Rotas
+
+### POST `/api/users`
+### GET `/api/users`
+### DELETE `/api/users`
+### PUT `/api/users`
+
 # Este é um teste para desenvolvedores
 
 # possui 5 testes
