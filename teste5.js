@@ -1,9 +1,4 @@
+const { getUserSearchCount } = require("./teste1");
 
-
-module.exports = function(req, res){
-    
-    var name =  req.query.name;
-
-    res.send("Usuário " +  name  + "  foi lido 0 vezes.");
-
-};
+//Retorna quantidade de vezes que um determinado usuário foi pesquisado.
+module.exports = getUserSearchCount;
