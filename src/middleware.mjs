@@ -1,7 +1,8 @@
-import { fakeData } from "./fakeData.mjs";
+import UserRepository from "./repositories/UserRepository.mjs";
 
 export const adminMiddleware = (req, res, next) => {
-  const user = fakeData.find((item) => item.id === req.params.id);
+  const repo = new UserRepository();
+  const user = repo.users.find((item) => item.id === req.params.id);
 
   if (user && user.role === 'ADMIN') {
     next();
