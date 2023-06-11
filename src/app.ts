@@ -1,17 +1,11 @@
-// import express from 'express'
-// import bodyParser from 'body-parser'
-
-// import teste1 from './teste1'
-// import teste2 from './teste2'
-// import teste3 from './teste3'
-// import teste4 from './teste4'
-// import teste5 from './teste5'
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 import { env } from './env'
-// const app = express()
+import { usersRoutes } from './http/controllers/routes'
 
 export const app = fastify()
+
+app.register(usersRoutes)
 
 // app.s('view engine', 'jade')
 
@@ -38,11 +32,6 @@ export const app = fastify()
 // app.delete('/users', teste3)
 // app.put('/users', teste4)
 // app.get('/users/access', teste5)
-
-// const port = 3000
-// app.listen(port, function () {
-//   console.log('Express server listening on port ' + port)
-// })
 
 app.setErrorHandler((error, _request, reply) => {
   if (error instanceof ZodError) {

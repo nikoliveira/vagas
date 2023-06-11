@@ -1,6 +1,7 @@
 import { UserProps } from '@/@types/user'
 import { UsersRepository } from '@/repositories/users-repository'
-import { ResourceNotFoundError } from '../errors/resource-not-found-error'
+
+import { UserNotExistsError } from '../errors/user-not-exists'
 
 interface EditUserUseCaseRequest {
   name: string
@@ -20,14 +21,14 @@ export class EditUser {
     job,
     id,
   }: EditUserUseCaseRequest): Promise<EditUserUseCaseResponse> {
-    const verifyUser = await this.usersRepository.findById(id)
+    const user = await this.usersRepository.findById(id)
 
-    if (!verifyUser) {
-      throw new ResourceNotFoundError()
+    if (!user) {
+      throw new UserNotExistsError()
     }
 
-    const user = await this.usersRepository.edit({ name, job })
+    const updatedUser = await this.usersRepository.edit({ name, job, id })
 
-    return { user }
+    return { user: updatedUser }
   }
 }

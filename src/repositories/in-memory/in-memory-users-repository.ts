@@ -44,7 +44,7 @@ export class InMemoryUsersRepository implements UsersRepository {
   }
 
   async edit(data: UserProps): Promise<UserProps> {
-    const user = this.items.find((user) => user.id === data.id) as UserProps
+    const user = this.items.find((user) => user.id === data.id)
 
     const index = this.items.findIndex((user) => user.id === data.id)
 
@@ -63,7 +63,19 @@ export class InMemoryUsersRepository implements UsersRepository {
   }
 
   async findByName(name: string): Promise<UserProps | null> {
-    const user = this.items.find((item) => item.name.includes(name))
+    const user = this.items.find((item) =>
+      item.name
+        .normalize('NFD')
+        .replace(/[^a-zA-Z\s]/g, '')
+        .toLocaleLowerCase()
+
+        .includes(
+          name
+            .normalize('NFD')
+            .replace(/[^a-zA-Z\s]/g, '')
+            .toLowerCase(),
+        ),
+    )
 
     if (!user) {
       return null

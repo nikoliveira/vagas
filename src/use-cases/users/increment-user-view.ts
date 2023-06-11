@@ -16,12 +16,14 @@ export class IncrementUserViews {
   async execute({
     id,
   }: IncrementUserViewsUseCaseRequest): Promise<IncrementUserViewsUseCaseResponse> {
-    const views = await this.usersRepository.incrementUserViews(id)
+    const verifyUser = await this.usersRepository.findById(id)
 
-    if (!views) {
+    if (!verifyUser) {
       throw new UserNotExistsError()
     }
 
-    return views
+    const views = await this.usersRepository.incrementUserViews(id)
+
+    return views!
   }
 }

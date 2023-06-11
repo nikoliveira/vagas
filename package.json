@@ -6,10 +6,13 @@
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
-    "test": "vitest run",
+    "build": "tsup src --out-dir build",
     "test:ui": "vitest --ui",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test": "vitest run --dir src/use-cases",
+    "test:watch": "vitest --dir src/use-cases",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e:watch": "vitest --dir src/http",
+    "test:e2e": "vitest run --dir src/http"
   },
   "author": "",
   "license": "ISC",
@@ -23,9 +26,11 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/node": "^20.3.0",
+    "@types/supertest": "^2.0.12",
     "@vitest/coverage-c8": "^0.32.0",
     "@vitest/ui": "^0.32.0",
     "eslint": "^8.42.0",
+    "supertest": "^6.3.3",
     "tsup": "^6.7.0",
     "tsx": "^3.12.7",
     "typescript": "^5.1.3",
