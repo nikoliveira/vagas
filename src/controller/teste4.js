@@ -1,8 +1,8 @@
-var data =  require("./fakeData");
+import data from "./fakeData"
 
 module.exports =  function(req, res) {
   
-    var id =  req.query.id;
+    const id =  req.query.id;
 
     const reg = data.find(d => id == id);
     reg.name = req.body.name;
