@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "João Oliveira",
+      "job": "Desenvolvedor",
+      "contador": 0
+    },
+    {
+      "id": 2,
+      "name": "Marcia",
+      "job": "Desenvolvedor",
+      "contador": 0
+    },
+    {
+      "id": 3,
+      "name": "Renato",
+      "job": "Administrador",
+      "contador": 0
+    }
+  ]
+}
