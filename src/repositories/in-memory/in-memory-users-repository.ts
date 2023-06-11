@@ -1,10 +1,22 @@
-import { CreateUserProps, UserProps } from '@/@types/user'
+import { UserProps } from '@/@types/user'
 import { UsersPaginated, UsersRepository } from '../users-repository'
 import { randomUUID } from 'node:crypto'
 import { fakeData } from '@/utils/fakeData'
 
 export class InMemoryUsersRepository implements UsersRepository {
   public items: UserProps[] = fakeData
+
+  async incrementUserViews(id: string): Promise<{ views: number } | null> {
+    const user = this.items.find((item) => item.id === id)
+
+    if (!user) {
+      return null
+    }
+
+    user.views = user.views ? user.views + 1 : 1
+
+    return { views: user.views }
+  }
 
   async delete(id: string): Promise<{ message: string }> {
     const index = this.items.findIndex((user) => user.id === id)
@@ -70,7 +82,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user
   }
 
-  async create(data: CreateUserProps): Promise<UserProps> {
+  async create(data: UserProps): Promise<UserProps> {
     const user = {
       id: randomUUID(),
       name: data.name,

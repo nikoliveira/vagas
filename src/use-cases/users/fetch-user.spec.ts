@@ -22,7 +22,7 @@ describe('Fetch User  Use Case', () => {
     })
 
     const { user } = await fetchUserUseCase.execute({
-      id: userResponse.id,
+      id: userResponse.id!,
     })
 
     expect(user.id).toEqual(expect.any(String))

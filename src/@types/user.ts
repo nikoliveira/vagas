@@ -1,8 +1,6 @@
-export interface CreateUserProps {
+export interface UserProps {
   name: string
   job: string
-}
-
-export interface UserProps extends CreateUserProps {
-  id: string
+  id?: string
+  views?: number
 }

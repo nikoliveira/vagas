@@ -18,7 +18,7 @@ describe('Delete User by ID Use Case', () => {
       job: 'Homem-aranha',
     })
 
-    const { message } = await deleteUserUseCase.execute({ id: createUser.id })
+    const { message } = await deleteUserUseCase.execute({ id: createUser.id! })
 
     expect(message).toEqual(expect.any(String))
   })

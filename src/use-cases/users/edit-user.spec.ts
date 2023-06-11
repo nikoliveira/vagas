@@ -21,7 +21,7 @@ describe('Edit User Use Case', () => {
     const userResponse = await editUserUseCase.execute({
       name: 'Batman',
       job: 'Rico',
-      id: createUser.id,
+      id: createUser.id!,
     })
 
     const { user } = userResponse
