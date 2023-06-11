@@ -1,0 +1,263 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SCF Brazil",
+    "descript": "Essa api tem como objetivo a manipulação dos dados do projeto.",
+    "termsOfService": "https://scfbrazil.com/",
+    "contact": {
+      "email": "renatoabreukz@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "API de teste"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Lista um usuário do sistema",
+        "description": "Esta rota será responsável por lista e adicionar + 1 ao contador do usuário",
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Usuário"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado."
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um usuário.",
+        "description": "Esta rota será responsável por criar um usuário.",
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Usuario 1",
+                    "job": "Analista"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso!"
+          },
+          "400": {
+            "description": "Erro de validação de campo no yup!"
+          }
+        }
+      },
+      "put": {
+        "summary": "Alterar um usuário.",
+        "description": "Esta rota será responsável por alterar um usuário.",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "id": 1,
+                    "name": "Usuario 1",
+                    "job": "Analista"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso."
+          },
+          "400": {
+            "description": "Erro de validação de campo no yup!"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar um usuário.",
+        "description": "Esta rota será responsável por deletar um usuário.",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Usuario 1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário deletado com Sucesso."
+          },
+          "400": {
+            "description": "Erro de validação de campo no yup."
+          },
+          "404": {
+            "description": "Usuário não encontrado."
+          },
+          "422": {
+            "description": "Digita o nome do usuário para deletar."
+          },
+          "500": {
+            "description": "Erro ao deletar usuário."
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Autenticar usuário!",
+        "description": "Esta rota será responsável por autenticar um usuário e gerar um bearer token para realizar requisições.",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAuth"
+              },
+              "examples": {
+                "userAuth": {
+                  "value": {
+                    "name": "name_do_usupário",
+                    "id": "id_do_usuario"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token gerado com sucesso!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserAuth": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "number"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "job": {
+            "type": "string"
+          },
+          "contador": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
