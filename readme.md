@@ -1,43 +1,80 @@
-# Este é um teste para desenvolvedores
+<h1 align="center">
+    <p>API de Usuários SCF Brazil</p>
+</h1>
 
-# possui 5 testes
+<h4 align="center"> 
+	Concluído 🚀 🚧
+</h4>
 
-## Introdução
+<p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-testar-api-online">Testar API</a> • 
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-tecnologias">Tecnologias</a> 
+</p>
 
-Este projeto possui um banco de dados fake em fakeData.js com apenas um registro.
-A ideia é melhorar e o CRUD escrito nos 4 arquivos de teste abaixo.
+## 💻 Sobre o projeto
 
-Será a validada a forma de escrita de código.
-Escreva códigos que humanos consigam entender.
+O projeto trata-se de uma APIRest para usuários.
 
-Fique a vontade para fazer modificaçoes nos serviços, comentários em código, estrutura, mas seja objetivo.
+---
 
-## teste1.js
+## ⚙️ Funcionalidades
 
-GET em /user 
+- [x] O Usuário comum pode:
+  - [x] Pesquisar outros usuários.
+  - [x] Criar seu próprio usuário.
+- [x] O Admistrador pode:
+  - [x] Editar um usuário.
+  - [x] Deletar um usuário.
 
-Possuimos neste arquivo um serviço que faz uma busca no banco fake e retorna um registro.
-Este código funciona, mas é possivel melhorar.
-Veja o que pode deixar ele melhor escrito e mais performatico.
+---
 
-## teste2.js
+## 🚀 Como executar o projeto
 
-POST em /users, descubra a intenção dele e o corrija.
+### Pré-requisitos
 
-## teste3.js
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com)
 
-Este procura um usuário e o deleta da base.
-Retorne sucesso para o client caso realmente tenha sido excluido e deixe o código mais performatico.
+### Testar API Online
 
-## teste4.js
+Para documentação e facilitar a utilização dos teste da API foi utilizado o [Swagger](https://swagger.io/), o qual a página esta disponibilizado na rota [**/api-docs**](http://localhost:3000/api-docs/#/).
 
-Atualiza os dados de um usuário especifico.
+<h1 align="center">
+    <img alt="PathsApi" title="#PathsApi" src="./src/assets/pathsApi.png" />
+</h1>
 
-## teste5.js
+#### 🎲 Rodando o Projeto
 
-Retorne quantas vezes determinado usuário foi lido no teste1.
+```bash
+# Clone este repositório
+$ git clone https://github.com/RenatoAlbuquerque/scfbrazil
+# Acesse a pasta do projeto no terminal/cmd
+$ cd scfbrazil
+# Vá para a pasta src
+$ cd src
+# Instale as dependências
+$ npm install
+# Execute a aplicação em modo de desenvolvimento
+$ npm start
+# O servidor inciará na porta:3000 - acesse http://localhost:3000
+```
 
-## teste 6
+---
 
-Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
+## 🛠 Tecnologias
 
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- **[Express](https://expressjs.com/)**
+- **[CORS](https://expressjs.com/en/resources/middleware/cors.html)**
+- **[JsonWebToken](https://www.npmjs.com/package/jsonwebtoken)**
+- **[Swagger](https://swagger.io/)**
+- **[Yup](https://www.npmjs.com/package/yup)**
+
+> Veja o arquivo [package.json](https://github.com/RenatoAlbuquerque/scfbrazil/blob/main/package.json)
+
+---
