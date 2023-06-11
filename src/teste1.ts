@@ -1,6 +1,6 @@
-var data =  require("./fakeData");
+import data from "./data/fakeData";
 
-const getUser = ( req, res, next ) => {
+export const getUser = ( req, res, next ) => {
     
     var name =  req.query.name;
 
@@ -12,13 +12,8 @@ const getUser = ( req, res, next ) => {
 
 };
 
-const getUsers = ( req, res, next ) => {
+export const getUsers = ( req, res, next ) => {
     
     res.send(data);
     
-};
-
-module.exports = {
-    getUser,
-    getUsers
 };

@@ -1,5 +1,3 @@
-
-
 module.exports = function(req, res){
     
     var name =  req.query.name;
