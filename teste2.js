@@ -1,17 +1,26 @@
-var data =  require("./fakeData");
+const data = require("./fakeData");
 
-module.exports = function(req, res){
-  
-    var name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
-        name: name,
-        job: job,
+
+// Método para criar um novo usuário na base.
+module.exports = function(req, res) {
+  try {
+    const { name, job } = req.body;
+
+    if (!name || !job) {
+      res.status(400).send('Campos "name" e "job" são obrigatórios');
+      return;
     }
 
-    data.push(newUser)
-    
-    res.send(newUser);
+    const newUser = {
+      name,
+      job,
+    };
 
+    data.push(newUser);
+
+    res.send(newUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao adicionar novo usuário');
+  }
 };
