@@ -1,17 +1,26 @@
-var data =  require("./fakeData");
+const fs = require("fs");
+const data = require("./fakeData");
 
-module.exports = function(req, res){
-  
-    var name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
-        name: name,
-        job: job,
-    }
+module.exports = function (req, res) {
+  const name = req.body.name;
+  const job = req.body.job;
 
-    data.push(newUser)
-    
-    res.send(newUser);
+  const id = Object.keys(data).pop();
 
+  const addIndex = 2; //Pula o index 0. Pula o index 1, pois o arquivo original já contém ele.
+
+  const newUser = {
+    id: parseInt(id) + addIndex,
+    name: name,
+    job: job,
+    view: 0,
+  };
+
+  data.push(newUser);
+
+  fs.writeFile("fakeData.json", JSON.stringify(data), function (err, _) {
+    if (err) return res.send({ message: "Erro na criação de usuário" });
+  });
+
+  return res.send(newUser);
 };
