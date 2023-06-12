@@ -32,3 +32,4 @@ const updateUser: RequestHandler = (req, res) => {
 module.exports = {
   updateUser,
 };
+

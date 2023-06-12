@@ -7,7 +7,7 @@ var teste2 = require("./controllers/teste2");
 var teste3 = require("./controllers/teste3");
 var teste4 = require("./controllers/teste4");
 var teste5 = require("./controllers/teste5");
-
+var baseMapping = require("./controllers/baseMapping");
 app.set("view engine", "jade");
 
 app.use(express.json());
@@ -18,21 +18,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + "/public"));
 
-// app.get('/', function(req:Request, res: Response){
-//   res.send(`get user/ </br>
-//   get users/ </br>
-//   post users/ </br>
-//   delete users/ </br>
-//   put users/ </br>
-//   `);
-// });
-
+app.get('/', baseMapping.baseUrl);
 app.get("/user", teste1.getUser);
 app.get("/users", teste1.getUsers);
 app.post("/users", teste2.addUser);
-app.delete("/users/:id", teste3.deleteUser);
 app.put("/users/:id", teste4.updateUser)
-// app.get("/users/access", teste5);
+app.delete("/users/:id", teste3.deleteUser);
+app.get("/users/access", teste5.coundUserVisit);
 
 
 const port = 3000;

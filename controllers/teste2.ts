@@ -12,22 +12,23 @@ const addUser: RequestHandler = (req, res) => {
       Error: { success: false, message: "Insira os campos corretos!" },
     });
   }
-  
+
   const newUser: API.IDataType = {
     id: randomUUID(),
     name: name,
     job: job,
+    readCount: 0,
   };
-  
+
   DATA.push(newUser);
-  
+
   return res.status(201).send({
     success: true,
-    data: newUser,
+    data: {newUser},
     message: "Usuário cadastrado com sucesso!",
   });
 };
 
 module.exports = {
-  addUser
+  addUser,
 };

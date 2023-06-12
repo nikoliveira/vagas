@@ -4,7 +4,8 @@ import { randomUUID } from "crypto";
     {
         id: randomUUID(),
         name: "João Oliveira",
-        job: "Desenvolvedor"
+        job: "Desenvolvedor",
+        readCount: 0
     }
 ];
 export default data;

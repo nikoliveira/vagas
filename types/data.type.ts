@@ -3,5 +3,6 @@ export declare namespace API {
     id: string;
     name: string;
     job: string;
+    readCount:number;
   };
 }
