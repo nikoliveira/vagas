@@ -1,6 +1,7 @@
 import QueryString from "qs";
 import data from "../data/fakeData";
 import { AppError } from "../errors/AppError";
+import { IUser } from "../interfaces/user.interfaces";
 
 const deleteUserService = async (
     userId: 
@@ -11,19 +12,15 @@ const deleteUserService = async (
       undefined
   ): Promise<void> => {
 
-  let user;
+  const findUser: IUser | undefined = data.find((user) => user.id == userId);
 
-  for(let i = 0; i < data.length;  i++) {
-    if(data[i].id == userId) {
-      user = data[i];
-      data.splice(i, 1);
-      break
-    }
-  }
-
-  if(user == undefined) {
+  if(!findUser) {
     throw new AppError("User not found", 404);
   }
+
+  const indexUser: number = data.indexOf(findUser);
+
+  data.splice(indexUser, 1);
 }
 
 export default deleteUserService;
