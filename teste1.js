@@ -1,4 +1,4 @@
-let data = require("./fakeData");
+const data = require("./fakeData");
 
 const getUser = (req, res) => {
   const name = req.query.name;
