@@ -1,23 +1,21 @@
-const data =  require("./fakeData");
+const data = require("./fakeData");
 
-module.exports = function(req, res){
-  
-    const name =  req.body.name;
-    const job =  req.body.job;
-    
-    const newUser = {
-        id: data.length + 1,
-        name: name,
-        job: job,
-        counter: 0,
-    }
+module.exports = function (req, res) {
+  const name = req.body.name;
+  const job = req.body.job;
 
-    if (!name || !job) {
-        return res.status(400).send("Dados inválidos");
-    }
+  const newUser = {
+    id: data.length + 1,
+    name: name,
+    job: job,
+    counter: 0,
+  };
 
-    data.push(newUser)
-    
-    res.status(201).send(newUser);
+  if (!name || !job) {
+    return res.status(400).send("Dados inválidos");
+  }
 
+  data.push(newUser);
+
+  res.status(201).send(newUser);
 };
