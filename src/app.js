@@ -2,12 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const teste1 = require("./teste1");
-const teste2 = require("./teste2");
-const teste3 = require("./teste3");
-const teste4 = require("./teste4");
-const teste5 = require("./teste5");
-const teste6 = require("./teste6");
+const userController = require('./controllers/userController');
 const checkPermission = require("./middleware/hasPermission"); // Importa o middleware de verificação de permissão
 
 
@@ -22,21 +17,22 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-    res.send(`get user/ </br>
-  get users/ </br>
-  post users/ </br>
-  delete users/ </br>
-  put users/ </br>
+    res.send(`
+      get user/ </br>
+      get users/ </br>
+      post users/ </br>
+      delete users/ </br>
+      put users/ </br>
   `);
 });
 
-app.get("/user", teste1.getUser);
-app.get("/users", teste1.getUsers);
-app.post("/users", teste2)
-app.delete("/users", checkPermission, teste3)
-app.put("/users", checkPermission, teste4)
-app.get("/users/access", teste5);
-app.put("/users/permissions", teste6);
+app.get("/user", userController.getUser);
+app.get("/users", userController.getUsers);
+app.post("/users", userController.addUser);
+app.delete("/users", checkPermission, userController.deleteUser);
+app.put("/users", checkPermission, userController.updateUser);
+app.get("/users/access", userController.getUserSearchCount);
+app.put("/users/permissions", userController.createPermissionsUser);
 
 
 const port = 3000;

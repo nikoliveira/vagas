@@ -1,4 +1,4 @@
-const data = require("../fakeData");
+const data = require("../models/fakeData");
 
 // Middleware de verificação de permissão
 const checkPermission = (req, res, next) => {
