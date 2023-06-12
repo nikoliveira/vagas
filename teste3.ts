@@ -1,17 +1,26 @@
-// var data =  require("./fakeData");
+import { DATA } from "./data";
+import { RequestHandler } from "express";
+import { API } from "./types/data.type";
 
-// module.exports = function(req: Request, res: Response) {
-  
-//     var name =  req.query.name;
+const deleteUser: RequestHandler = (req, res) => {
+  const { id } = req.params;
+  const findedUser: API.IDataType = DATA.find((item) => item?.id === id);
 
-//     for(let i = 0; i < data.length;  i++) {
-//         if(i.name == name) {
-//             data[i] = null;
-//         }
-//     }
+  if (findedUser) {
+    DATA.forEach((item, index) => {
+      if (item?.id === id) {
+        delete DATA[index];
+      }
+    });
 
-//     res.send("success");
+    res
+      .status(200)
+      .send({ message: "Usuário deletado com sucesso!", sucess: true });
+  }
 
-// };
+  res.status(404).send({ message: "Usuário não encontrado!!", sucess: false });
+};
 
-export {}
+module.exports = {
+  deleteUser,
+};

@@ -1,8 +1,10 @@
 import { DATA } from "./data";
 import { randomUUID } from "crypto";
+import { isValidUser } from "./utils";
 import { API } from "./types/data.type";
 import { RequestHandler } from "express";
-import { isValidUser } from "./utils";
+
+
 const addUser: RequestHandler = (req, res) => {
   var name = req.body.name;
   var job = req.body.job;

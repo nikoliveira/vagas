@@ -1,5 +1,5 @@
-import { RequestHandler } from "express";
 import { DATA } from "./data";
+import { RequestHandler } from "express";
 
 const getUser: RequestHandler = (req, res, next) => {
   var name: string = String(req.query.name);
@@ -9,6 +9,9 @@ const getUser: RequestHandler = (req, res, next) => {
 };
 
 const getUsers: RequestHandler = (req, res, next) => {
+  if (!Boolean(DATA.length)) {
+    res.status(404).send("Nenhum usuário encontrado");
+  }
   res.status(200).send({ data: DATA, sucess: true });
 };
 
