@@ -1,9 +1,160 @@
 {
-    "openapi":"3.0.1",
-    "info":{
-        "title":"Desafio",
-        "description":"Documentaçao Desafio SCF Brazil",
-        "version":"0.1"
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Desafio",
+        "description": "Documentaçao Desafio SCF Brazil",
+        "version": "0.1"
     },
-    "basePath":"/"
+    "basePath": "/",
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "paths": {
+        "/user": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Obtém um usuário pelo nome",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "required": true,
+                        "description": "Nome do usuário",
+                        "name": "name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "buscado com sucesso "
+                    },
+                    "405": {
+                        "description": "erro ao buscar"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "summary": "Obtém todos usuários",
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {},
+                    "405": {
+                        "description": "erro ao buscar"
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Deleta um usuario",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "required": true,
+                        "description": "Id do usuário",
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deletado com sucesso "
+                    },
+                    "405": {
+                        "description": "erro ao deletar"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Criar novo usuario",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "job": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "criado com sucesso"
+                    },
+                    "405": {
+                        "description": "erro ao criado com sucesso"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Editar um usuario",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "required": true,
+                        "description": "Id do usuário",
+                        "name": "id"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "job": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "editado com sucesso"
+                    },
+                    "405": {
+                        "description": "erro ao editar com sucesso"
+                    }
+                }
+            }
+        }
+    }
 }
