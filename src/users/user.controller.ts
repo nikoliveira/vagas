@@ -8,7 +8,6 @@ const validateId = (id: any) => {
 
 const validateUserData = (data: any, optional: boolean) => {
   const { name, job } = data;
-  console.log(data, 11)
 
   if (!optional && (name === undefined || job === undefined)) {
     throw new APIError("Nome e cargo são obrigatórios.", "badRequest");
