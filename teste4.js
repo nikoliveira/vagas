@@ -1,13 +1,14 @@
-var data =  require("./fakeData");
+var data = require("./fakeData");
 
 module.exports =  function(req, res) {
-  
-    var id =  req.query.id;
+    var { id } = req.query;
+    const {name, job} = req.body;
+    const index = data.findIndex((user) => user.id == id);
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
+    if (index == -1) return res.status(404).send("User not found");
 
-    res.send(reg);
+    data[index].name = name
+    data[index].job = job
 
+    return res.status(200).json(data[index]);
 };
