@@ -1,57 +1,40 @@
 import { RequestHandler } from "express";
-import data from "../fakeData";
+import userService from "./user.service";
 
 const getUser: RequestHandler = (req, res) => {
-  var name = req.query.name;
-
-  for (let i = 0; i < data.length; i++) {
-    if (i.name == name) {
-      res.send(data[i]);
-    }
-  }
+  const { id } = req.params;
+  const user = userService.getUser(+id);
+  res.status(200).json(user);
 };
 
 const getUsers: RequestHandler = (req, res) => {
-  res.send(data);
+  const users = userService.getUsers();
+  res.status(200).json(users);
 };
 
 const createUser: RequestHandler = (req, res) => {
-  const name = req.body.name;
-  const job = req.body.job;
-
-  const newUser = {
-    name: name,
-    job: job,
-  };
-
-  data.push(newUser);
-  res.send(newUser);
+  const { name, job } = req.body;
+  const newUser = userService.createUser(name, job);
+  res.status(200).json(newUser);
 };
 
 const deleteUser: RequestHandler = (req, res) => {
-  const name = req.query.name;
-
-  for (let i = 0; i < data.length; i++) {
-    if (i.name == name) {
-      data[i] = null;
-    }
-  }
-
-  res.send("success");
+  const { id } = req.params;
+  userService.deleteUser(+id);
+  res.status(204).send();
 };
 
 const updateUser: RequestHandler = (req, res) => {
-  const id = req.query.id;
-
-  const reg = data.find((d) => id == id);
-  reg.name = req.body.name;
-  reg.job = req.body.job;
-  res.send(reg);
+  const { id } = req.params;
+  const { name, job } = req.body;
+  userService.updateUser(+id, { name, job });
+  res.status(200).send();
 };
 
 const countReads: RequestHandler = (req, res) => {
-  const name = req.query.name;
-  res.send("Usuário " + name + "  foi lido 0 vezes.");
+  const { id } = req.params;
+  const result = userService.countReads(+id);
+  res.send(result);
 };
 
 export default {
