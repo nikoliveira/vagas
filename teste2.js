@@ -1,11 +1,11 @@
 const fs = require("fs");
-const data = require("./fakeData");
+const fakeData = require("./fakeData");
 
 module.exports = function (req, res) {
   const name = req.body.name;
   const job = req.body.job;
 
-  const id = Object.keys(data).pop();
+  const id = Object.keys(fakeData).pop();
 
   const ADD = 2; //Pula o id 0 e pula o id 1, pois o arquivo original fakeData já começa no id:1.
 
@@ -16,9 +16,9 @@ module.exports = function (req, res) {
     view: 0,
   };
 
-  data.push(newUser);
+  fakeData.push(newUser);
 
-  fs.writeFile("fakeData.json", JSON.stringify(data), function (err, _) {
+  fs.writeFile("fakeData.json", JSON.stringify(fakeData), function (err, _) {
     if (err) return res.send({ message: "Erro na criação de usuário" });
   });
 
