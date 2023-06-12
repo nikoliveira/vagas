@@ -1,9 +1,11 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
-var route = require("./routes/index")
-var cors = require('cors')
+const express = require('express');
+const swaggerUi = require('swagger-ui-express')
+const bodyParser = require('body-parser');
+const app = express();
+const route = require("./routes/index")
+const cors = require('cors')
 const port = 3000;
+const swaggerDocs = require('./swagger.json');
 
 
 app.set('view engine', 'jade');
@@ -21,6 +23,7 @@ app.get('/', function (req, res) {
 });
 
 app.use("/", route);
+app.use("/doc", swaggerUi.serve,swaggerUi.setup(swaggerDocs));
 app.listen(port, () => {
   console.log('Express server listening on port ' + port);
 });

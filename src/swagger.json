@@ -1,0 +1,9 @@
+{
+    "openapi":"3.0.1",
+    "info":{
+        "title":"Desafio",
+        "description":"Documentaçao Desafio SCF Brazil",
+        "version":"0.1"
+    },
+    "basePath":"/"
+}
