@@ -1,6 +1,6 @@
 
 
-// module.exports = function(req: Request, res: Response):{
+//  const  (req: Request, res: Response):{
     
 //     var name =  req.query.name;
 
@@ -8,4 +8,12 @@
 
 // };
 
-export {}
+
+// module.exports = {
+
+
+
+// }
+
+
+module.exports = {}

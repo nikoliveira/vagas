@@ -2,11 +2,11 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
 
-var teste1 = require("./teste1");
-var teste2 = require("./teste2");
-var teste3 = require("./teste3");
-var teste4 = require("./teste4");
-var teste5 = require("./teste5");
+var teste1 = require("./controllers/teste1");
+var teste2 = require("./controllers/teste2");
+var teste3 = require("./controllers/teste3");
+var teste4 = require("./controllers/teste4");
+var teste5 = require("./controllers/teste5");
 
 app.set("view engine", "jade");
 
@@ -33,6 +33,7 @@ app.post("/users", teste2.addUser);
 app.delete("/users/:id", teste3.deleteUser);
 app.put("/users/:id", teste4.updateUser)
 // app.get("/users/access", teste5);
+
 
 const port = 3000;
 app.listen(port, function () {
