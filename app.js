@@ -34,7 +34,7 @@ app.get("/user", teste1.getUser);
 app.get("/users", teste1.getUsers);
 app.post("/users", validateNameJobs, teste2)
 app.delete("/users", teste3)
-app.put("/users", teste4)
+app.put("/users", validateNameJobs, teste4)
 app.get("/users/access", teste5);
 
 
