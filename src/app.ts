@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import userRouter from './users/user.router';
+import errorHandler from './middlewares/errorHandler.middleware';
 
 const app = express();
 
@@ -21,7 +22,7 @@ app.get('/', function(req, res){
 });
 
 app.use('/users', userRouter);
-
+app.use(errorHandler);
 
 const port  = 3000;
 app.listen(port, function(){
