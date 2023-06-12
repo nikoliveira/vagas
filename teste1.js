@@ -10,6 +10,7 @@ const getUser = (req, res, next) => {
     let searchUser = data.filter(user => user.name.includes(name));
 
     if (searchUser.length > 0) {
+        searchUser[0].searchCount = searchUser[0].searchCount ? searchUser[0].searchCount + 1 : 1;
         res.status(200).send(searchUser);
     } else {
         res.status(404).send('Usuário informado não encontrado.');
