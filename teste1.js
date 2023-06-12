@@ -3,7 +3,7 @@ const fakeData = require("./fakeData");
 
 const getUser = (req, res, _) => {
   const name = req.query.name;
-  if (!req.query.name) {
+  if (!name) {
     return res.send({ message: "Informe um usuário" });
   }
 
@@ -11,7 +11,7 @@ const getUser = (req, res, _) => {
     if (data?.name === name) {
 
       const MENOS = 1; //Valor usado como subtração no fakeData, pois a key JSON começa com 0.
-      fakeData[data.id - MENOS].view = fakeData[data.id - 1].view + 1;
+      fakeData[data.id - MENOS].view = fakeData[data.id - 1].view + 1; //Adiciona mais uma visualização.
 
       fs.writeFile(
         "fakeData.json",
