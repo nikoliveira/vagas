@@ -2,10 +2,10 @@ import { AppError } from "../errors/AppError";
 import { Request, Response, NextFunction } from "express";
 
 const ensurePropertiesExistsMiddleware = async ( req: Request, res: Response, next: NextFunction) => {
-  const { name, job } = req.body;
+  const { name, job, username, password } = req.body;
 
-  if (!name || !job ) {
-    throw new AppError("Name and job are required fields");
+  if (!name || !job || !username || !password) {
+    throw new AppError("Name, job, username, password and isAdm are required fields");
   }
 
   return next();
