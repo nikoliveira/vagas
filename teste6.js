@@ -17,7 +17,7 @@ const permission = (...role) => {
         if (req.user && role.includes(req.user.role)) {
             next();
         } else {
-            response.status(403).json({message: "Forbidden"});
+            res.status(403).json({message: "Forbidden"});
         }
     }
 }
