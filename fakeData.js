@@ -5,6 +5,7 @@ const fakeData  =  [
         name: "João Oliveira",
         job: "Desenvolvedor",
         views: 0,
+        features: [],
     }
 ]
 
