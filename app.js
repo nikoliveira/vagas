@@ -25,6 +25,7 @@ app.get('/', function(req, res){
   post users/ </br>
   delete users/ </br>
   put users/ </br>
+  get users/access </br>
   `);
 });
 
