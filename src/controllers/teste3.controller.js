@@ -1,5 +1,6 @@
 const teste3Services = require('../services/teste3.services');
 
+// recebe o name via body da requisição e solicita a exclusão de um usuário com o name existente ao service do teste3.
 const deleteUser = (req, res) => {
   try {
     const { name } = req.body;

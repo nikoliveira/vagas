@@ -1,6 +1,42 @@
-# Este é um teste para desenvolvedores
+# Como Utilizar a aplicação
 
-# possui 5 testes
+## Importante :warning:
+
+- Caso deseje alterar a porta utilizada pela API basta modificar a chave `APP_PORT` no arquivo `.env` presente na raiz do projeto.
+
+## Rodando a aplicação
+
+  - Clone o repositório.
+  - instale suas dependencias com o comando `npm install`
+  - inicie o serviço utilizando o comando `npm run dev`
+
+---
+
+## EndPoints
+
+| Método | Função | URL |
+|---|---|---|
+| `GET` |  Lista um usuário especifico.  | http://localhost:3000/user |
+| `GET` |  Lista todos os usuários.  | http://localhost:3000/users |
+| `POST` | Cria um novo usuário.  | http://localhost:3000/users |
+| `DELETE` |  Exclui um usuário especifico. | http://localhost:3000/users |
+| `PUT` |  Atualiza um usuário especifico.  | http://localhost:3000/users |
+| `GET` |  Retorna a quantidade de vezes que um usuário especifico foi buscado.  | http://localhost:3000/users/access |
+
+---
+
+- Desenvolvido por [Matheus Marinho](https://www.linkedin.com/in/matheus-marinhodsp/).
+
+<br>
+<br>
+<br>
+<br>
+
+# - Desafios pedidos -
+
+## Este é um teste para desenvolvedores
+
+## possui 5 testes
 
 ## Introdução
 

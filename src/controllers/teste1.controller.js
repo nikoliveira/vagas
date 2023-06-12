@@ -1,5 +1,6 @@
 const teste1Services = require('../services/teste1.services');
 
+// obtem o nome do usuário desejado via query da requisição e solicita o dado ao service do teste1.
 const getUser = (req, res) => {
   try {
     const { name } = req.query;
@@ -14,6 +15,7 @@ const getUser = (req, res) => {
   }
 };
 
+// solicita a busca a todos os usuários para o service do teste1.
 const getUsers = (_req, res) => {
   try {
     const result = teste1Services.getUsers();

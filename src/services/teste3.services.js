@@ -1,5 +1,6 @@
 const data =  require('../mocks/fakeData');
 
+// função exclui um usuário do banco de dados.
 const deleteUser = (name) => {
     const userIndex = data.findIndex((user) => user.name === name);
     if (userIndex !== -1) {
@@ -12,6 +13,7 @@ const deleteUser = (name) => {
 
 module.exports = { deleteUser };
 
+// ------ Código base --------
 // module.exports = function(req, res) {
   
 //     var name =  req.query.name;

@@ -1,5 +1,6 @@
 const data =  require("../mocks/fakeData");
 
+// função cria um novo usuário no banco de dados incrimentando o id em 1 levando em conta o ultimo id da lista.
 const createUser = (name, job) => {
     const newUser = {
         id: data[data.length - 1].id + 1,
@@ -13,6 +14,7 @@ const createUser = (name, job) => {
 
 module.exports = { createUser };
 
+// ------ Código base --------
 // module.exports = function(req, res){
   
 //     var name =  req.body.name;

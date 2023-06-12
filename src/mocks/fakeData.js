@@ -1,4 +1,4 @@
-
+// Falso banco de dados para funcionamento da aplicação.
 const fakeData  =  [
     {
         id: 1,

@@ -1,5 +1,6 @@
 const data =  require('../mocks/fakeData');
 
+// função atualiza o name e o job do usuário que possuir o Id espeficado.
 const updateUser = (id, name, job) => {
     const userIndex = data.findIndex((user) => user.id === Number(id));
     if (userIndex !== -1) {
@@ -13,6 +14,7 @@ const updateUser = (id, name, job) => {
 
 module.exports = { updateUser };
 
+// ------ Código base --------
 // module.exports =  function(req, res) {
   
 //     var id =  req.query.id;

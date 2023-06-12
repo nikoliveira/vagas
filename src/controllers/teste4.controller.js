@@ -1,5 +1,7 @@
 const teste4Services = require('../services/teste4.services');
 
+// recebe o id via query e o name e o job via body da requisição
+// e solicita a atualização do usuário com o id existente ao service do teste4.
 const updateUser = (req, res) => {
   try {
     const { id } = req.query;

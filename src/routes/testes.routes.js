@@ -1,3 +1,5 @@
+// Rotas da aplicação.
+
 const { Router } = require('express');
 
 const teste1Controller = require('../controllers/teste1.controller');
