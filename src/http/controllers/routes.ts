@@ -12,15 +12,11 @@ import { authenticate } from './authenticate'
 export async function usersRoutes(app: FastifyInstance) {
   app.post('/users', createUser)
   app.post('/sessions', authenticate)
-  app.get(
-    '/users',
-    { onRequest: [verifyJWT, verifyUserRole('ADMIN')] },
-    fetchManyUsers,
-  )
+  app.get('/users', fetchManyUsers)
   app.put(
     '/users',
     {
-      onRequest: [verifyJWT],
+      onRequest: [verifyJWT, verifyUserRole('ADMIN')],
     },
     editUser,
   )
@@ -29,19 +25,7 @@ export async function usersRoutes(app: FastifyInstance) {
     { onRequest: [verifyJWT, verifyUserRole('ADMIN')] },
     deleteUser,
   )
-  app.get(
-    '/users/access',
-    {
-      onRequest: [verifyJWT],
-    },
-    fetchUserViews,
-  )
+  app.get('/users/access', fetchUserViews)
 
-  app.get(
-    '/user',
-    {
-      onRequest: [verifyJWT],
-    },
-    fetchUser,
-  )
+  app.get('/user', fetchUser)
 }

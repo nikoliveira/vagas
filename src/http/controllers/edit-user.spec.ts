@@ -13,7 +13,7 @@ describe('Edit user (E2E)', () => {
   })
 
   it('slould be able to edit user', async () => {
-    const token = await createAndAuthenticate(app)
+    const token = await createAndAuthenticate(app, true)
 
     const createResponse = await request(app.server).post('/users').send({
       name: 'Miranha',
