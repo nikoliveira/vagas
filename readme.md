@@ -1,3 +1,19 @@
+## Foi refactorado o projecto de modo a dar mais performance nas e rotas
+Tomei a liberdade de mudar a estrutura dos directórios , adiocionei alguns usuários mockados 
+para poder testar as permissões , então é necessário passar o 
+-- userId -- para poder ter autorização
+
+
+usuários Mockados
+ 
+123456789  - Permissão de deletar e actualizar
+
+987456321   - Permissão para actualiazar 
+
+147852369   - Permissão para deletar
+
+
+
 # Este é um teste para desenvolvedores
 
 # possui 5 testes
@@ -40,22 +56,6 @@ Retorne quantas vezes determinado usuário foi lido no teste1.
 ## teste 6
 
 Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
-
-
-
-## Foi refactorado o projecto de modo a dar mais performance nas e rotas
-Tomei a liberdade de mudar a estrutura dos directórios , adiocionei alguns usuários mockados 
-para poder testar as permissões , então é necessário passar o 
--- userId -- para poder ter autorização
-
-
-usuários Mockados
- 
-123456789  - Permissão de deletar e actualizar
-
-987456321   - Permissão para actualiazar 
-
-147852369   - Permissão para deletar
 
 
 
