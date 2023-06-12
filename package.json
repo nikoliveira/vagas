@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch \"./src/**\" ./src/api/app.js"
+    "dev": "nodemon --watch \"./src/**\" ./src/api/server.js"
   },
   "author": "",
   "license": "ISC",

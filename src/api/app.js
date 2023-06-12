@@ -1,13 +1,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+const testesRouter = require('../routes/testes.routes');
 
-var teste1 = require("../services/teste1");
-var teste2 = require("../services/teste2");
-var teste3 = require("../services/teste3");
-var teste4 = require("../services/teste4");
-var teste5 = require("../services/teste5");
-
+// Movido para o arquivo "./src/routes/testes.routes.js"
+// var teste1 = require("../services/teste1.services");
+// var teste2 = require("../services/teste2.services");
+// var teste3 = require("../services/teste3.services");
+// var teste4 = require("../services/teste4.services");
+// var teste5 = require("../services/teste5.services");
 
 app.set('view engine', 'jade');
 
@@ -28,15 +29,20 @@ app.get('/', function(req, res){
   `);
 });
 
-app.get("/user", teste1.getUser);
-app.get("/users", teste1.getUsers);
-app.post("/users", teste2)
-app.delete("/users", teste3)
-app.put("/users", teste4)
-app.get("/users/access", teste5);
+app.use(testesRouter);
 
+module.exports = app;
 
-const port  = 3000;
-app.listen(port, function(){
-  console.log('Express server listening on port ' + port);
-});
+// Movido para o arquivo "./src/routes/testes.routes.js"
+// app.get("/user", teste1.getUser);
+// app.get("/users", teste1.getUsers);
+// app.post("/users", teste2)
+// app.delete("/users", teste3)
+// app.put("/users", teste4)
+// app.get("/users/access", teste5);
+
+// Movido para o arquivo "./src/api/server.js"
+// const port  = 3000;
+// app.listen(port, function(){
+//   console.log('Express server listening on port ' + port);
+// });
