@@ -16,14 +16,15 @@ export const getUserService = async (
     throw new AppError("Name is required");
   }
 
-  for(let i = 0; i < data.length;  i++) {
-    if(data[i].name == name) {
-      data[i].views! += 1;
-      return data[i];
-    }
+  const findUser: IUser | undefined = data.find((user) => user.name === name);
+
+  if(!findUser) {
+    throw new AppError("User not found", 404);
   }
-  
-  throw new AppError("User not found", 404);
+
+  findUser.views! += 1;
+
+  return findUser;
 }
 
 export const getUsersService = async (): Promise<IUser[]> => {
