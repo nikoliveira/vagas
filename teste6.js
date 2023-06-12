@@ -1,3 +1,6 @@
+// eu utilizaria preferencialmente a biblioteca JWT para permissão e gerenciamento de roles, porém, utilizei uma maneira mockada para verificar a role do usuário.
+
+
 const auth = (req, res, next) => {
     // função mockada para pegar token do usuário (criado no arquivo middleware-permissao se token for 1 = admin, 2 = user)
     // utilizado no app.js
