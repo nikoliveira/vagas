@@ -5,12 +5,13 @@ import { z } from 'zod'
 import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists'
 
 export async function createUser(request: FastifyRequest, reply: FastifyReply) {
+  const Roles = z.enum(['ADMIN', 'USER'])
   const createSchema = z.object({
     name: z.string(),
     job: z.string(),
     email: z.string().email(),
     password: z.string().min(6),
-    role: z.enum(['ADMIN', 'USER']),
+    role: z.optional(Roles),
   })
 
   const { name, job, email, password, role } = createSchema.parse(request.body)

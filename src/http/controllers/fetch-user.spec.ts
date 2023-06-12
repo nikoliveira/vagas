@@ -2,6 +2,7 @@ import request from 'supertest'
 import { app } from '@/app'
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import { createAndAuthenticate } from '@/utils/create-and-get-token-user'
+import { Role } from '@prisma/client'
 
 describe('Fetch user (E2E)', () => {
   beforeAll(async () => {
@@ -19,7 +20,7 @@ describe('Fetch user (E2E)', () => {
       job: 'Homem-aranha',
       password: '123asd',
       email: 'homemaranha@marvel.com',
-      role: 'USER',
+      role: Role.USER,
     })
 
     const response = await request(app.server)

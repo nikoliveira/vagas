@@ -1,18 +1,18 @@
-import { UserPropsResponse } from '@/@types/user'
 import { UsersRepository } from '@/repositories/users-repository'
 import { UserAlreadyExistsError } from '../errors/user-already-exists'
 import { hash } from 'bcryptjs'
+import { User } from '@prisma/client'
 
 interface CreateUserUseCaseRequest {
   name: string
   job: string
   password: string
-  role?: 'USER' | 'ADMIN'
   email: string
+  role?: 'USER' | 'ADMIN'
 }
 
 interface CreateUserUseCaseResponse {
-  user: UserPropsResponse
+  user: User
 }
 
 export class CreateUserUseCase {
@@ -22,7 +22,7 @@ export class CreateUserUseCase {
     password,
     name,
     job,
-    role = 'USER',
+    role,
     email,
   }: CreateUserUseCaseRequest): Promise<CreateUserUseCaseResponse> {
     const password_hash = await hash(password, 6)

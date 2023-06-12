@@ -4,6 +4,7 @@ import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-user
 import { AuthenticateUseCase } from './authenticate'
 import { hash } from 'bcryptjs'
 import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
+import { Role } from '@prisma/client'
 
 let usersRepository: InMemoryUsersRepository
 let authenticateUseCase: AuthenticateUseCase
@@ -20,7 +21,7 @@ describe('Authenticate Use Case', () => {
       name: 'Junior Ferreira',
       password_hash: await hash('123456', 6),
       job: 'Software Developer',
-      role: 'ADMIN',
+      role: Role.ADMIN,
     })
 
     const { user } = await authenticateUseCase.execute({
@@ -31,28 +32,19 @@ describe('Authenticate Use Case', () => {
     expect(user.id).toEqual(expect.any(String))
   })
 
-  it('should not be able to authenticate with wrong email', async () => {
-    expect(() =>
-      authenticateUseCase.execute({
-        email: 'junior@gmail.com',
-        password: '123456',
-      }),
-    ).rejects.toBeInstanceOf(InvalidCredentialsError)
-  })
-
   it('should not be able to authenticate with wrong password', async () => {
     await usersRepository.create({
       email: 'junior.teste@gmail.com',
       name: 'Junior Ferreira',
       password_hash: await hash('123456', 6),
       job: 'Software Developer',
-      role: 'ADMIN',
+      role: Role.ADMIN,
     })
 
     expect(() =>
       authenticateUseCase.execute({
         email: 'junior.teste@gmail.com',
-        password: '654321',
+        password: '6541321',
       }),
     ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })

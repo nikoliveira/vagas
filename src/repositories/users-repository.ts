@@ -1,17 +1,18 @@
-import { PaginatedProps } from '@/@types/paginated'
-import { UserPropsResponse, InitialUserProps } from '@/@types/user'
+import { PaginatedProps } from '@/utils/paginated'
+
+import { Prisma, User } from '@prisma/client'
 
 export interface UsersPaginated extends PaginatedProps {
-  users: UserPropsResponse[]
+  users: User[]
 }
 
 export interface UsersRepository {
-  findById(id: string): Promise<UserPropsResponse | null>
-  findByName(name: string): Promise<UserPropsResponse | null>
+  findById(id: string): Promise<User | null>
+  findByName(name: string): Promise<User | null>
   findManyByPaginated(page: number): Promise<UsersPaginated | null>
-  create(data: InitialUserProps): Promise<UserPropsResponse>
-  edit(data: UserPropsResponse): Promise<UserPropsResponse>
+  create(data: Prisma.UserCreateInput): Promise<User>
+  edit(data: Prisma.UserUncheckedUpdateInput): Promise<User>
   delete(id: string): Promise<{ message: string }>
   incrementUserViews(id: string): Promise<{ views: number } | null>
-  findByEmail(email: string): Promise<UserPropsResponse | null>
+  findByEmail(email: string): Promise<User | null>
 }

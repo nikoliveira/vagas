@@ -1,11 +1,9 @@
-import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
+import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
 import { FetchManyUsersUseCase } from '@/use-cases/users/fetch-many-users'
 
 export function makeFetchManyUsersUseCase() {
-  const inMemoryUsersRepository = new InMemoryUsersRepository()
-  const fetchManyUsersUseCase = new FetchManyUsersUseCase(
-    inMemoryUsersRepository,
-  )
+  const prismaUsersRepository = new PrismaUsersRepository()
+  const fetchManyUsersUseCase = new FetchManyUsersUseCase(prismaUsersRepository)
 
   return fetchManyUsersUseCase
 }

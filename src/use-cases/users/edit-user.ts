@@ -1,16 +1,17 @@
-import { UserProps } from '@/@types/user'
 import { UsersRepository } from '@/repositories/users-repository'
 
 import { UserNotExistsError } from '../errors/user-not-exists'
+import { User } from '@prisma/client'
 
 interface EditUserUseCaseRequest {
   name: string
   job: string
   id: string
+  email: string
 }
 
 interface EditUserUseCaseResponse {
-  user: UserProps
+  user: User
 }
 
 export class EditUser {
@@ -20,15 +21,23 @@ export class EditUser {
     name,
     job,
     id,
+    email,
   }: EditUserUseCaseRequest): Promise<EditUserUseCaseResponse> {
-    const user = await this.usersRepository.findById(id)
+    const userNotExists = await this.usersRepository.findById(id)
 
-    if (!user) {
+    if (!userNotExists) {
       throw new UserNotExistsError()
     }
 
-    const updatedUser = await this.usersRepository.edit({ name, job, id })
+    const user = await this.usersRepository.edit({
+      name,
+      email,
+      job,
+      id,
+    })
 
-    return { user: updatedUser }
+    return {
+      user,
+    }
   }
 }

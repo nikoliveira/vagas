@@ -15,7 +15,7 @@ export async function createAndAuthenticate(
       email,
       password,
       job: 'Software Developer',
-      role: isAdmin ? 'ADMIN' : 'CUSTOMER',
+      role: isAdmin ? 'ADMIN' : 'USER',
     })
 
   const authResponse = await request(app.server).post('/sessions').send({

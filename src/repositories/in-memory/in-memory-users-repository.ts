@@ -1,11 +1,12 @@
-import { InitialUserProps, UserPropsResponse } from '@/@types/user'
 import { UsersPaginated, UsersRepository } from '../users-repository'
 import { randomUUID } from 'node:crypto'
 
-export class InMemoryUsersRepository implements UsersRepository {
-  public items: UserPropsResponse[] = []
+import { Prisma, Role, User } from '@prisma/client'
 
-  async findByEmail(email: string): Promise<UserPropsResponse | null> {
+export class InMemoryUsersRepository implements UsersRepository {
+  public items: User[] = []
+
+  async findByEmail(email: string): Promise<User | null> {
     const user = this.items.find((item) => item.email === email)
 
     if (!user) {
@@ -52,21 +53,17 @@ export class InMemoryUsersRepository implements UsersRepository {
     }
   }
 
-  async edit(data: UserPropsResponse): Promise<UserPropsResponse> {
-    const user = this.items.find((user) => user.id === data.id)
+  async edit(data: Prisma.UserUncheckedUpdateInput): Promise<User> {
+    const user = this.items.find((user) => user.id === data.id) as User
 
     const index = this.items.findIndex((user) => user.id === data.id)
 
     const userEdit = {
       ...user,
-      name: data.name,
-      job: data.job,
-      updated_at: new Date(),
-      role: data.role,
-      email: data.email,
-      password_hash: data.password_hash,
-      views: data.views,
-      id: data.id,
+      name: data.name as string,
+      email: data.email as string,
+      role: data.role as Role,
+      job: data.job as string,
     }
 
     if (index !== -1) {
@@ -76,7 +73,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return userEdit
   }
 
-  async findByName(name: string): Promise<UserPropsResponse | null> {
+  async findByName(name: string): Promise<User | null> {
     const user = this.items.find((item) =>
       item.name
         .normalize('NFD')
@@ -98,7 +95,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user
   }
 
-  async findById(id: string): Promise<UserPropsResponse | null> {
+  async findById(id: string): Promise<User | null> {
     const user = this.items.find((item) => item.id === id)
 
     if (!user) {
@@ -108,15 +105,16 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user
   }
 
-  async create(data: InitialUserProps): Promise<UserPropsResponse> {
+  async create(data: Prisma.UserCreateInput): Promise<User> {
     const user = {
       id: randomUUID(),
       name: data.name,
       job: data.job,
       created_at: new Date(),
-      role: data.role,
+      role: Role.USER,
       password_hash: data.password_hash,
       email: data.email,
+      updated_at: new Date(),
       views: 0,
     }
 

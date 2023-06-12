@@ -16,7 +16,6 @@ describe('Create user (E2E)', () => {
       job: 'Homem-aranha',
       password: '123asd',
       email: 'homemaranha@marvel.com',
-      role: 'USER',
     })
 
     const { user } = JSON.parse(response.text)

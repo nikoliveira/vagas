@@ -14,8 +14,6 @@ describe('Fetch many users (E2E)', () => {
   it('slould be able to get user', async () => {
     const token = await createAndAuthenticate(app, true)
 
-    console.log(token, 'token')
-
     for (let i = 1; i <= 22; i++) {
       await request(app.server)
         .post('/users')
@@ -23,8 +21,7 @@ describe('Fetch many users (E2E)', () => {
           name: `Miranha ${i}`,
           job: `Homem-aranha ${i}`,
           password: '123asd',
-          email: 'homemaranha@marvel.com',
-          role: 'USER',
+          email: `homemaranha${i}@marvel.com`,
         })
     }
 
@@ -32,8 +29,6 @@ describe('Fetch many users (E2E)', () => {
       .get('/users?page=2')
       .set('Authorization', `Bearer ${token}`)
       .send()
-
-    // console.log(response)
 
     const { users, totalItems, totalPages, currentPage } = JSON.parse(
       response.text,

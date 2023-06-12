@@ -1,9 +1,9 @@
-import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
+import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
 import { AuthenticateUseCase } from '@/use-cases/users/authenticate'
 
 export function makeAuthenticateUseCase() {
-  const inMemoryUsersRepository = new InMemoryUsersRepository()
-  const authenticateUseCase = new AuthenticateUseCase(inMemoryUsersRepository)
+  const prismaUsersRepository = new PrismaUsersRepository()
+  const authenticateUseCase = new AuthenticateUseCase(prismaUsersRepository)
 
   return authenticateUseCase
 }

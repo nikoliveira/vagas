@@ -2,6 +2,7 @@ import request from 'supertest'
 import { app } from '@/app'
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import { createAndAuthenticate } from '@/utils/create-and-get-token-user'
+import { Role } from '@prisma/client'
 
 describe('Fetch user views (E2E)', () => {
   beforeAll(async () => {
@@ -12,14 +13,14 @@ describe('Fetch user views (E2E)', () => {
   })
 
   it('slould be able to get user acess', async () => {
-    const token = await createAndAuthenticate(app, true)
+    const token = await createAndAuthenticate(app)
 
     const createUser = await request(app.server).post('/users').send({
       name: 'Miranha',
       job: 'Homem-aranha',
       password: '123asd',
       email: 'homemaranha@marvel.com',
-      role: 'USER',
+      role: Role.USER,
     })
 
     const { user } = JSON.parse(createUser.text)
@@ -31,9 +32,10 @@ describe('Fetch user views (E2E)', () => {
         .send()
     }
 
-    const response = await request(app.server).get(
-      `/users/access?name=${user.name}`,
-    )
+    const response = await request(app.server)
+      .get(`/users/access?name=${user.name}`)
+      .set('Authorization', `Bearer ${token}`)
+      .send()
 
     const { message } = JSON.parse(response.text)
 

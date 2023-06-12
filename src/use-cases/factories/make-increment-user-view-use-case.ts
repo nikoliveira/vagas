@@ -1,11 +1,9 @@
-import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
+import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
 import { IncrementUserViews } from '@/use-cases/users/increment-user-view'
 
 export function makeIncrementUserViewUseCase() {
-  const inMemoryUsersRepository = new InMemoryUsersRepository()
-  const incrementUserViewUseCase = new IncrementUserViews(
-    inMemoryUsersRepository,
-  )
+  const prismaUsersRepository = new PrismaUsersRepository()
+  const incrementUserViewUseCase = new IncrementUserViews(prismaUsersRepository)
 
   return incrementUserViewUseCase
 }

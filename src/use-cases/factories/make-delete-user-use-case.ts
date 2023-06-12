@@ -1,9 +1,9 @@
-import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
+import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
 import { DeleteUser } from '@/use-cases/users/delete-user'
 
 export function makeDeleteUserUseCase() {
-  const inMemoryUsersRepository = new InMemoryUsersRepository()
-  const deleteUserUseCase = new DeleteUser(inMemoryUsersRepository)
+  const prismaUsersRepository = new PrismaUsersRepository()
+  const deleteUserUseCase = new DeleteUser(prismaUsersRepository)
 
   return deleteUserUseCase
 }

@@ -3,6 +3,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { FetchManyUsersUseCase } from './fetch-many-users'
 import { hash } from 'bcryptjs'
+import { Role } from '@prisma/client'
 
 let usersRepository: InMemoryUsersRepository
 let fetchManyUsersUseCase: FetchManyUsersUseCase
@@ -20,7 +21,7 @@ describe('Fetch Many Users Paginated  Use Case', () => {
         job: `Developer ${i}`,
         email: `user${i}@gmail.com`,
         password_hash: await hash('123456', 6),
-        role: 'USER',
+        role: Role.ADMIN,
       })
     }
 
