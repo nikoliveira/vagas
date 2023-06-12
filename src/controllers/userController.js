@@ -31,4 +31,17 @@ module.exports = class UserController {
     }
     res.status(201).send(newUser);
   };
+
+  deleteUser = (req, res) => {
+    const name = req.query.name;
+
+    const userToBeDeleted = UserService.deleteUser(name);
+
+    if (!userToBeDeleted) {
+      return res.status(404).send("Usuario não encontrado");
+    }
+
+    // for delete, 204 is the best status code, but don't return anything
+    res.status(200).send("success");
+  };
 };

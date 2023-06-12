@@ -36,7 +36,7 @@ app.get('/', function(req, res){
 app.get("/user", userController.getUser);
 app.get("/users", userController.getUsers);
 app.post("/users", validateRequiredBody, userController.createUser);
-app.delete("/users", validateUserPermissions, teste3)
+app.delete("/users", validateUserPermissions, userController.deleteUser);
 app.put("/users", validateUserPermissions, teste4)
 app.get("/users/access", teste5);
 

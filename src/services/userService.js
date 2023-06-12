@@ -21,7 +21,7 @@ module.exports = class UserService {
     if (!name || !job) {
       return null;
     }
-    
+
     const newUser = {
       id: data.length + 1,
       name: name,
@@ -32,5 +32,20 @@ module.exports = class UserService {
     data.push(newUser);
 
     return newUser;
-  }
+  };
+
+  static deleteUser = (name) => {
+    const userToBeDeleted = data.find((user) => user.name === name);
+    if (!userToBeDeleted) {
+      return null;
+    }
+
+    data.forEach((user, i) => {
+      if (user.name === name) {
+        data.splice(i, 1);
+      }
+    });
+
+    return "success";
+  };
 };
