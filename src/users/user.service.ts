@@ -1,4 +1,4 @@
-import { readFromDatabase, saveToDatabase } from "../utils/databaseFunctions";
+import { readFromDatabase, saveToDatabase } from "../database/databaseFunctions";
 import { UpdateUser, User } from "./user.interface";
 
 const findUser = (id: number) => {
