@@ -84,6 +84,10 @@ $ npm run test:covarage
 ```sh
 $ npm run test:ui
 ```
+#### V (Open Swagger API DOC) 
+```sh
+$ http://localhost:3333/swagger
+```
 
 ## Credits
 
