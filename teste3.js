@@ -1,7 +1,7 @@
 const data = require("./src/models/fakeData");
 
 module.exports = function (req, res) {
-  const name = req.query.name;
+  const { name } = req.query;
 
   const userToBeDeleted = data.find((user) => user.name === name);
 

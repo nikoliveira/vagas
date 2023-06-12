@@ -1,7 +1,7 @@
 const data = require("./src/models/fakeData");
 
 const getUser = (req, res) => {
-  const name = req.query.name;
+  const { name } = req.query;
 
   const user = data.find((user) => user.name === name);
 

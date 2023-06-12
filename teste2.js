@@ -1,8 +1,7 @@
 const data = require("./src/models/fakeData");
 
 module.exports = function (req, res) {
-  const name = req.body.name;
-  const job = req.body.job;
+  const { name, job } = req.body;
 
   const newUser = {
     id: data.length + 1,

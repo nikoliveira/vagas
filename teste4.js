@@ -1,7 +1,7 @@
 const data = require("./src/models/fakeData");
 
 module.exports = function (req, res) {
-  const id = req.query.id;
+  const { id } = req.query;
   const { name, job } = req.body;
 
   const reg = data.find((user) => user.id == id);
