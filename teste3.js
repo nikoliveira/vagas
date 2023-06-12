@@ -12,7 +12,7 @@ module.exports = function (req, res) {
         "fakeData.json",
         JSON.stringify(fakeData),
         function (err, _) {
-          if (err) return res.send({ msg: "Erro ao deletar usuário" });
+          if (err) return res.send({ message: "Erro ao deletar usuário" });
         }
       );
       return true;

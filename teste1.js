@@ -17,7 +17,7 @@ const getUser = (req, res, _) => {
         "fakeData.json",
         JSON.stringify(fakeData),
         function (err, _) {
-          if (err) return res.send({ msg: "Erro ao editar views de usuário" });
+          if (err) return res.send({ message: "Erro ao editar views de usuário" });
         }
       );
 

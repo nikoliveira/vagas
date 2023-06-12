@@ -11,7 +11,7 @@ module.exports = function (req, res) {
     fakeData[reg.id - MENOS].job = req.body.job;
 
     fs.writeFile("fakeData.json", JSON.stringify(fakeData), function (err, _) {
-      if (err) return res.send({ msg: "Erro ao editar usuário" });
+      if (err) return res.send({ message: "Erro ao editar usuário" });
     });
 
     return res.send(reg);
