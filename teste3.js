@@ -1,15 +1,15 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
+const { ErrorHandler } = require("./middlewares");
 
-module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+module.exports = (req, res, next) => {
+  const id = Number(req.params.id);
+  const userIndex = data.findIndex((user) => user.id == id);
+  if(userIndex == -1) {
+    return next(new ErrorHandler({message: "user not found", statusCode: 404}))
+  }
+  data.splice(userIndex, 1)
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
-    }
 
-    res.send("success");
+  return res.sendStatus(204);
 
 };

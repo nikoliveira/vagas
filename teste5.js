@@ -1,9 +1,13 @@
+const data = require("./fakeData");
+const { ErrorHandler } = require("./middlewares");
 
 
-module.exports = function(req, res){
-    
-    var name =  req.query.name;
+module.exports = (req, res,next ) => {
+  const id = Number(req.params.id)
+  const user = data.find((user) => user.id === id)
 
-    res.send("Usuário " +  name  + "  foi lido 0 vezes.");
+  if(!user) return next(new ErrorHandler({ message: "User not found", statusCode: 404 }))
+
+  res.send(`Usuário ${user.name} foi lido ${user.access}  vezes.`);
 
 };

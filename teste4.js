@@ -1,13 +1,17 @@
-var data =  require("./fakeData");
+const  data =  require("./fakeData");
+const { ErrorHandler } = require("./middlewares");
 
-module.exports =  function(req, res) {
-  
-    var id =  req.query.id;
+module.exports =  (req, res, next) =>  {
+    const {name, job } = req.body;
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
+    const id =  Number(req.params.id);
 
-    res.send(reg);
+    const user = data.find((user) => user.id == id);
+    if(!user) return next(new ErrorHandler({ message: "User not found", statusCode: 404 }));
+    
+    user.name = name || user.name;
+    user.job = job || user.job;
+
+    res.send(user);
 
 };

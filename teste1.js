@@ -1,24 +1,20 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
+const { ErrorHandler } = require("./middlewares");
 
 const getUser = ( req, res, next ) => {
-    
-    var name =  req.query.name;
+  const id = req.params.id;
+  const user = data.find((user) => user.id === Number(id))
+  if(!user) return next( new ErrorHandler({ message: "User not found", statusCode: 404 }))
+  user.access++
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
-    }
+  return res.send(user)
 
 };
-
-const getUsers = ( req, res, next ) => {
-    
-    res.send(data);
-    
+const getUsers = ( req, res ) => {
+  res.send(data);
 };
 
 module.exports = {
-    getUser,
-    getUsers
+  getUser,
+  getUsers
 };
