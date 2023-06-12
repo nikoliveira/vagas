@@ -5,6 +5,7 @@ export const fakeData = [
     id: randomUUID(),
     name: 'João Oliveira',
     job: 'Desenvolvedor',
-    created_at: new Date(2),
+    created_at: new Date(),
+    role: 'ADMIN',
   },
 ]

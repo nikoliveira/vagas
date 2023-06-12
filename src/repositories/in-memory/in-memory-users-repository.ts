@@ -1,10 +1,19 @@
-import { UserProps } from '@/@types/user'
+import { InitialUserProps, UserPropsResponse } from '@/@types/user'
 import { UsersPaginated, UsersRepository } from '../users-repository'
 import { randomUUID } from 'node:crypto'
-import { fakeData } from '@/utils/fakeData'
 
 export class InMemoryUsersRepository implements UsersRepository {
-  public items: UserProps[] = fakeData
+  public items: UserPropsResponse[] = []
+
+  async findByEmail(email: string): Promise<UserPropsResponse | null> {
+    const user = this.items.find((item) => item.email === email)
+
+    if (!user) {
+      return null
+    }
+
+    return user
+  }
 
   async incrementUserViews(id: string): Promise<{ views: number } | null> {
     const user = this.items.find((item) => item.id === id)
@@ -43,7 +52,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     }
   }
 
-  async edit(data: UserProps): Promise<UserProps> {
+  async edit(data: UserPropsResponse): Promise<UserPropsResponse> {
     const user = this.items.find((user) => user.id === data.id)
 
     const index = this.items.findIndex((user) => user.id === data.id)
@@ -53,6 +62,11 @@ export class InMemoryUsersRepository implements UsersRepository {
       name: data.name,
       job: data.job,
       updated_at: new Date(),
+      role: data.role,
+      email: data.email,
+      password_hash: data.password_hash,
+      views: data.views,
+      id: data.id,
     }
 
     if (index !== -1) {
@@ -62,7 +76,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return userEdit
   }
 
-  async findByName(name: string): Promise<UserProps | null> {
+  async findByName(name: string): Promise<UserPropsResponse | null> {
     const user = this.items.find((item) =>
       item.name
         .normalize('NFD')
@@ -84,7 +98,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user
   }
 
-  async findById(id: string): Promise<UserProps | null> {
+  async findById(id: string): Promise<UserPropsResponse | null> {
     const user = this.items.find((item) => item.id === id)
 
     if (!user) {
@@ -94,12 +108,16 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user
   }
 
-  async create(data: UserProps): Promise<UserProps> {
+  async create(data: InitialUserProps): Promise<UserPropsResponse> {
     const user = {
       id: randomUUID(),
       name: data.name,
       job: data.job,
       created_at: new Date(),
+      role: data.role,
+      password_hash: data.password_hash,
+      email: data.email,
+      views: 0,
     }
 
     this.items.push(user)

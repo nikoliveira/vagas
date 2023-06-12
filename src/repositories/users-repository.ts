@@ -1,16 +1,17 @@
 import { PaginatedProps } from '@/@types/paginated'
-import { UserProps } from '@/@types/user'
+import { UserPropsResponse, InitialUserProps } from '@/@types/user'
 
 export interface UsersPaginated extends PaginatedProps {
-  users: UserProps[]
+  users: UserPropsResponse[]
 }
 
 export interface UsersRepository {
-  findById(id: string): Promise<UserProps | null>
-  findByName(name: string): Promise<UserProps | null>
+  findById(id: string): Promise<UserPropsResponse | null>
+  findByName(name: string): Promise<UserPropsResponse | null>
   findManyByPaginated(page: number): Promise<UsersPaginated | null>
-  create(data: UserProps): Promise<UserProps>
-  edit(data: UserProps): Promise<UserProps>
+  create(data: InitialUserProps): Promise<UserPropsResponse>
+  edit(data: UserPropsResponse): Promise<UserPropsResponse>
   delete(id: string): Promise<{ message: string }>
   incrementUserViews(id: string): Promise<{ views: number } | null>
+  findByEmail(email: string): Promise<UserPropsResponse | null>
 }

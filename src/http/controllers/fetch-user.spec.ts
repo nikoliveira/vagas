@@ -1,6 +1,7 @@
 import request from 'supertest'
 import { app } from '@/app'
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
+import { createAndAuthenticate } from '@/utils/create-and-get-token-user'
 
 describe('Fetch user (E2E)', () => {
   beforeAll(async () => {
@@ -11,12 +12,20 @@ describe('Fetch user (E2E)', () => {
   })
 
   it('slould be able to get user', async () => {
+    const token = await createAndAuthenticate(app)
+
     await request(app.server).post('/users').send({
       name: 'Miranha',
       job: 'Homem-aranha',
+      password: '123asd',
+      email: 'homemaranha@marvel.com',
+      role: 'USER',
     })
 
-    const response = await request(app.server).get('/user?name=Miranha').send()
+    const response = await request(app.server)
+      .get('/user?name=Miranha')
+      .set('Authorization', `Bearer ${token}`)
+      .send()
 
     const { user } = JSON.parse(response.text)
 

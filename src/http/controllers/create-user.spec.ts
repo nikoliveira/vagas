@@ -14,6 +14,9 @@ describe('Create user (E2E)', () => {
     const response = await request(app.server).post('/users').send({
       name: 'Miranha',
       job: 'Homem-aranha',
+      password: '123asd',
+      email: 'homemaranha@marvel.com',
+      role: 'USER',
     })
 
     const { user } = JSON.parse(response.text)

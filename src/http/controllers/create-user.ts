@@ -8,9 +8,12 @@ export async function createUser(request: FastifyRequest, reply: FastifyReply) {
   const createSchema = z.object({
     name: z.string(),
     job: z.string(),
+    email: z.string().email(),
+    password: z.string().min(6),
+    role: z.enum(['ADMIN', 'USER']),
   })
 
-  const { name, job } = createSchema.parse(request.body)
+  const { name, job, email, password, role } = createSchema.parse(request.body)
 
   try {
     const createUserUseCase = makeCreateUserUseCase()
@@ -18,6 +21,9 @@ export async function createUser(request: FastifyRequest, reply: FastifyReply) {
     const { user } = await createUserUseCase.execute({
       name,
       job,
+      email,
+      password,
+      role,
     })
 
     return reply.status(201).send({ user })

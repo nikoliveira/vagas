@@ -1,4 +1,4 @@
-import { UserProps } from '@/@types/user'
+import { UserPropsResponse } from '@/@types/user'
 import { UsersRepository } from '@/repositories/users-repository'
 
 import { UserNotExistsError } from '../errors/user-not-exists'
@@ -8,7 +8,7 @@ interface FetchUserUseCaseRequest {
 }
 
 interface FetchUserUseCaseResponse {
-  user: UserProps
+  user: UserPropsResponse
 }
 
 export class FetchUser {

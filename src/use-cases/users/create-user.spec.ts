@@ -16,11 +16,15 @@ describe('Create User Use Case', () => {
     const userResponse = await createUserUseCase.execute({
       name: 'Miranha',
       job: 'Homem-aranha',
+      role: 'ADMIN',
+      password: '123abc',
+      email: 'homemaranha@marvel.com',
     })
 
     const { user } = userResponse
 
     expect(user.id).toEqual(expect.any(String))
     expect(user.name).toEqual('Miranha')
+    expect(user.role).toEqual('ADMIN')
   })
 })

@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { FetchManyUsersUseCase } from './fetch-many-users'
+import { hash } from 'bcryptjs'
 
 let usersRepository: InMemoryUsersRepository
 let fetchManyUsersUseCase: FetchManyUsersUseCase
@@ -17,6 +18,9 @@ describe('Fetch Many Users Paginated  Use Case', () => {
       await usersRepository.create({
         name: `User ${i}`,
         job: `Developer ${i}`,
+        email: `user${i}@gmail.com`,
+        password_hash: await hash('123456', 6),
+        role: 'USER',
       })
     }
 
@@ -25,7 +29,7 @@ describe('Fetch Many Users Paginated  Use Case', () => {
     })
 
     expect(usersResponse.currentPage).toEqual(2)
-    expect(usersResponse.totalItems).toEqual(23)
+    expect(usersResponse.totalItems).toEqual(22)
     expect(usersResponse.totalPages).toEqual(2)
   })
 })
