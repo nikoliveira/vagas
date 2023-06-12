@@ -1,0 +1,18 @@
+// necessário ter a extensão REST Client
+
+
+//teste 1
+GET http://localhost:3000/user?name=João%20Oliveira
+
+###
+//teste 2
+POST  http://localhost:3000/users
+Content-Type: application/json 
+
+{
+    "name": "Rodrigo Brezolin",
+    "job": "Desenvolvedor"
+}
+
+###
+//teste 3
