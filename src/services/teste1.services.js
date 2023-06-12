@@ -1,7 +1,15 @@
 const data =  require('../mocks/fakeData');
+const searchUsers = {};
 
 const getUser = (name) => {
     const user = data.filter((element) => element.name === name);
+    if (user) {
+        if (searchUsers[name]) {
+            searchUsers[name]++
+        } else {
+            searchUsers[name] = 1;
+        }
+    }
     return user;
 }
 
@@ -29,5 +37,6 @@ const getUsers = () => {
 
 module.exports = {
     getUser,
-    getUsers
+    getUsers,
+    searchUsers
 };
