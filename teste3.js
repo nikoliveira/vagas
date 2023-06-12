@@ -1,15 +1,19 @@
-var data =  require("./fakeData");
+const data = require("./src/models/fakeData");
 
-module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+module.exports = function (req, res) {
+  const { name } = req.query;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
+  const userToBeDeleted = data.find((user) => user.name === name);
+
+  if (!userToBeDeleted) {
+    return res.status(404).send("Usuario não encontrado");
+  }
+
+  data.forEach((user, i) => {
+    if (user.name === name) {
+      data.splice(i, 1);
     }
-
-    res.send("success");
-
+  });
+  // for delete, 204 is the best status code, but don't return anything
+  res.status(200).send("success");
 };

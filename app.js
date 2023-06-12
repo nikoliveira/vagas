@@ -1,12 +1,19 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const validateUserPermissions = require("./src/middlewares/validateUserPermissions");
+const validateRequiredBody = require("./src/middlewares/validateRequiredBody");
+const validateUpdateBody = require("./src/middlewares/validateUpdateBody");
+const UserController = require("./src/controllers/userController");
 
-var teste1 = require("./teste1");
-var teste2 = require("./teste2");
-var teste3 = require("./teste3");
-var teste4 = require("./teste4");
-var teste5 = require("./teste5");
+const userController = new UserController();
+
+// Just mantain this for reference
+// const teste1 = require("./teste1");
+// const teste2 = require("./teste2");
+// const teste3 = require("./teste3");
+// const teste4 = require("./teste4");
+// const teste5 = require("./teste5");
 
 
 app.set('view engine', 'jade');
@@ -19,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res){
+app.get('/', function(_req, res){
   res.send(`get user/ </br>
   get users/ </br>
   post users/ </br>
@@ -28,12 +35,12 @@ app.get('/', function(req, res){
   `);
 });
 
-app.get("/user", teste1.getUser);
-app.get("/users", teste1.getUsers);
-app.post("/users", teste2)
-app.delete("/users", teste3)
-app.put("/users", teste4)
-app.get("/users/access", teste5);
+app.get("/user", userController.getUser);
+app.get("/users", userController.getUsers);
+app.post("/users", validateRequiredBody, userController.createUser);
+app.delete("/users", validateUserPermissions, userController.deleteUser);
+app.put("/users", validateUserPermissions, validateUpdateBody, userController.updateUser);
+app.get("/users/access", userController.getAccess);
 
 
 const port  = 3000;

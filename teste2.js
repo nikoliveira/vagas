@@ -1,17 +1,20 @@
-var data =  require("./fakeData");
+const data = require("./src/models/fakeData");
 
-module.exports = function(req, res){
-  
-    var name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
-        name: name,
-        job: job,
-    }
+module.exports = function (req, res) {
+  const { name, job } = req.body;
 
-    data.push(newUser)
-    
-    res.send(newUser);
+  const newUser = {
+    id: data.length + 1,
+    name: name,
+    job: job,
+    counter: 0,
+  };
 
+  if (!name || !job) {
+    return res.status(400).send("Dados inválidos");
+  }
+
+  data.push(newUser);
+
+  res.status(201).send(newUser);
 };

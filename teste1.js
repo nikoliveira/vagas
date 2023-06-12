@@ -1,24 +1,24 @@
-var data =  require("./fakeData");
+const data = require("./src/models/fakeData");
 
-const getUser = ( req, res, next ) => {
-    
-    var name =  req.query.name;
+const getUser = (req, res) => {
+  const { name } = req.query;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
-    }
+  const user = data.find((user) => user.name === name);
 
+  if (user) {
+    user.counter += 1;
+    res.status(200).send(user);
+  } else {
+    res.status(404).send("Usuario não encontrado");
+  }
 };
 
-const getUsers = ( req, res, next ) => {
-    
-    res.send(data);
-    
+const getUsers = (_req, res) => {
+  data.map((user) => (user.counter += 1))
+  res.send(data);
 };
 
 module.exports = {
-    getUser,
-    getUsers
+  getUser,
+  getUsers,
 };
