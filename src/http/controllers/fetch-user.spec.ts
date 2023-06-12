@@ -11,14 +11,16 @@ describe('Fetch user (E2E)', () => {
   })
 
   it('slould be able to get user', async () => {
-    await request(app.server).post('/users').send({
+    const responseCreate = await request(app.server).post('/users').send({
       name: 'Miranha',
       job: 'Homem-aranha',
       password: '123asd',
       email: 'homemaranha@marvel.com',
     })
 
-    const response = await request(app.server).get('/user?name=Miranha').send()
+    const { id } = JSON.parse(responseCreate.text)
+
+    const response = await request(app.server).get(`/user?id=${id}`).send()
 
     const user = JSON.parse(response.text)
 

@@ -6,14 +6,18 @@ import { z } from 'zod'
 import { UserNotExistsError } from '@/use-cases/errors/user-not-exists'
 
 export async function editUser(request: FastifyRequest, reply: FastifyReply) {
-  const editSchema = z.object({
-    name: z.string(),
-    job: z.string(),
-    email: z.string().email(),
+  const editQuerySchema = z.object({
     id: z.string(),
   })
 
-  const { name, job, id, email } = editSchema.parse(request.body)
+  const editBodySchema = z.object({
+    name: z.string(),
+    job: z.string(),
+    email: z.string().email(),
+  })
+
+  const { name, job, email } = editBodySchema.parse(request.body)
+  const { id } = editQuerySchema.parse(request.query)
 
   try {
     const editUserUseCase = makeEditUserUseCase()
@@ -25,7 +29,7 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply) {
       email,
     })
 
-    return reply.status(200).send({ user })
+    return reply.status(200).send({ ...user, password_hash: undefined })
   } catch (err) {
     if (err instanceof UserNotExistsError) {
       return reply.status(409).send({ message: err.message })

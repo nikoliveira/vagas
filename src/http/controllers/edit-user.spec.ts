@@ -25,16 +25,15 @@ describe('Edit user (E2E)', () => {
     const newUser = JSON.parse(createResponse.text)
 
     const editResponse = await request(app.server)
-      .put('/users')
+      .put(`/users?id=${newUser.id}`)
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'Batman',
         job: 'Rico',
-        id: newUser.id,
         email: 'batman@dc.com',
       })
 
-    const { user: userEdit } = JSON.parse(editResponse.text)
+    const userEdit = JSON.parse(editResponse.text)
 
     expect(editResponse.statusCode).toEqual(200)
     expect(userEdit).toEqual(

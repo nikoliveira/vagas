@@ -9,17 +9,17 @@ import { UserNotExistsError } from '@/use-cases/errors/user-not-exists'
 
 export async function fetchUser(request: FastifyRequest, reply: FastifyReply) {
   const fetchUserSchema = z.object({
-    name: z.string(),
+    id: z.string(),
   })
 
-  const { name } = fetchUserSchema.parse(request.query)
+  const { id } = fetchUserSchema.parse(request.query)
 
   try {
     const fetchUserUseCase = makeFetchUserUseCase()
     const incrementUserView = makeIncrementUserViewUseCase()
 
     const { user } = await fetchUserUseCase.execute({
-      name,
+      id,
     })
 
     await incrementUserView.execute({ id: user.id! })

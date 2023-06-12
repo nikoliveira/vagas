@@ -10,16 +10,16 @@ export async function fetchUserViews(
   reply: FastifyReply,
 ) {
   const fetchUserSchema = z.object({
-    name: z.string(),
+    id: z.string(),
   })
 
-  const { name } = fetchUserSchema.parse(request.query)
+  const { id } = fetchUserSchema.parse(request.query)
 
   try {
     const fetchUserUseCase = makeFetchUserUseCase()
 
     const { user } = await fetchUserUseCase.execute({
-      name,
+      id,
     })
 
     return reply.status(200).send({

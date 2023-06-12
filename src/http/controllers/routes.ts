@@ -8,24 +8,29 @@ import { deleteUser } from './delete-user'
 import { verifyUserRole } from '../middlewares/verify-user-role'
 import { verifyJWT } from '../middlewares/verify-jwt'
 import { authenticate } from './authenticate'
+import { schemasUsers } from './schemas'
 
 export async function usersRoutes(app: FastifyInstance) {
-  app.post('/users', createUser)
-  app.post('/sessions', authenticate)
-  app.get('/users', fetchManyUsers)
+  app.post('/users', schemasUsers.createUser, createUser)
+  app.post('/sessions', schemasUsers.authUser, authenticate)
+  app.get('/users', schemasUsers.fetchManyUsersPaginated, fetchManyUsers)
   app.put(
     '/users',
     {
       onRequest: [verifyJWT, verifyUserRole('ADMIN')],
+      ...schemasUsers.editUser,
     },
     editUser,
   )
   app.delete(
     '/users',
-    { onRequest: [verifyJWT, verifyUserRole('ADMIN')] },
+    {
+      onRequest: [verifyJWT, verifyUserRole('ADMIN')],
+      ...schemasUsers.deleteUser,
+    },
     deleteUser,
   )
-  app.get('/users/access', fetchUserViews)
+  app.get('/users/access', schemasUsers.fetchUserViews, fetchUserViews)
 
-  app.get('/user', fetchUser)
+  app.get('/user', schemasUsers.fetchUser, fetchUser)
 }

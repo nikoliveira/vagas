@@ -1,9 +1,9 @@
 import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
-import { FetchUserByName } from '@/use-cases/users/fetch-user-by-name'
+import { FetchUser } from '@/use-cases/users/fetch-user'
 
 export function makeFetchUserUseCase() {
   const prismaUsersRepository = new PrismaUsersRepository()
-  const fetchUserUseCase = new FetchUserByName(prismaUsersRepository)
+  const fetchUserUseCase = new FetchUser(prismaUsersRepository)
 
   return fetchUserUseCase
 }

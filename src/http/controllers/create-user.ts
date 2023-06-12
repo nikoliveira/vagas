@@ -27,9 +27,7 @@ export async function createUser(request: FastifyRequest, reply: FastifyReply) {
       role,
     })
 
-    return reply
-      .status(201)
-      .send({ ...user, password_hash: undefined, role: undefined })
+    return reply.status(201).send({ ...user, password_hash: undefined })
   } catch (err) {
     if (err instanceof EmailAlreadyExistsError) {
       return reply.status(409).send({ message: err.message })
