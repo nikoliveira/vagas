@@ -48,4 +48,21 @@ module.exports = class UserService {
 
     return "success";
   };
+
+  static updateUser = (id, name = null, job = null) => {
+    const user = data.find((user) => user.id == id);
+
+    if (!user) {
+      return null;
+    }
+
+    if (name) {
+      user.name = name;
+    }
+    if (job) {
+      user.job = job;
+    }
+
+    return user;
+  };
 };

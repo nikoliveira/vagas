@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const validateUserPermissions = require("./src/middlewares/validateUserPermissions");
 const validateRequiredBody = require("./src/middlewares/validateRequiredBody");
+const validateUpdateBody = require("./src/middlewares/validateUpdateBody");
 const UserController = require("./src/controllers/userController");
 
 const userController = new UserController();
@@ -37,7 +38,7 @@ app.get("/user", userController.getUser);
 app.get("/users", userController.getUsers);
 app.post("/users", validateRequiredBody, userController.createUser);
 app.delete("/users", validateUserPermissions, userController.deleteUser);
-app.put("/users", validateUserPermissions, teste4)
+app.put("/users", validateUserPermissions, validateUpdateBody, userController.updateUser);
 app.get("/users/access", teste5);
 
 

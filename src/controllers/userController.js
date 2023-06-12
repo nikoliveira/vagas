@@ -44,4 +44,15 @@ module.exports = class UserController {
     // for delete, 204 is the best status code, but don't return anything
     res.status(200).send("success");
   };
+
+  updateUser = function (req, res) {
+    const { id } = req.query;
+    const { name, job } = req.body;
+  
+    const user = UserService.updateUser(id, name, job);
+    if (!user) {
+      return res.status(404).send("Usuario não encontrado");
+    }
+    res.status(200).send(user);
+  }
 };
