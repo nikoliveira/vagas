@@ -13,25 +13,25 @@
 
 ## Rodando localmente  ⚙️ 
 
-Clone o projeto | Clone the project
+Clone o projeto 
 
 ```bash
   git clone [https://link-para-o-projeto](https://github.com/MichaelWEB3/vagas)
 ```
 
-Entre no diretório do projeto | Enter the project directory
+Entre no diretório do projeto 
 
 ```bash
   cd my-project
 ```
 
-Instale as dependências | install the dependencies
+Instale as dependências 
 
 ```bash
   npm install || yarn install
 ```
 
-Inicie o servidor | start the server
+Inicie o servidor 
 
 ```bash
   npm run start 
