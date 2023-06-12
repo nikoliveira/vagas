@@ -1,18 +1,22 @@
-var data =  require("./fakeData");
+const services = require("./utils/services");
+const status = require("./utils/status");
 
-const getUser = ( req, res, next ) => {
+const getUser = ( req, res ) => {
     const { name } = req.query;
-    const index = data.findIndex((user) => user.name === name);
-    
-    data[index].views = data[index].views ? data[index].views + 1 : 1;
 
-    if(index == -1) return res.status(404).send("User not found");
-    
-    return res.status(200).json(data[index]);    
+    try {
+        const user = services.getUserByUsername(name);
+        if(!user) res.status(status.NOT_FOUND).send("User not found");
+
+        services.updateUserViewCount(name);
+        return res.status(status.OK).json(user);
+    }catch(e){
+        return res.status(status.BAD_REQUEST).send(e.message)
+    }
 };
 
-const getUsers = ( req, res, next ) => {
-    res.status(200).json(data);
+const getUsers = ( req, res ) => {
+    res.status(status.OK).json(services.getAllUsers());
 };
 
 module.exports = {

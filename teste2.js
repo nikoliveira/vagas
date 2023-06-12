@@ -1,14 +1,12 @@
-var data =  require("./fakeData");
+const services = require("./utils/services");
+const status = require("./utils/status");
 
 module.exports = function(req, res){
     const { name, job } = req.body;
 
-    const newUser = {
-        name,
-        job,
-    };
-
-    data.push(newUser);
-
-    res.status(201).json(newUser);
+    try {
+        return res.status(status.CREATED).json(services.createUser(name, job));
+    }catch(e){
+        return res.status(status.BAD_REQUEST).send(e.message);
+    }
 };
