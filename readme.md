@@ -1,7 +1,12 @@
 ## Foi refactorado o projecto de modo a dar mais performance nas e rotas
 Tomei a liberdade de mudar a estrutura dos directórios , adiocionei alguns usuários mockados 
 para poder testar as permissões , então é necessário passar o 
--- userId -- para poder ter autorização
+-- userId -- no body isso nas rotas de update e delete , para poder ter autorização
+
+exemplo :  {
+"userId" : "123456789"
+
+}
 
 
 usuários Mockados
