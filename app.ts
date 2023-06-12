@@ -23,10 +23,10 @@ app.use(express.static(__dirname + "/public"));
 
 app.get('/', baseMapping.baseUrl);
 app.get("/user", teste1.getUser);
-app.get("/users", validateUserPermissions , teste1.getUsers);
-app.post("/users", teste2.addUser);
+app.get("/users", teste1.getUsers);
+app.post("/users",validateUserPermissions ,teste2.addUser);
 app.put("/users/:id", teste4.updateUser)
-app.delete("/users/:id", teste3.deleteUser);
+app.delete("/users/:id",validateUserPermissions , teste3.deleteUser);
 app.get("/users/access", teste5.coundUserVisit);
 
 

@@ -10,8 +10,11 @@ const getUserPermissions = (id: string) => {
 
   const userExists = !!userPermissions;
   const mappedPermissions = Object.values(userPermissions).flat()
+  const canDeleteUser = mappedPermissions.includes("DELETE_USER");
+  const canUpdateUser = mappedPermissions.includes("UPDATE_USER");
   return {
-    mappedPermissions,
+    canDeleteUser,
+    canUpdateUser,
     userExists,
   };
 };
