@@ -1,6 +1,5 @@
 import { DATA } from "../data";
 import { RequestHandler } from "express";
-import { API } from "../types/data.type";
 
 const deleteUser: RequestHandler = (req, res) => {
   const { id } = req.params;
@@ -11,14 +10,13 @@ const deleteUser: RequestHandler = (req, res) => {
       .status(404)
       .send({ message: "Usuário não encontrado!!", sucess: false });
   }
-
-   DATA.splice(userIndex,1);
+  DATA.splice(userIndex, 1);
 
   return res
     .status(200)
     .send({ message: "Usuário deletado com sucesso!", sucess: true });
 };
 
-module.exports  = {
-  deleteUser
+module.exports = {
+  deleteUser,
 };
