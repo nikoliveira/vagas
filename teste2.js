@@ -9,6 +9,7 @@ module.exports = function(req, res){
         id: data.length + 1,
         name: name,
         job: job,
+        counter: 0,
     }
 
     if (!name || !job) {

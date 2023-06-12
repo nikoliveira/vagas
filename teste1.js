@@ -6,6 +6,7 @@ const getUser = (req, res) => {
   const user = data.find((user) => user.name === name);
 
   if (user) {
+    user.counter += 1;
     res.status(200).send(user);
   } else {
     res.status(404).send("Usuario não encontrado");
@@ -13,6 +14,7 @@ const getUser = (req, res) => {
 };
 
 const getUsers = (_req, res) => {
+  data.map((user) => (user.counter += 1))
   res.send(data);
 };
 
