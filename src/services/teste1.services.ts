@@ -11,6 +11,10 @@ export const getUserService = async (
       QueryString.ParsedQs[] | 
       undefined
   ): Promise<IUser> => {
+  
+  if(!name) {
+    throw new AppError("Name is required");
+  }
 
   for(let i = 0; i < data.length;  i++) {
     if(data[i].name == name) {

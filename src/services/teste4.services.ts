@@ -10,15 +10,17 @@ const putUserService = async (
       string[] | 
       QueryString.ParsedQs[] | 
       undefined, 
-      {name, job}: IUserRequest
+      {name, job, username, password}: IUserRequest
   ): Promise<IUser> => {
   
-    let updatedUser;
+  let updatedUser;
 
   for(let i = 0; i < data.length; i++) {
     if(data[i].id == userId) {
       data[i].name = name;
       data[i].job = job;
+      data[i].username = username;
+      data[i].password = password;
       updatedUser = data[i];
       break
     }
