@@ -1,17 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import userRouter from './users/user.router';
 
 const app = express();
 
-import teste1 from "./teste1";
-import teste2 from "./teste2";
-import teste3 from "./teste3";
-import teste4 from "./teste4";
-import teste5 from "./teste5";
-
-
 app.set('view engine', 'jade');
-
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(bodyParser.json());                        
@@ -27,12 +20,7 @@ app.get('/', function(req, res){
   `);
 });
 
-app.get("/user", teste1.getUser);
-app.get("/users", teste1.getUsers);
-app.post("/users", teste2)
-app.delete("/users", teste3)
-app.put("/users", teste4)
-app.get("/users/access", teste5);
+app.use('/users', userRouter);
 
 
 const port  = 3000;
