@@ -1,0 +1,10 @@
+{
+"signal" : "SIGTERM" ,
+"env" : {
+    "NODE_ENV" : "developemnt" 
+} ,
+"ext": "ts" , 
+"exec": "ts-node app.ts"
+
+
+}
