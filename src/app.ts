@@ -1,5 +1,8 @@
 import express, { Application } from "express";
+import "express-async-errors";
 import bodyParser from "body-parser";
+import handleErrorMiddleware from "./middlewares/handleError.middleware";
+import userRouter from "./routes/user.routes";
 
 const app: Application = express();
 
@@ -21,5 +24,9 @@ app.get('/', function(req, res){
   put users/ </br>
   `);
 });
+
+app.use("/user", userRouter);
+
+app.use(handleErrorMiddleware);
 
 export default app;
