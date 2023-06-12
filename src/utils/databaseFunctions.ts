@@ -5,5 +5,6 @@ export const saveToDatabase = (data: any) => {
 }
 
 export const readFromDatabase = () => {
-    return readFileSync("./src/utils/fakeData.json", { encoding: "utf-8"});
+    const data = readFileSync("./src/utils/fakeData.json", { encoding: "utf-8"});
+    return JSON.parse(data);
 }
