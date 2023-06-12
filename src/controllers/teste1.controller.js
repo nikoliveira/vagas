@@ -2,7 +2,7 @@ const teste1Services = require('../services/teste1.services');
 
 const getUser = (req, res) => {
   try {
-    const name = req.query.name;
+    const { name } = req.query;
     const result = teste1Services.getUser(name);
     if (result.length > 0) {
       return res.status(200).json(result);
