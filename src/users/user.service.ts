@@ -10,8 +10,9 @@ const findUser = (id: number) => {
 
 const getUser = (id: number) => {
   const { user, data } = findUser(id);
+  const { readCounter } = user;
   const index = data.indexOf(user);
-  data[index].readCounter++;
+  data[index].readCounter = readCounter ? readCounter + 1 : 1;
   saveToDatabase(data);
   return user;
 };
@@ -47,7 +48,7 @@ const updateUser = (id: number, newInfo: UpdateUser) => {
 
 const countReads = (id: number) => {
   const { user } = findUser(id);
-  return `Usuário ${user.name} foi lido ${user.readCounter} vezes.`;
+  return `Usuário ${user.name} foi lido ${user.readCounter || 0} vezes.`;
 };
 
 export default {
