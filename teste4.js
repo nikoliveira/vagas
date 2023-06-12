@@ -1,13 +1,21 @@
-var data =  require("./fakeData");
+const data = require("./fakeData");
 
-module.exports =  function(req, res) {
-  
-    var id =  req.query.id;
+// Função para atualizar os dados de um usuário específico
+module.exports = function(req, res) {
+    const id = req.query.id;
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
+    // Procura o usuário pelo ID no array de dados
+    const user = data.find(user => user.id == id);
 
-    res.send(reg);
-
+    if (user) {
+        // Atualiza os campos de nome e cargo do usuário com os valores fornecidos no corpo da solicitação
+        user.name = req.body.name;
+        user.job = req.body.job;
+        
+        // Retorna o usuário atualizado como resposta
+        res.send(user);
+    } else {
+        // Se o usuário não for encontrado, retorna um código de status 404 e a mensagem "User not found"
+        res.status(404).send("User not found");
+    }
 };
