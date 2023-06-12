@@ -4,7 +4,7 @@ const UserService = require("../services/userService");
 module.exports = class UserController {
   getUser = (req, res) => {
     try {
-      const name = req.query.name;
+      const { name } = req.query;
 
       const user = UserService.getUser(name);
 
@@ -33,7 +33,7 @@ module.exports = class UserController {
   };
 
   deleteUser = (req, res) => {
-    const name = req.query.name;
+    const { name } = req.query;
 
     const userToBeDeleted = UserService.deleteUser(name);
 
@@ -55,4 +55,13 @@ module.exports = class UserController {
     }
     res.status(200).send(user);
   }
+
+  getAccess (req, res) {
+    const { name } = req.query;
+    const userInfo = UserService.getAccess(name);
+    if (!userInfo) {
+      return res.status(404).send("Usuario não encontrado");
+    }
+    res.status(200).send(userInfo);
+  };
 };

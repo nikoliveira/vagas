@@ -65,4 +65,12 @@ module.exports = class UserService {
 
     return user;
   };
+
+  static getAccess = (name) => {
+    const user = data.find((user) => user.name === name);
+    if (!user) {
+      return null;
+    }
+    return `Usuário ${user.name} foi lido ${user.counter} vezes.`;
+  };
 };
