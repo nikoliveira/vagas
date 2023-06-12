@@ -3,8 +3,8 @@ const data =  require("../mocks/fakeData");
 const createUser = (name, job) => {
     const newUser = {
         id: data[data.length - 1].id + 1,
-        name: name,
-        job: job,
+        name,
+        job,
     };
 
     data.push(newUser);
