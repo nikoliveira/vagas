@@ -1,15 +1,12 @@
 var data =  require("./fakeData");
 
 const getUser = ( req, res, next ) => {
+    const { name } = req.query;
+    const user = data.find((user) => user.name === name);
     
-    var name =  req.query.name;
+    if(user) return res.status(200).json(user);
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
-    }
-
+    return res.status(404).send("User not found");
 };
 
 const getUsers = ( req, res, next ) => {
