@@ -1,10 +1,11 @@
 import { readFromDatabase, saveToDatabase } from "../database/databaseFunctions";
+import APIError from "../utils/errorClass";
 import { UpdateUser, User } from "./user.interface";
 
 const findUser = (id: number) => {
   const users = getUsers();
   const user = users.find((u) => u.id === id);
-  if (!user) throw new Error("Usuário não encontrado.");
+  if (!user) throw new APIError("Usuário não encontrado.", "notFound");
   return { user, data: users };
 };
 
@@ -21,7 +22,7 @@ const getUsers = () => readFromDatabase() as unknown as User[];
 
 const createUser = (name: string, job: string) => {
   const data = getUsers();
-  const newID = data[data.length - 1].id + 1;
+  const newID = data.length > 0 ? data[data.length - 1].id + 1 : 1;
   const newUser = {
     id: newID,
     name: name,
