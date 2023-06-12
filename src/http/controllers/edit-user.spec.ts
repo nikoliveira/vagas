@@ -4,7 +4,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 
 import { createAndAuthenticate } from '@/utils/create-and-get-token-user'
 
-describe('Create user (E2E)', () => {
+describe('Edit user (E2E)', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -22,7 +22,7 @@ describe('Create user (E2E)', () => {
       email: 'homemaranha@marvel.com',
     })
 
-    const { user: newUser } = JSON.parse(createResponse.text)
+    const newUser = JSON.parse(createResponse.text)
 
     const editResponse = await request(app.server)
       .put('/users')

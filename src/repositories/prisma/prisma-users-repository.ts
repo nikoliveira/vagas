@@ -18,18 +18,18 @@ export class PrismaUsersRepository implements UsersRepository {
       where: { id },
     })
 
-    if (user?.views) {
-      const countViews = user.views
-      const incrementVies = countViews + 1
+    if (user) {
+      const countViews = user.views || 0
+      const incrementViews = countViews + 1
 
       await prisma.user.update({
         where: { id },
         data: {
-          views: incrementVies,
+          views: incrementViews,
         },
       })
 
-      return { views: incrementVies }
+      return { views: incrementViews }
     }
 
     return { views: 1 }

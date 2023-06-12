@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { makeCreateUserUseCase } from '@/use-cases/factories/make-create-user-use-case'
 
 import { z } from 'zod'
-import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists'
+import { EmailAlreadyExistsError } from '@/use-cases/errors/email-already-exists'
 
 export async function createUser(request: FastifyRequest, reply: FastifyReply) {
   const Roles = z.enum(['ADMIN', 'USER'])
@@ -27,9 +27,11 @@ export async function createUser(request: FastifyRequest, reply: FastifyReply) {
       role,
     })
 
-    return reply.status(201).send({ user })
+    return reply
+      .status(201)
+      .send({ ...user, password_hash: undefined, role: undefined })
   } catch (err) {
-    if (err instanceof UserAlreadyExistsError) {
+    if (err instanceof EmailAlreadyExistsError) {
       return reply.status(409).send({ message: err.message })
     }
 

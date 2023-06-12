@@ -18,7 +18,7 @@ describe('Create user (E2E)', () => {
       email: 'homemaranha@marvel.com',
     })
 
-    const { user } = JSON.parse(response.text)
+    const user = JSON.parse(response.text)
 
     expect(response.statusCode).toEqual(201)
     expect(user).toEqual(

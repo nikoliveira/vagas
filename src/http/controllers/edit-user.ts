@@ -10,7 +10,6 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply) {
     name: z.string(),
     job: z.string(),
     email: z.string().email(),
-
     id: z.string(),
   })
 

@@ -24,7 +24,7 @@ export async function fetchUser(request: FastifyRequest, reply: FastifyReply) {
 
     await incrementUserView.execute({ id: user.id! })
 
-    return reply.status(200).send({ user })
+    return reply.status(200).send({ ...user, password_hash: undefined })
   } catch (err) {
     if (err instanceof UserNotExistsError) {
       return reply.status(404).send({ message: err.message })

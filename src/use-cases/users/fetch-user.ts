@@ -1,14 +1,14 @@
-import { UserPropsResponse } from '@/@types/user'
 import { UsersRepository } from '@/repositories/users-repository'
 
 import { UserNotExistsError } from '../errors/user-not-exists'
+import { User } from '@prisma/client'
 
 interface FetchUserUseCaseRequest {
   id: string
 }
 
 interface FetchUserUseCaseResponse {
-  user: UserPropsResponse
+  user: User
 }
 
 export class FetchUser {

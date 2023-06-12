@@ -24,7 +24,7 @@ describe('Create user (E2E)', () => {
       role: Role.USER,
     })
 
-    const { user } = JSON.parse(createUser.text)
+    const user = JSON.parse(createUser.text)
 
     const responseDelete = await request(app.server)
       .delete(`/users?id=${user.id}`)

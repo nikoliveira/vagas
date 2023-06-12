@@ -23,7 +23,7 @@ describe('Fetch user views (E2E)', () => {
       role: Role.USER,
     })
 
-    const { user } = JSON.parse(createUser.text)
+    const user = JSON.parse(createUser.text)
 
     for (let i = 1; i <= 22; i++) {
       await request(app.server)
