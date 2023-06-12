@@ -1,4 +1,4 @@
-var data =  require("./fakeData");
+var data =  require("../api/fakeData");
 
 module.exports = function(req, res){
   
