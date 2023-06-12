@@ -1,43 +1,48 @@
-# Este é um teste para desenvolvedores
 
-# possui 5 testes
+# DESAFIO FINALIZADO💻 🖊 
 
-## Introdução
 
-Este projeto possui um banco de dados fake em fakeData.js com apenas um registro.
-A ideia é melhorar e o CRUD escrito nos 4 arquivos de teste abaixo.
 
-Será a validada a forma de escrita de código.
-Escreva códigos que humanos consigam entender.
+## Funcionalidades   💎 
 
-Fique a vontade para fazer modificaçoes nos serviços, comentários em código, estrutura, mas seja objetivo.
 
-## teste1.js
+- Listar usuario ou buscar um individuo
+- JWT
+- Editar e Excluir
 
-GET em /user 
 
-Possuimos neste arquivo um serviço que faz uma busca no banco fake e retorna um registro.
-Este código funciona, mas é possivel melhorar.
-Veja o que pode deixar ele melhor escrito e mais performatico.
+## Rodando localmente  ⚙️ 
 
-## teste2.js
+Clone o projeto 
 
-POST em /users, descubra a intenção dele e o corrija.
+```bash
+  git clone [https://link-para-o-projeto](https://github.com/MichaelWEB3/vagas)
+```
 
-## teste3.js
+Entre no diretório do projeto 
 
-Este procura um usuário e o deleta da base.
-Retorne sucesso para o client caso realmente tenha sido excluido e deixe o código mais performatico.
+```bash
+  cd my-project
+```
 
-## teste4.js
+Instale as dependências 
 
-Atualiza os dados de um usuário especifico.
+```bash
+  npm install || yarn install
+```
 
-## teste5.js
+Inicie o servidor 
 
-Retorne quantas vezes determinado usuário foi lido no teste1.
+```bash
+  npm run start 
+```
 
-## teste 6
 
-Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
+## Screenshots
+
+![App Screenshot]<img width="1440" alt="Captura de Tela 2023-06-12 às 19 33 03" src="https://github.com/MichaelWEB3/vagas/assets/55338900/6681d00b-d4c2-4553-b831-4c2b90e87a6c">
+
+## Stack utilizada
+
+**Back-end:** Node | Nodemon | Express | SwaggerUI | 
 
