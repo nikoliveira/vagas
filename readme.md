@@ -3,7 +3,6 @@
 
 
 
-Interactive clock !!!!
 ## Funcionalidades   💎 
 
 
