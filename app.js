@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const validateUserPermissions = require("./src/middlewares/validateUserPermissions");
+const validateRequiredBody = require("./src/middlewares/validateRequiredBody");
 const UserController = require("./src/controllers/userController");
 
 const userController = new UserController();
@@ -34,7 +35,7 @@ app.get('/', function(req, res){
 
 app.get("/user", userController.getUser);
 app.get("/users", userController.getUsers);
-app.post("/users", teste2)
+app.post("/users", validateRequiredBody, userController.createUser);
 app.delete("/users", validateUserPermissions, teste3)
 app.put("/users", validateUserPermissions, teste4)
 app.get("/users/access", teste5);

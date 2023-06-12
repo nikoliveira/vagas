@@ -16,4 +16,21 @@ module.exports = class UserService {
     data.map((user) => (user.counter += 1));
     return data;
   };
+
+  static createUser = (name, job) => {
+    if (!name || !job) {
+      return null;
+    }
+    
+    const newUser = {
+      id: data.length + 1,
+      name: name,
+      job: job,
+      counter: 0,
+    };
+
+    data.push(newUser);
+
+    return newUser;
+  }
 };
