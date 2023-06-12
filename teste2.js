@@ -9,7 +9,7 @@ module.exports = function(req, res){
     
     var newUser = {
         name,
-        job
+        job,
     };
     //aqui refatorei pois quando a variável possui o mesmo nome que a propriedade do objeto nao precisa ser repetido.
     //ex: 'name: name' pode ser só 'name'.

@@ -1,6 +1,6 @@
 var data =  require("./fakeData");
 
-module.exports = function(req, res, next) {
+module.exports = function(req, res) {
   
     var name =  req.query.name;
 
@@ -12,7 +12,7 @@ module.exports = function(req, res, next) {
 
     var userDeleted = data.find(u => u.name === name);
     var userDeletedIndex = data.indexOf(userDeleted);
-    
+
     if (userDeleted < 0) {
         throw new Error('User not found.');
     };

@@ -1,4 +1,5 @@
 var data =  require("./fakeData");
+var contador = require("./contador");
 
 const getUser = ( req, res, next ) => {
     
@@ -11,8 +12,8 @@ const getUser = ( req, res, next ) => {
     // }
 
     var user = data.find(u => u.name === name);
+    contador(user);
     res.send(user);
-
 };
 
 const getUsers = ( req, res, next ) => {
