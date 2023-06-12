@@ -1,4 +1,4 @@
-var data =  require('../mocks/fakeData');
+const data =  require('../mocks/fakeData');
 
 const getUser = (name) => {
     const user = data.filter((element) => element.name === name);
