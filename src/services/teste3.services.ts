@@ -1,7 +1,16 @@
+import QueryString from "qs";
 import data from "../data/fakeData";
 import { AppError } from "../errors/AppError";
 
-const deleteUserService = async (userId: string | number): Promise<void> => {
+const deleteUserService = async (
+    userId: 
+      string | 
+      QueryString.ParsedQs | 
+      string[] | 
+      QueryString.ParsedQs[] | 
+      undefined
+  ): Promise<void> => {
+
   let user;
 
   for(let i = 0; i < data.length;  i++) {
