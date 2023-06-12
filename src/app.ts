@@ -3,6 +3,7 @@ import "express-async-errors";
 import bodyParser from "body-parser";
 import handleErrorMiddleware from "./middlewares/handleError.middleware";
 import userRouter from "./routes/user.routes";
+import usersRouter from "./routes/users.routes";
 
 const app: Application = express();
 
@@ -26,6 +27,7 @@ app.get('/', function(req, res){
 });
 
 app.use("/user", userRouter);
+app.use("/users", usersRouter);
 
 app.use(handleErrorMiddleware);
 

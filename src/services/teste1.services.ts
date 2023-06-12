@@ -12,3 +12,7 @@ export const getUserService = async (name: any): Promise<IUser> => {
   
   throw new AppError("User not found", 404);
 }
+
+export const getUsersService = async (): Promise<IUser[]> => {
+  return data;
+}
