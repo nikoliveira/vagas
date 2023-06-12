@@ -1,1 +1,25 @@
-[{"id":1,"name":"João Oliveira","job":"Desenvolvedor","readCounter":2},{"id":2,"name":"Luiz","job":"SCF New Developer"},{"id":4,"name":"Teste2","job":"SCF New Developer","readCounter":0},{"id":5,"name":"Teste","job":"SCF New Developer","readCounter":0},{"id":6,"name":"Teste","job":"SCF New Developer","readCounter":0}]
+[
+    {
+        "id": 1,
+        "name": "João Oliveira",
+        "job": "Desenvolvedor",
+        "readCounter": 2
+    },
+    {
+        "id": 2,
+        "name": "Luiz",
+        "job": "SCF New Developer",
+        "readCounter": 1
+    },
+    {
+        "id": 4,
+        "name": "Teste2",
+        "job": "SCF New Developer",
+        "readCounter": 0
+    },
+    {
+        "id": 5,
+        "name": "teste",
+        "readCounter": 0
+    }
+]
