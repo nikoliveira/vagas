@@ -2,11 +2,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-var teste1 = require("./teste1");
-var teste2 = require("./teste2");
-var teste3 = require("./teste3");
-var teste4 = require("./teste4");
-var teste5 = require("./teste5");
+var teste1 = require("../services/teste1");
+var teste2 = require("../services/teste2");
+var teste3 = require("../services/teste3");
+var teste4 = require("../services/teste4");
+var teste5 = require("../services/teste5");
 
 
 app.set('view engine', 'jade');
