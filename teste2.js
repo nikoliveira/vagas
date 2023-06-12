@@ -9,6 +9,7 @@ module.exports = function(req, res){
         id: data.length + 1,
         name: name,
         job: job,
+        count: 0,
     }
 
     data.push(newUser)

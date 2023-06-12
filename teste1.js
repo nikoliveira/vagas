@@ -8,7 +8,8 @@ const getUser = (req, res, next) => {
   // Buscando o usuario por nome na base fake.
   const result = data.find((person) => {
     if (person.name == name) {
-      return person
+      person.count += 1;
+      return person;
     }
   });
 
@@ -16,7 +17,7 @@ const getUser = (req, res, next) => {
   if (!result) {
     return res.status(404).json({ message: 'Pessoa não encontrada.' });
   }
-  return res.send(result)
+  return res.send(result);
 
 };
 
