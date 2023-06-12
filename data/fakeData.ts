@@ -1,7 +1,8 @@
 import { API } from "../types/data.type";
+import { randomUUID } from "crypto";
  const data: Array<API.IDataType>  =  [
     {
-        id: 1,
+        id: randomUUID(),
         name: "João Oliveira",
         job: "Desenvolvedor"
     }
