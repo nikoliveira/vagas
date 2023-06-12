@@ -1,13 +1,13 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 const validateUserPermissions = require("./middlewares/validateUserPermissions");
 
-var teste1 = require("./teste1");
-var teste2 = require("./teste2");
-var teste3 = require("./teste3");
-var teste4 = require("./teste4");
-var teste5 = require("./teste5");
+const teste1 = require("./teste1");
+const teste2 = require("./teste2");
+const teste3 = require("./teste3");
+const teste4 = require("./teste4");
+const teste5 = require("./teste5");
 
 
 app.set('view engine', 'jade');
