@@ -14,6 +14,7 @@ export const getUserService = async (
 
   for(let i = 0; i < data.length;  i++) {
     if(data[i].name == name) {
+      data[i].views! += 1;
       return data[i];
     }
   }
