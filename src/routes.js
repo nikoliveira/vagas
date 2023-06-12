@@ -1,5 +1,9 @@
 import { Router } from 'express'
 import { getAllUsers, getUserByName} from './controller/teste1'
+import { addUser } from './controller/teste2';
+import { deleteUser } from './controller/teste3';
+import { updateUser } from './controller/teste4';
+import { getUserReadCount } from './controller/teste5';
 
 const routes = new Router()
 
@@ -14,9 +18,9 @@ routes.get('/', function(req, res){
   
   routes.get("/user", getUserByName);
   routes.get("/users", getAllUsers);
-//   router.post("/users", teste2)
-//   router.delete("/users", teste3)
-//   router.put("/users", teste4)
-//   router.get("/users/access", teste5);
+  routes.post("/users", addUser)
+  routes.delete("/users", deleteUser)
+  routes.put("/users", updateUser)
+  routes.get("/users/access",getUserReadCount);
   
   export default routes

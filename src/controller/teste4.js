@@ -1,13 +1,15 @@
-import data from "./fakeData"
+import data from '../database/fakeData';
 
-module.exports =  function(req, res) {
-  
-    const id =  req.query.id;
+export const updateUser = (req, res, next) => {
+    const { name, job } = req.query;
+    const newData  = { name, job} ;
+    
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
-
-    res.send(reg);
-
+    const userIndex = data.findIndex((user) => user.name === name);
+    if (userIndex !== -1) {
+        data[userIndex] = newData;
+     
+        return res.status(200).send(newData);
+    }
+    res.status(404).send('Usuário não encontrado');
 };

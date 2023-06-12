@@ -1,15 +1,22 @@
-import data from "./fakeData"
+import data from '../database/fakeData';
 
-module.exports = function(req, res, next) {
-    const name = req.body.name;
-    const job = req.body.job;
-    
+let nextUserId = 1;
+
+export const addUser = (req, res, next) => {
+    const { name, job } = req.query;
+
+    if (!name || !job) {
+        return res.status(400).json({ error: 'Name and job are required.' });
+    }
+
     const newUser = {
-        name: name,
-        job: job,
+        id: nextUserId++,
+        name,
+        job,
+        readCount: 0, 
     };
 
     data.push(newUser);
-    
-    res.send(newUser);
+
+    res.status(201).json(newUser);
 };
