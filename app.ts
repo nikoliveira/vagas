@@ -1,3 +1,5 @@
+import { validateUserPermissions } from "./middleware";
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
@@ -21,7 +23,7 @@ app.use(express.static(__dirname + "/public"));
 
 app.get('/', baseMapping.baseUrl);
 app.get("/user", teste1.getUser);
-app.get("/users", teste1.getUsers);
+app.get("/users", validateUserPermissions , teste1.getUsers);
 app.post("/users", teste2.addUser);
 app.put("/users/:id", teste4.updateUser)
 app.delete("/users/:id", teste3.deleteUser);
