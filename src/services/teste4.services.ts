@@ -13,22 +13,18 @@ const putUserService = async (
       {name, job, username, password}: IUserRequest
   ): Promise<IUser> => {
   
-  let updatedUser;
+  let findUser: IUser | undefined = data.find((user) => user.id == userId);
 
-  for(let i = 0; i < data.length; i++) {
-    if(data[i].id == userId) {
-      data[i].name = name;
-      data[i].job = job;
-      data[i].username = username;
-      data[i].password = password;
-      updatedUser = data[i];
-      break
-    }
+  if(!findUser) {
+    throw new AppError("User not found", 404);
   }
   
-  if(updatedUser == undefined) {
-    throw new AppError ("User not found", 404);
-  }
+  findUser.name = name;
+  findUser.job = job;
+  findUser.username = username;
+  findUser.password = password;
+
+  const updatedUser: IUser = findUser;
 
   return updatedUser;
 }
