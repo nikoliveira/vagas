@@ -1,9 +1,12 @@
-
+var data =  require("./fakeData");
 
 module.exports = function(req, res){
     
     var name =  req.query.name;
 
-    res.send("Usuário " +  name  + "  foi lido 0 vezes.");
+    var user = data.find(u.name === name);
+
+    res.send(`Usuário ${user.name} foi lido ${user.count} vezes.`);
+    // refatorado send para string template
 
 };
