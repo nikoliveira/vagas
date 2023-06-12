@@ -4,6 +4,7 @@ import ensurePropertiesExistsMiddleware from "../middlewares/ensurePropertiesExi
 import postUserController from "../controllers/teste2.controllers";
 import deleteUserController from "../controllers/teste3.controllers";
 import putUserController from "../controllers/teste4.controllers";
+import countUserController from "../controllers/teste5.controllers";
 
 const usersRouter = Router();
 
@@ -11,5 +12,6 @@ usersRouter.get("", getUsersController);
 usersRouter.post("", ensurePropertiesExistsMiddleware, postUserController);
 usersRouter.delete("", deleteUserController);
 usersRouter.put("", ensurePropertiesExistsMiddleware, putUserController);
+usersRouter.get("/count-user", countUserController);
 
 export default usersRouter;
