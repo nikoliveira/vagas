@@ -2,14 +2,25 @@ var data =  require("./fakeData");
 
 module.exports = function(req, res) {
   
-    var name =  req.query.name;
+    const name =  req.query.name;
+    var message = '';
+    var status;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
+    // Realizo a remoção do usuário pelo nome e entrego o status code '200'.
+    // Caso o usuario não exista no banco é exebida uma mensagem de 'usuário não encontrado'
+    // com status code correspondente.
+    data.forEach((person, indice) => {
+
+        if(name == person.name) {
+            data.splice(indice, 1);
+            status = 200
+            message = 'success'
+            return
         }
-    }
-
-    res.send("success");
+        status = 404
+        message = 'usuário não encontrado'
+    });
+    
+    res.status(status).json(message);
 
 };
