@@ -7,10 +7,10 @@ module.exports = function (req, res) {
 
   const id = Object.keys(data).pop();
 
-  const addIndex = 2; //Pula o index 0. Pula o index 1, pois o arquivo original já contém ele.
+  const ADD = 2; //Pula o id 0 e pula o id 1, pois o arquivo original fakeData já começa no id:1.
 
   const newUser = {
-    id: parseInt(id) + addIndex,
+    id: parseInt(id) + ADD,
     name: name,
     job: job,
     view: 0,

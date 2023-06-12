@@ -9,7 +9,9 @@ const getUser = (req, res, _) => {
 
   const found = fakeData.find((data) => {
     if (data?.name === name) {
-      fakeData[data.id - 1].view = fakeData[data.id - 1].view + 1;
+
+      const MENOS = 1; //Valor usado como subtração no fakeData, pois a key JSON começa com 0.
+      fakeData[data.id - MENOS].view = fakeData[data.id - 1].view + 1;
 
       fs.writeFile(
         "fakeData.json",

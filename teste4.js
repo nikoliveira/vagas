@@ -6,8 +6,9 @@ module.exports = function (req, res) {
   const reg = fakeData.find((d) => d?.id == id);
 
   if (reg) {
-    fakeData[reg.id - 1].name = req.body.name;
-    fakeData[reg.id - 1].job = req.body.job;
+    const MENOS = 1; //Valor usado como subtração no fakeData, pois a key JSON começa com 0.
+    fakeData[reg.id - MENOS].name = req.body.name;
+    fakeData[reg.id - MENOS].job = req.body.job;
 
     fs.writeFile("fakeData.json", JSON.stringify(fakeData), function (err, _) {
       if (err) return res.send({ msg: "Erro ao editar usuário" });
