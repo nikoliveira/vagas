@@ -18,3 +18,14 @@ Content-Type: application/json
 //teste 3
 
 DELETE  http://localhost:3000/users?name=João%20Oliveira
+
+###
+//teste 4
+
+PUT  http://localhost:3000/users?id=1
+Content-Type: application/json 
+
+{
+    "name": "Rodrigo Brezolin",
+    "job": "Desenvolvedor web"
+}
