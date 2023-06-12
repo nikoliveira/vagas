@@ -19,21 +19,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res){
-  res.send(`get user/ </br>
-  get users/ </br>
-  post users/ </br>
-  delete users/ </br>
-  put users/ </br>
-  `);
-});
+// app.get('/', function(req:Request, res: Response){
+//   res.send(`get user/ </br>
+//   get users/ </br>
+//   post users/ </br>
+//   delete users/ </br>
+//   put users/ </br>
+//   `);
+// });
 
 app.get("/user", teste1.getUser);
 app.get("/users", teste1.getUsers);
-app.post("/users", teste2)
-app.delete("/users", teste3)
-app.put("/users", teste4)
-app.get("/users/access", teste5);
+// app.post("/users", teste2)
+// app.delete("/users", teste3)
+// app.put("/users", teste4)
+// app.get("/users/access", teste5);
 
 
 const port  = 3000;
