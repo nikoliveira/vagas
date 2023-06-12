@@ -10,9 +10,7 @@ const getUser = ( req, res, next ) => {
 };
 
 const getUsers = ( req, res, next ) => {
-    
-    res.send(data);
-    
+    res.status(200).json(data);
 };
 
 module.exports = {
