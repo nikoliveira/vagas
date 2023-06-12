@@ -21,8 +21,9 @@ const getUsers = () => readFromDatabase() as unknown as User[];
 
 const createUser = (name: string, job: string) => {
   const data = getUsers();
+  const newID = data[data.length - 1].id + 1;
   const newUser = {
-    id: data.length + 1,
+    id: newID,
     name: name,
     job: job,
     readCounter: 0,
