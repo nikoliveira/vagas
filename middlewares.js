@@ -20,7 +20,7 @@ const handleError = (err, res ) => {
 const authenticate = (req, res, next) => {
   const id = Number(req.headers.auth)
   const user = data.find((user) => user.id === id)
-  if(!user.isAdmin) return next(new ErrorHandler({ message: "User in header auth is not authorized", statusCode: 401}))
+  if(!user?.isAdmin) return next(new ErrorHandler({ message: "User in header auth is not authorized", statusCode: 401}))
 
   next()
 }
