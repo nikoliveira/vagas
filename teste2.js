@@ -6,7 +6,9 @@ module.exports = function(req, res){
     // var jov =  req.body.job;
     var job = req.body.job;
     // variável estava com o nome errado.
-    
+
+    // aqui poderiam ter validações de regras de negócio, como campos obrigatórios, minimo ou máximo de caracteres, etc.
+
     var newUser = {
         name,
         job,

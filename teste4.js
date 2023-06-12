@@ -7,9 +7,10 @@ module.exports =  function(req, res) {
     // para modificar determinado usuário e ficaria mais de acordo com a padronização REST.
     // var id = req.params.id;
 
-
     //const reg = data.find(d => id == id);
     const reg = data.find(d => d.id === id);
+
+    // aqui poderia ter validação se encontra ou não o usuário, assim como validações para campos obrigatórios, dependendo das regras de negócio.
     // faltava um d.id
     reg.name = req.body.name;
     reg.job = req.body.job;
