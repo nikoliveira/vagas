@@ -7,10 +7,11 @@ const getUserPermissions = (id: string) => {
     return item[id];
   });
 
-  const userExists = !!userPermissions;
 
+  const userExists = !!userPermissions;
+  const mappedPermissions = Object.values(userPermissions).flat()
   return {
-    userPermissions,
+    mappedPermissions,
     userExists,
   };
 };
