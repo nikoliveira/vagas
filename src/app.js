@@ -6,10 +6,10 @@ import { handleErrorMiddleware } from "./errors/handleError.js";
 
 const app = express();
 
-app.set("view engine", "jade");
+// app.set("view engine", "jade");
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
