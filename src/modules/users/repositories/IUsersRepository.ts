@@ -8,5 +8,5 @@ export interface IUsersRepository {
     findAllUsers(): User[];
     save(user: User): void;
     delete(id: string): User;
-    update(user: IUpdateUserDTO): IUpdateUserDTO;
+    update(user: IUpdateUserDTO): User;
 }
