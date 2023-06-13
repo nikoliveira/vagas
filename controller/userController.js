@@ -1,3 +1,6 @@
+const data = require('./../fakeData')
+const { ErrorHandler } = require('./../middlewares')
+
 const getUser = ( req, res, next ) => {
   const id = req.params.id;
   const user = data.find((user) => user.id === Number(id))
@@ -7,7 +10,7 @@ const getUser = ( req, res, next ) => {
   return res.send(user)
 
 };
-const getUsers = ( req, res ) => {
+const getUsers = ( _req, res ) => {
   res.send(data);
 };
 
