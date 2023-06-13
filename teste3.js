@@ -1,15 +1,19 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
+const { verifyRole } = require("./auth");
 
-module.exports = function(req, res) {
+module.exports = function(req, res, next) {
+
+    verifyRole(req, res, next);
   
-    var name =  req.query.name;
+    const { name } =  req.query;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
-    }
+    const filteredData = data.filter((eachUser) => eachUser.name !== name);
+    const findDeletedUser = data.some((eachUser) => eachUser.name === name);
 
-    res.send("success");
-
+    if (!findDeletedUser) {
+        data = filteredData;
+        return res.status(200).json({ message: "success" });
+    } else {
+        return res.status(409).json({ message: "Failed" })
+    };
 };
