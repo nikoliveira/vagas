@@ -1,4 +1,4 @@
-// necessário ter a extensão REST Client
+// necessário ter a extensão REST Client instalada
 
 
 //teste 1
@@ -29,3 +29,7 @@ Content-Type: application/json
     "name": "Rodrigo Brezolin",
     "job": "Desenvolvedor web"
 }
+
+###
+//teste 5
+GET http://localhost:3000/users/access?name=João%20Oliveira

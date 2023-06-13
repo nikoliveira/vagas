@@ -14,6 +14,8 @@ const getUser = ( req, res, next ) => {
         res.send("Nenhum usuário encontrado com este nome")
     }
 
+    result.readCount = result.readCount ? result.readCount + 1 : 1;
+
     res.send(result)
 
     // código antigo:
