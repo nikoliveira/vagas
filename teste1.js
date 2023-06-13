@@ -1,17 +1,20 @@
 let data = require("./fakeData");
+let userAccess = 0;
+
 
 const getUser = async (req, res, next) => {
-  let name = req.query.name;
+  let { name } = req.query;
 
   if (!name) {
-    throw console.error("Not Found");
+    res.status(404).send("Not Found");
   }
 
   // o async e await não são realmente necessários nesse caso específico, onde temos uma banco mockado muito pequeno, mas optei por deixa-los para simular o acesso a um banco de dados externo, e pensando também na escalabilidade e manutenção do código. 
   try {
    await data.forEach(function (value) {
       if (value.name === name) {
-       return res.status(200).send(value);
+      userAccess+= 1;
+      return res.status(200).send(value);
       }
     });
    
@@ -21,10 +24,14 @@ const getUser = async (req, res, next) => {
 
 };
 
+const getUserAccess = () => {
+  return userAccess; // retorna o valor atualizado de userAccess
+};
+
 const getUsers = async (req, res, next) => {
   
   if(data.length === 0){
-     res.status(200).send("No result for this search!");
+     res.status(200).send("No results for this search");
   }
   
   try {
@@ -44,4 +51,5 @@ const getUsers = async (req, res, next) => {
 module.exports = {
   getUser,
   getUsers,
+  getUserAccess
 };

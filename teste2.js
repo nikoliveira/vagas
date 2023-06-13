@@ -9,7 +9,7 @@ module.exports = function async (req, res) {
   };
 
   if (!name || !job) {
-    throw console.error("Nome e cargo devem estar preenchidos");
+    throw console.error("Name and job must be filled");
   }
 
   try {
