@@ -1,5 +1,5 @@
 // var data =  require("./fakeData");
-import data from "../fakeData.js";
+import data from "../database/fakeData.js";
 
 export const retrieveUser = (req, res, next) => {
   // var name = req.query.name;

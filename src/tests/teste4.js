@@ -1,5 +1,4 @@
-// var data =  require("./fakeData");
-import data from "./fakeData.js";
+import data from "../database/fakeData.js";
 
 export function updateUser(req, res) {
   var id = req.query.id;
