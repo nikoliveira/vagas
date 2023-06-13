@@ -16,6 +16,7 @@ const createUser = (req, res, next) => {
             id: uuidv4(),
             name: name,
             job: job,
+            count_accessed: 0            
         };
 
         data.push(newUser);
