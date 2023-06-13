@@ -1,3 +1,7 @@
+# Type `yarn` or `npm install` to install node_modules
+# Type `yarn dev` or `npm run dev` to start the server and run the tests.
+# Type `yarn test` or `npm run test` to run the application tests.
+
 # Este é um teste para desenvolvedores
 
 # possui 5 testes
