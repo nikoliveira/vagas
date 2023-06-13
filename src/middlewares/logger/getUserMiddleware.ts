@@ -3,13 +3,9 @@ import { logger } from "../../app";
 
 class GetUserLogger {
   id: number;
-  count?: number;
 
-  constructor(id: number, count?: number){
+  constructor(id: number){
     this.id = id;
-    if (!this.count) {
-      this.count = 0;
-    }
   }
 }
 

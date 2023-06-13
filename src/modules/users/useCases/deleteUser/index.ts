@@ -1,6 +1,6 @@
 import { UsersRepository } from "../../repositories/UsersRepository"
-import { DeleteUserController } from "./CreateUserController";
-import { DeleteUserUsecase } from "./CreateUserUsecase";
+import { DeleteUserController } from "./DeleteUserController";
+import { DeleteUserUsecase } from "./DeleteUserUsecase";
 
 const usersRepository = UsersRepository.getInstance();
 const deleteUserUsecase = new DeleteUserUsecase(usersRepository)

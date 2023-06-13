@@ -1,6 +1,6 @@
 import { UsersRepository } from "../../repositories/UsersRepository"
-import { GetAllUsersController } from "./getAllUsersController";
-import { GetAllUsersUsecase } from "./getAllUsersUsecase";
+import { GetAllUsersController } from "./GetAllUsersController";
+import { GetAllUsersUsecase } from "./GetAllUsersUsecase";
 
 const usersRepository = UsersRepository.getInstance();
 const getAllUsersUsecase = new GetAllUsersUsecase(usersRepository)

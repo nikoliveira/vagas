@@ -1,3 +1,0 @@
-{"level":"info","message":{"count":0,"id":1}}
-{"level":"info","message":{"count":0,"id":1}}
-{"level":"info","message":{"count":0,"id":1}}

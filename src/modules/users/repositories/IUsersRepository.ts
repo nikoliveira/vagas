@@ -11,6 +11,7 @@ interface IUsersRepository {
   createUser({ name, job }: ICreateUserDTO): User;
   deleteUser(id: number): void;
   updateUser({ name, job, id }: User): User | undefined;
+  access(): string;
 }
 
 export { IUsersRepository, ICreateUserDTO}

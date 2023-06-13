@@ -10,7 +10,7 @@ app.set('view engine', 'jade');
 
 export const logger = winston.createLogger({
   transports: [
-    new winston.transports.File({ filename: "logs/getUser.txt" }),
+    new winston.transports.File({ filename: "logs/api/getUser.txt" }),
   ],
 });
 

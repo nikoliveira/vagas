@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteUserUsecase } from "./CreateUserUsecase";
+import { DeleteUserUsecase } from "./DeleteUserUsecase";
 
 class DeleteUserController {
   constructor(private deleteUserUsecase: DeleteUserUsecase) {}

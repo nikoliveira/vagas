@@ -49,6 +49,10 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
+  access(): string {
+    return 'api/getUser.txt'
+  }
+
 }
 
 export { UsersRepository }

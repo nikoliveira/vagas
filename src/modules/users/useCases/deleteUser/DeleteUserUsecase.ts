@@ -1,4 +1,3 @@
-import User from "../../model/users";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
