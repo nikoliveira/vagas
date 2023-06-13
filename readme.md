@@ -1,43 +1,57 @@
-# Este é um teste para desenvolvedores
+# docs 
 
-# possui 5 testes
+### get / retorna todas as rotas e seus metodos
 
-## Introdução
+### get /features
+retorna todas as features já implementadas
 
-Este projeto possui um banco de dados fake em fakeData.js com apenas um registro.
-A ideia é melhorar e o CRUD escrito nos 4 arquivos de teste abaixo.
+### get /users
+retorna todos os usuários, com suas features e suas vizualizações
 
-Será a validada a forma de escrita de código.
-Escreva códigos que humanos consigam entender.
+### get /user?name= 
+retorna um usuário baseado em seu nome.
+retorna 404 se não encontrado.
+retorna 400 se foi mal requisitado.
 
-Fique a vontade para fazer modificaçoes nos serviços, comentários em código, estrutura, mas seja objetivo.
+### get users/access?name=
+retorna um usuário baseado em seu nome.
+retorna 404 se não encontrado.
+retorna 400 se foi mal requisitado.
 
-## teste1.js
+### post /users
+Rota Autenticada:
+    > header: x-user (userId)
 
-GET em /user 
+Body:
+    > name(string): nome para o usuário - OBRIGATORIO
+    > job(string): trabalho do usuário - OBRIGATORIO
+    > features([string]): todas as features do úsuario - OBRIGATORIO
 
-Possuimos neste arquivo um serviço que faz uma busca no banco fake e retorna um registro.
-Este código funciona, mas é possivel melhorar.
-Veja o que pode deixar ele melhor escrito e mais performatico.
+retorna 201 se foi bem sucedido.
+retorna 400 se foi mal requisitado.
 
-## teste2.js
+### delete users/
+Rota Autenticada:
+    > header: x-user (userId)
+    > usuário mencionado deve ter a feature relacionada: user:other:delete
 
-POST em /users, descubra a intenção dele e o corrija.
+Body:
+    > name(string): nome do usuário - OBRIGATORIO
 
-## teste3.js
+retorna 200 se foi bem sucedido
+retorna 400 se foi mal requisitado.
+retorna 404 se não encontrado.
 
-Este procura um usuário e o deleta da base.
-Retorne sucesso para o client caso realmente tenha sido excluido e deixe o código mais performatico.
+### put users?id=
+Rota Autenticada:
+    > header: x-user (userId)
+    > usuário mencionado deve ter a feature relacionada: user:other:update
 
-## teste4.js
+Body:
+    > name(string): nome do usuário - OPCIONAL
+    > job(string): trabalho do usuário - OPCIONAL
+    > features(string): features do usuário - OPCIONAL
 
-Atualiza os dados de um usuário especifico.
-
-## teste5.js
-
-Retorne quantas vezes determinado usuário foi lido no teste1.
-
-## teste 6
-
-Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
-
+retorna 200 se foi bem sucedido
+retorna 400 se foi mal requisitado.
+retorna 404 se não encontrado.
