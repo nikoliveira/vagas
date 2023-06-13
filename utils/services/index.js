@@ -4,6 +4,7 @@ const getAllUsers = require("./getAllUsers");
 const createUser = require("./createUser");
 const deleteUser = require("./deleteUser");
 const updateUser = require("./updateUser");
+const getUserById = require("./getUserById");
 
 module.exports = {
     getUserByUsername,
@@ -12,4 +13,5 @@ module.exports = {
     createUser,
     deleteUser,
     updateUser,
+    getUserById,
 }

@@ -11,10 +11,11 @@ var data =  require("./../../fakeData");
        // =>     name: "John Doe",
        // =>     job: "Current Job",
        // =>     views: 0,
+       // =>     features: [],
        // => }
  *
  * @param {String} name
- * @return {{ id: number, name: string, job: string, views: number  } | null}
+ * @return {{ id: number, name: string, job: string, views: number, features: Array<String> } | null}
  * @public
  */
 function getUserByUsername(name){

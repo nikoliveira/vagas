@@ -11,9 +11,10 @@ var data =  require("./../../fakeData");
        // =>     name: "John Doe",
        // =>     job: "Current Job",
        // =>     views: 0,
+       // =>     features: [],
        // => }]
  *
- * @return {Array<{ id: number, name: string, job: string, views: number }>}
+ * @return {Array<{ id: number, name: string, job: string, views: number, features: Array<String> }>}
  * @public
  */
 
