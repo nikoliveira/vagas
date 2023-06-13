@@ -21,7 +21,11 @@ export const userLoginService = ({ name, password }) => {
   }
 
   const token = jwt.sign(
-    { id: userFound.id, name: userFound.name },
+    {
+      userId: userFound.id,
+      userName: userFound.name,
+      userIsAdm: userFound.isAdm,
+    },
     process.env.SECRET_KEY,
     { expiresIn: "24h" }
   );
