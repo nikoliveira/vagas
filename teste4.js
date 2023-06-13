@@ -1,13 +1,18 @@
-var data =  require("./fakeData");
+const data = require("./fakeData");
 
-module.exports =  function(req, res) {
-  
-    var id =  req.query.id;
+module.exports = function (req, res) {
+  try {
+    const id = parseInt(req.query.id, 10);
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
-
-    res.send(reg);
-
+    const user = data.find((user) => user.id === id);
+    if (user) {
+      user.name = req.body.name;
+      user.job = req.body.job;
+      res.send(user);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    res.sendStatus(500);
+  }
 };

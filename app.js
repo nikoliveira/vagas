@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+const validateUser = require('./middleware/validatePermissions')
 
 var teste1 = require("./teste1");
 var teste2 = require("./teste2");
@@ -31,8 +32,8 @@ app.get('/', function(req, res){
 app.get("/user", teste1.getUser);
 app.get("/users", teste1.getUsers);
 app.post("/users", teste2)
-app.delete("/users", teste3)
-app.put("/users", teste4)
+app.delete("/users", teste3, validateUser)
+app.put("/users", teste4, validateUser)
 app.get("/users/access", teste5);
 
 
