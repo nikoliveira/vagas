@@ -1,42 +1,48 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+// mudança para uma sintaxe mais amigável com o front (module) e remoção de biblioteca depreciada
+import express from "express";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-var teste1 = require("./teste1");
-var teste2 = require("./teste2");
-var teste3 = require("./teste3");
-var teste4 = require("./teste4");
-var teste5 = require("./teste5");
+import * as T1 from "./teste1.js";
+import * as T2 from "./teste2.js";
+import * as T3 from "./teste3.js";
+import * as T4 from "./teste4.js";
+import * as T5 from "./teste5.js";
 
+const app = express();
 
-app.set('view engine', 'jade');
+app.set("view engine", "jade");
 
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.use(bodyParser.json());                        
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(express.static(__dirname + '/public'));
+const filename = fileURLToPath(import.meta.url);
+const path = dirname(filename);
 
-app.get('/', function(req, res){
-  res.send(`get user/ </br>
-  get users/ </br>
-  post users/ </br>
-  delete users/ </br>
-  put users/ </br>
-  `);
+app.use(express.static(path + "/public"));
+
+app.get("/", function (req, res) {
+  res.json({
+    create: "post /users/",
+    readAll: "get /users/",
+    retrieve: "get /users/retrieve/:userId",
+    update1: "put /users/:userId",
+    update2: "patch /users/:userId",
+    delete: "delete /users/:userId",
+  });
 });
 
-app.get("/user", teste1.getUser);
-app.get("/users", teste1.getUsers);
-app.post("/users", teste2)
-app.delete("/users", teste3)
-app.put("/users", teste4)
-app.get("/users/access", teste5);
+app.get("/user", T1.getUser);
+app.get("/users", T1.getUsers);
+app.post("/users", T2.createUser);
+app.delete("/users", T3.deleteUser);
+app.put("/users", T4.updateUser);
+// app.get("/users/access", teste5);
 
+const port = 3001;
 
-const port  = 3000;
-app.listen(port, function(){
-  console.log('Express server listening on port ' + port);
+app.listen(port, function () {
+  console.log("Express server listening on port " + port);
 });

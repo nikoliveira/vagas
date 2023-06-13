@@ -1,11 +1,9 @@
+const fakeData = [
+  {
+    id: 1,
+    name: "João Oliveira",
+    job: "Desenvolvedor",
+  },
+];
 
-const fakeData  =  [
-    {
-        id: 1,
-        name: "João Oliveira",
-        job: "Desenvolvedor"
-    }
-]
-
-
-module.exports = fakeData;
+export default fakeData;

@@ -1,15 +1,14 @@
-var data =  require("./fakeData");
+// var data = require("./fakeData");
+import data from "./fakeData.js";
 
-module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+export function deleteUser(req, res) {
+  var name = req.query.name;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
+  for (let i = 0; i < data.length; i++) {
+    if (i.name == name) {
+      data[i] = null;
     }
+  }
 
-    res.send("success");
-
-};
+  res.send("success");
+}

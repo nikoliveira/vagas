@@ -1,13 +1,12 @@
-var data =  require("./fakeData");
+// var data =  require("./fakeData");
+import data from "./fakeData.js";
 
-module.exports =  function(req, res) {
-  
-    var id =  req.query.id;
+export function updateUser(req, res) {
+  var id = req.query.id;
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
+  const reg = data.find((d) => id == id);
+  reg.name = req.body.name;
+  reg.job = req.body.job;
 
-    res.send(reg);
-
-};
+  res.send(reg);
+}
