@@ -25,10 +25,6 @@ const createUser = (req, res, next) => {
     } catch (error) {
         res.status(500).json({ error: 'could not create user' });
     }
-
-
-
-
 };
 
 module.exports = {
