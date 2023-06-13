@@ -11,10 +11,12 @@ module.exports =  function(req, res) {
 
     const reg = data.find(i => i.id == id); // ajuste no parâmetro da função
 
+    if(!reg) {
+        res.send("Usuário não encontrado")
+    }
+    
     reg.name = name || reg.name 
     reg.job = job || reg.job
 
-    console.log(data)
     res.send(reg);
-
 };
