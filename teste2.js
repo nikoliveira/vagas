@@ -1,17 +1,23 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
 
 module.exports = function(req, res){
   
-    var name =  req.body.name;
-    var jov =  req.body.job;
+    const { name, job } =  req.body;
     
-    var newUser = {
-        name: name,
-        job: job,
-    }
+    const newUser = {
+        id: data.length,
+        name,
+        job,
+    };
 
-    data.push(newUser)
-    
-    res.send(newUser);
+    const findUser = data.some((eachUser) => eachUser.name === name && eachUser.job === job);
+
+    if (findUser) {
+        return res.status(409).json({ message: "Usuário já cadastrado" });
+    };
+
+    data.push(newUser);
+
+    res.status(200).send(newUser)
 
 };

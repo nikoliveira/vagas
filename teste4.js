@@ -1,13 +1,29 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
+const { verifyRole } = require("./auth");
 
-module.exports =  function(req, res) {
+module.exports =  function(req, res, next) {
+
+    verifyRole(req, res, next);
   
-    var id =  req.query.id;
+    const  { id } =  req.query;
+    const { name, job } = req.body;
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
+    const findUser = data.some((eachUser) => eachUser.id === id);
 
-    res.send(reg);
+    if (!findUser) {
+       return res.status(400).json({ message: "User not found!"});
+    }
+
+    const indexUser = data.indexOf(id);
+
+    const updatedUser = {
+        id,
+        name,
+        job,
+    };
+    
+    data[indexUser] = updatedUser;
+
+    res.status(200).json(updatedUser);
 
 };

@@ -1,9 +1,15 @@
-
+const { getUsers } = require("./teste1");
 
 module.exports = function(req, res){
-    
-    var name =  req.query.name;
 
-    res.send("Usuário " +  name  + "  foi lido 0 vezes.");
+    const users = getUsers();
+    
+    const { name } =  req.query;
+
+    const filteredUsers = users.filter((eachUser) => eachUser.name === name);
+
+    const qntRead = filteredUsers.length;
+
+    res.status(200).json({ message: `Usuário ${name} foi lido ${qntRead} vezes.`});
 
 };
