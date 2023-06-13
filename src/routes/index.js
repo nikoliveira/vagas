@@ -19,7 +19,7 @@ router.get("/user", teste1.getUser);
 router.get("/users", teste1.getUsers);
 router.post("/users", teste2.createUser);
 router.delete("/users/:id", teste3.deleteUser);
-router.put("/users", teste4);
+router.put("/users/:id", teste4.updateUser);
 router.get("/users/access", teste5);
 
 module.exports = router;
