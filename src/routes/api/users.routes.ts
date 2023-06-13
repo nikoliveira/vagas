@@ -1,30 +1,32 @@
 import { Request, Response, Router } from "express";
-import fakeData from "../../fakeData";
+import { getAllUsersController } from "../../modules/users/useCases/getAllUsers";
+import { getUserController } from "../../modules/users/useCases/getUser";
+import { createUserController } from "../../modules/users/useCases/createUser";
+import { deleteUserController } from "../../modules/users/useCases/deleteUser";
+import { updateUserController } from "../../modules/users/useCases/updateUser";
+import { authToken } from "../../middlewares/auth/auth";
+import { getUserMiddleware } from "../../middlewares/logger/getUserMiddleware";
 
 const router = Router();
 
 router.get("/", (req: Request, res: Response) => {
-  res.status(200).send(fakeData);
+  getAllUsersController.handle(req, res);
 })
 
-router.get("/:name", (req: Request, res: Response) => {
-  const { name } = req.params;
-  const user = fakeData.filter((user) => {
-    return user.name.toLowerCase().includes(name);
-  });
-  res.status(200).send(user);
+router.get("/:user_id", getUserMiddleware, (req: Request, res: Response) => {
+  getUserController.handle(req, res);
+})
+
+router.post("/", (req: Request, res: Response) => {
+  createUserController.handle(req, res);
+})
+
+router.put("/:user_id", authToken, (req: Request, res: Response) => {
+  updateUserController.handle(req, res);
+})
+
+router.delete("/:user_id", authToken, (req: Request, res: Response) => {
+  deleteUserController.handle(req, res);
 })
 
 export { router };
-
-// const teste1 = require("../teste1");
-// const teste2 = require("../teste2");
-// const teste3 = require("../teste3");
-// const teste4 = require("../teste4");
-// const teste5 = require("../teste5");
-  // app.get("/user", teste1.getUser);
-  // app.get("/users", teste1.getUsers);
-  // app.post("/users", teste2)
-  // app.delete("/users", teste3)
-  // app.put("/users", teste4)
-  // app.get("/users/access", teste5);
