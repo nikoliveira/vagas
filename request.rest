@@ -33,3 +33,9 @@ Content-Type: application/json
 ###
 //teste 5
 GET http://localhost:3000/users/access?name=João%20Oliveira
+
+
+###
+//teste 6
+POST http://localhost:3000/users/login/1
+

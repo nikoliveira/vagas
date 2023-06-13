@@ -1,15 +1,17 @@
-export const createToken = (payload) => {
+const jwt = require("jsonwebtoken")
+
+const createToken = (payload) => {
     const token = jwt.sign(
         payload,
         "jwtKey", // idealmente estaria em um arquivo .env
         {
-            expiresIn: process.env.JWT_EXPIRES_IN
+            expiresIn: "1d"
         }
     )
     return token
 }
 
-export const getPayload = (token) => {
+const getPayload = (token) => {
     try {
         const payload = jwt.verify(
             token,
@@ -19,4 +21,9 @@ export const getPayload = (token) => {
     } catch (error) {
         return null
     }
+}
+
+module.exports = {
+    createToken,
+    getPayload
 }

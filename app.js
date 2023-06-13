@@ -7,7 +7,7 @@ var teste2 = require("./teste2");
 var teste3 = require("./teste3");
 var teste4 = require("./teste4");
 var teste5 = require("./teste5");
-
+var teste6 = require("./teste6");
 
 app.set('view engine', 'jade');
 
@@ -34,6 +34,8 @@ app.post("/users", teste2)
 app.delete("/users", teste3)
 app.put("/users", teste4)
 app.get("/users/access", teste5);
+app.post("/users/login/:id", teste6)
+
 
 
 const port  = 3000;
