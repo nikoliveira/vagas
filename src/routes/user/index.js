@@ -10,6 +10,7 @@ import { updatePartialUserController } from "../../controllers/user/updatePartia
 import { deleteUserController } from "../../controllers/user/deleteUser.controller.js";
 import { updateTotalUserVerifyFieldsMiddleware } from "../../middleware/updateTotalUserVerifyFields.middleware copy.js";
 import { updateTotalUserController } from "../../controllers/user/updateTotalUser.controller.js";
+import { readingsCounterController } from "../../controllers/user/readingsCounter.controller.js";
 
 const router = Router();
 
@@ -18,6 +19,7 @@ export const userRoutes = () => {
 
   router.get("", getAllUsersController);
   router.get("/:userId", retrieveUserController);
+  router.get("/counter/:userId", readingsCounterController);
 
   router.patch(
     "/:userId",
