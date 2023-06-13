@@ -1,13 +1,15 @@
-var data =  require("./fakeData");
+const services = require("./utils/services");
+const status = require("./utils/status");
 
 module.exports =  function(req, res) {
-  
-    var id =  req.query.id;
+    const { id } = req.query;
+    const {name, job,features} = req.body;
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
-
-    res.send(reg);
-
+    try {
+        const user = services.updateUser(id, name, job, features);
+        if(!user) return res.status(status.NOT_FOUND).send("User not found");
+        return res.status(status.OK).json(user);
+    }catch(e){
+        return res.status(status.BAD_REQUEST).send(e.message);
+    }
 };

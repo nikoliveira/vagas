@@ -1,15 +1,14 @@
-var data =  require("./fakeData");
+const services = require("./utils/services");
+const status = require("./utils/status");
 
 module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+    const { name } = req.body;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
+    try {
+        const deleted = services.deleteUser(name);
+        if(!deleted) return res.status(status.NOT_FOUND).send("User not found");
+        return res.status(status.OK).send(deleted);
+    }catch(e){
+        return res.status(status.BAD_REQUEST).send(e.message);
     }
-
-    res.send("success");
-
 };
