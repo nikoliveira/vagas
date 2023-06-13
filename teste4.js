@@ -3,9 +3,9 @@ const data = require("./fakeData");
 const updateUser = (req, res) => {
   const id = req.query.id;
 
-  const reg = data.find((d) => d.id == id);
+  const userId = data.find((d) => d.id == id);
 
-  if (!reg) {
+  if (!userId) {
     return res.send("Registro não encontrado");
   }
 

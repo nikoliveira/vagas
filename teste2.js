@@ -16,22 +16,25 @@ const createUser = (req, res) => {
   res.send(newUser);
 };
 
-const login = (req, res) => {
+//O código abaixo gerar o token de permissão de acordo com o role criado.
+
+const generateToken = (permissions = [], role) => {
+  return jwt.sign({ permissions, role }, process.env.SECRET_KEY);
+};
+
+const auth = (req, res) => {
   const { role } = req.body;
 
+  let permissions = [];
   if (role === "admin") {
-    const token = jwt.sign(
-      { permissions: ["delete", "update"], role },
-      process.env.SECRET_KEY
-    );
-    res.json({ token });
-  } else {
-    const token = jwt.sign({ permissions: [], role }, process.env.SECRET_KEY);
-    res.json({ token });
+    permissions = ["delete", "update"];
   }
+
+  const token = generateToken(permissions, role);
+  res.json({ token });
 };
 
 module.exports = {
   createUser,
-  login,
+  auth,
 };

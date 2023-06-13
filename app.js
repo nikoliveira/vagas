@@ -32,7 +32,7 @@ app.get("/", function (req, res) {
 app.get("/user", teste1.getUser);
 app.get("/users", teste1.getUsers);
 app.post("/users", teste2.createUser);
-app.post("/login", teste2.login);
+app.post("/auth", teste2.auth);
 app.delete("/users", teste6.validatePermissions, teste3);
 app.put("/users", teste6.validatePermissions, teste4.updateUser);
 app.get("/users/access", teste5);
