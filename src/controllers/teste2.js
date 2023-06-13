@@ -1,17 +1,36 @@
-var data =  require("../../fakeData");
+const { v4: uuidv4 } = require('uuid');
+const data = require("../../fakeData");
 
-module.exports = function(req, res){
-  
-    var name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
-        name: name,
-        job: job,
+
+const createUser = (req, res, next) => {
+    const body = req && req.body;
+
+    const name = body && body.name;
+    const job = body && body.job;
+
+    if (!name) return res.status(404).json({ error: 'Username is required' });
+    if (!job) return res.status(404).json({ error: 'Job is required' });
+
+    try {
+        const newUser = {
+            id: uuidv4(),
+            name: name,
+            job: job,
+        };
+
+        data.push(newUser);
+
+        res.send(newUser);
+
+    } catch (error) {
+        res.status(500).json({ error: 'could not create user' });
     }
 
-    data.push(newUser)
-    
-    res.send(newUser);
 
+
+
+};
+
+module.exports = {
+    createUser
 };
