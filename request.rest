@@ -1,0 +1,44 @@
+// necessário ter a extensão REST Client instalada
+
+
+//teste 1
+GET http://localhost:3000/user?name=João%20Oliveira
+
+###
+//teste 2
+POST  http://localhost:3000/users
+Content-Type: application/json 
+
+{
+    "name": "Rodrigo Brezolin",
+    "job": "Desenvolvedor"
+}
+
+###
+//teste 3
+
+DELETE  http://localhost:3000/users?name=João%20Oliveira
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE2ODY2MTYyNzcsImV4cCI6MTY4OTIwODI3N30.uIdHIobOWjmbHfVsVRyVyY7uCmvhS6h84Cu78qEDnbI"
+
+###
+//teste 4
+
+PUT  http://localhost:3000/users?id=1
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE2ODY2MTYyNzcsImV4cCI6MTY4OTIwODI3N30.uIdHIobOWjmbHfVsVRyVyY7uCmvhS6h84Cu78qEDnbI"
+
+
+{
+    "name": "Rodrigo Brezolin",
+    "job": "Desenvolvedor web"
+}
+
+###
+//teste 5
+GET http://localhost:3000/users/access?name=João%20Oliveira
+
+
+###
+//teste 6
+POST http://localhost:3000/users/login/1
+

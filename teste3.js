@@ -4,12 +4,17 @@ module.exports = function(req, res) {
   
     var name =  req.query.name;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
+    if(!name) {
+        throw new Error("Por favor insira um nome de usuário após a url, exemplo: ?name=João%20Oliveira")
     }
 
-    res.send("success");
+    const indexToRemove = data.findIndex(i=> i.name.toLowerCase() === name.toLowerCase())
 
+    if(indexToRemove === -1) {
+        throw new Error("Este usuário não existe no banco")
+    }
+
+    data.splice(indexToRemove, 1)
+    
+    res.send("Usuário removido");
 };
