@@ -8,6 +8,7 @@ var teste3 = require("./teste3");
 var teste4 = require("./teste4");
 var teste5 = require("./teste5");
 var teste6 = require("./teste6");
+const { getPayload } = require('./tokenManager');
 
 app.set('view engine', 'jade');
 
@@ -18,6 +19,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/public'));
+
+const tokenMiddleware = (req, res, next) => {
+  try {
+    const token = req.headers.authorization
+    console.log(token)
+      if(!token) {
+        res.send("Insira um token")
+      }
+      getPayload(token)
+
+  next(); 
+  } catch (error) {
+    res.send("Token inválido")
+  }
+    
+};
+
 
 app.get('/', function(req, res){
   res.send(`get user/ </br>
@@ -31,8 +49,8 @@ app.get('/', function(req, res){
 app.get("/user", teste1.getUser);
 app.get("/users", teste1.getUsers);
 app.post("/users", teste2)
-app.delete("/users", teste3)
-app.put("/users", teste4)
+app.delete("/users",tokenMiddleware, teste3)
+app.put("/users",tokenMiddleware, teste4)
 app.get("/users/access", teste5);
 app.post("/users/login/:id", teste6)
 

@@ -18,12 +18,15 @@ Content-Type: application/json
 //teste 3
 
 DELETE  http://localhost:3000/users?name=João%20Oliveira
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE2ODY2MTYyNzcsImV4cCI6MTY4OTIwODI3N30.uIdHIobOWjmbHfVsVRyVyY7uCmvhS6h84Cu78qEDnbI"
 
 ###
 //teste 4
 
 PUT  http://localhost:3000/users?id=1
-Content-Type: application/json 
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE2ODY2MTYyNzcsImV4cCI6MTY4OTIwODI3N30.uIdHIobOWjmbHfVsVRyVyY7uCmvhS6h84Cu78qEDnbI"
+
 
 {
     "name": "Rodrigo Brezolin",

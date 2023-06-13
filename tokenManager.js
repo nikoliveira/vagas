@@ -5,7 +5,7 @@ const createToken = (payload) => {
         payload,
         "jwtKey", // idealmente estaria em um arquivo .env
         {
-            expiresIn: "1d"
+            expiresIn: "30d"
         }
     )
     return token
