@@ -15,8 +15,6 @@ module.exports = function(req, res){
     }
 
     data = [...data, newUser]   // troca do push pelo uso do spread operator
-    // data.push(newUser)     
 
     res.send(newUser);
-
 };

@@ -23,8 +23,8 @@ app.use(express.static(__dirname + '/public'));
 const tokenMiddleware = (req, res, next) => {
   try {
     const token = req.headers.authorization
-    console.log(token)
-      if(!token) {
+
+    if(!token) {
         res.send("Insira um token")
       }
       getPayload(token)
@@ -35,7 +35,6 @@ const tokenMiddleware = (req, res, next) => {
   }
     
 };
-
 
 app.get('/', function(req, res){
   res.send(`get user/ </br>
@@ -53,8 +52,6 @@ app.delete("/users",tokenMiddleware, teste3)
 app.put("/users",tokenMiddleware, teste4)
 app.get("/users/access", teste5);
 app.post("/users/login/:id", teste6)
-
-
 
 const port  = 3000;
 app.listen(port, function(){

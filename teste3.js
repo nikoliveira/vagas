@@ -17,12 +17,4 @@ module.exports = function(req, res) {
     data.splice(indexToRemove, 1)
     
     res.send("Usuário removido");
-    
-    // código antigo
-
-    // for(let i = 0; i < data.length;  i++) {
-    //     if(i.name == name) {
-    //         data[i] = null;
-    //     }
-    // }
 };

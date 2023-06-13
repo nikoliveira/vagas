@@ -17,14 +17,6 @@ const getUser = ( req, res, next ) => {
     result.readCount = result.readCount ? result.readCount + 1 : 1;
 
     res.send(result)
-
-    // código antigo:
-
-    // for(let i = 0; i < data.length;  i++) {
-    //     // if(i.name == name) {
-    //         res.send(data[i]);
-    //     // }
-    // }
 };
 
 const getUsers = ( req, res, next ) => {
