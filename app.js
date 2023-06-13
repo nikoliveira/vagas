@@ -32,7 +32,8 @@ app.get("/user", teste1.getUser);
 app.get("/users", teste1.getUsers);
 app.post("/users", teste2)
 app.delete("/users", validadePermission, teste3)
-app.put("/users", teste4)
+app.delete("/users", validadePermission, teste3)
+app.put("/users",validadePermission, teste4)
 app.get("/users/access", teste5);
 
 
