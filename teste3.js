@@ -1,15 +1,27 @@
-var data =  require("./fakeData");
+let data = require("./fakeData");
 
-module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+function deleteUser(index) {
+  return data.splice(index, 1);
+}
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
-    }
+module.exports = async function (req, res) {
+  let { name } = req.query;
 
-    res.send("success");
+  if (!name) throw console.error("User not found");
+  let userDeteled = false;
 
+  try {
+    await data.map((value) => {
+      if (value.name === name) {
+        let indexOfValue = data.indexOf(value);
+        deleteUser(indexOfValue);
+        userDeteled = true;
+        res.status(200).send("Success");
+      }
+    });
+    if(!userDeteled) await res.status(404).send("User not found");
+       
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 };

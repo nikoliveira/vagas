@@ -1,9 +1,13 @@
-
+const { getUserAccess } = require("./teste1");
 
 module.exports = function(req, res){
-    
-    var name =  req.query.name;
+    let { name } =  req.query
 
-    res.send("Usuário " +  name  + "  foi lido 0 vezes.");
+    if(!name){
+        res.status(200).send("Name is required")
+    }
+    let userAccess = getUserAccess();
+
+    res.send(`Usuário  ${name} foi lido  ${userAccess} vezes.`);
 
 };
