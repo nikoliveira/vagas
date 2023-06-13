@@ -4,7 +4,7 @@
 
 <p style="color: #aaa; font-size: 12pt;">Outro ponto que reparei é que a aplicação está usando o tipo commonJs que é nativo do node, no entanto, e eu não sei se o front também usa javascript e também não sei se teríamos devs fullstack no squad, resolvi mudar a sintaxe da aplicação para o type module que fica amigável para leitura do front e do back com a mesma sintaxe (não é necessário se não tem devs full stack no squad) deixando mais confortável para os devs transitarem entre front e back, até mesmo para a leitura do código.</p> 
 
-<p style="font-size: 12pt;"></p>
+<p style="font-size: 12pt;">Além disso separei as responsabilidades de cada arquivo, visando a escalabilidade da aplicação e facilidade de manutenção, criando a pasta src como sendo a pasta do código fonte deixando a raiz para a parte de configuração e devops</p>
 
 <p style="color: #aaa; font-size: 12pt;"></p> 
 
