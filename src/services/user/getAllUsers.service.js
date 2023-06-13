@@ -1,6 +1,6 @@
 import data from "../../database/fakeData";
 
-export const getAllUsersServices = () => {
+export const getAllUsersService = () => {
   const response = {
     count: data.length,
     results: data,
