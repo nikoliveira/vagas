@@ -52,3 +52,14 @@
 * Substituição de variáveis "var" por variáveis "let" e "const".
 * Substituição de laço de repetição por métodos de array.
 * Tratativa para o caso de o usuário a ser deletado não existir
+
+### teste4.js
+
+* Mudança na forma de identificação do usuário na comunicação vinda do front, sendo utilizado o userId ao invés do nome, desta forma eliminando a possibilidade de confusão entre pessoas do mesmo nome.
+* Atribuição de nome de função para updateTotalUser e updatePartialUser.
+* Substituição de variáveis "var" por variáveis "let" e "const".
+* Tratativa para o caso de o usuário a ser deletado não existir
+* Criação de ua requisição put e outra patch
+* Middleware de verificação de campos (se foram enviados e se são do tipo correto)
+
+
