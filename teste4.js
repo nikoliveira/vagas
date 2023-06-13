@@ -3,10 +3,10 @@ const status = require("./utils/status");
 
 module.exports =  function(req, res) {
     const { id } = req.query;
-    const {name, job} = req.body;
+    const {name, job,features} = req.body;
 
     try {
-        const user = services.updateUser(id, name, job);
+        const user = services.updateUser(id, name, job, features);
         if(!user) return res.status(status.NOT_FOUND).send("User not found");
         return res.status(status.OK).json(user);
     }catch(e){
