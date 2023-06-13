@@ -1,4 +1,4 @@
-import data from "../../database/fakeData.js";
+import { data, readings } from "../../database/fakeData.js";
 import { AppError } from "../../errors/appError.js";
 
 export const retrieveUserService = (userId) => {
@@ -11,6 +11,8 @@ export const retrieveUserService = (userId) => {
   if (!userFound) {
     throw new AppError(404, "user not found");
   }
+
+  readings.push(userFound.id);
 
   return userFound;
 };

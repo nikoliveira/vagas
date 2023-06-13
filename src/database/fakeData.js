@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-const fakeData = [
+export const data = [
   {
     id: uuid(),
     name: "João Oliveira",
@@ -7,4 +7,4 @@ const fakeData = [
   },
 ];
 
-export default fakeData;
+export const readings = [];

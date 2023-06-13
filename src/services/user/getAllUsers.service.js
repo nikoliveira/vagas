@@ -1,4 +1,4 @@
-import data from "../../database/fakeData.js";
+import { data } from "../../database/fakeData.js";
 
 export const getAllUsersService = () => {
   const response = {

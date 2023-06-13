@@ -1,5 +1,5 @@
 import { AppError } from "../../errors/appError.js";
-import data from "../../database/fakeData.js";
+import { data } from "../../database/fakeData.js";
 
 export const deleteUserService = (userId) => {
   if (!userId) {

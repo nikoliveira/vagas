@@ -1,5 +1,5 @@
 import { AppError } from "../../errors/appError.js";
-import data from "../../database/fakeData.js";
+import { data } from "../../database/fakeData.js";
 import { v4 as uuid } from "uuid";
 
 export const createUserService = ({ name, job }) => {

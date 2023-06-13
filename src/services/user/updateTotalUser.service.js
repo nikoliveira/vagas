@@ -1,5 +1,5 @@
 import { AppError } from "../../errors/appError.js";
-import data from "../../database/fakeData.js";
+import { data } from "../../database/fakeData.js";
 
 export const updateTotalUserService = (userId, { name, job }) => {
   if (!userId) {
