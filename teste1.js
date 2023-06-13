@@ -2,14 +2,18 @@ var data =  require("./fakeData");
 
 const getUser = ( req, res, next ) => {
     
-    var name =  req.query.name;
+    const name =  req.query.name;
+    data.forEach( user => {
+    if(user.name !== name) {
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
-    }
-
+        res.send(user); 
+    
+    } 
+    next()
+    
+   }
+   )
+   
 };
 
 const getUsers = ( req, res, next ) => {
