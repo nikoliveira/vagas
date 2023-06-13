@@ -2,6 +2,7 @@ import express from "express";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { appRoutes } from "./routes/index.js";
+import { handleErrorMiddleware } from "./errors/handleError.js";
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.get("/", function (req, res) {
 });
 
 appRoutes(app);
+
+app.use(handleErrorMiddleware);
 
 const port = 3001;
 
