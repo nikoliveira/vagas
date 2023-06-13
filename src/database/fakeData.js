@@ -1,14 +1,14 @@
 import { v4 as uuid } from "uuid";
 import { hashSync } from "bcrypt";
+import { User } from "../models/user.js";
 
-export const data = [
-  {
-    id: uuid(),
-    name: "João Oliveira",
-    job: "Desenvolvedor",
-    password: hashSync("12345", 10),
-    isAdm: true,
-  },
-];
+const initialUser = {
+  name: "João Oliveira",
+  job: "Desenvolvedor",
+  password: "12345",
+  isAdm: true,
+};
+
+export const data = [new User(initialUser)];
 
 export const readings = [];

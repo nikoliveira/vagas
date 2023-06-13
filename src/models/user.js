@@ -8,7 +8,7 @@ export class User {
   isAdm;
   password;
 
-  constructor(name, job, isAdm = false, password) {
+  constructor({ name, job, isAdm = false, password }) {
     this.id = uuid();
     this.name = name;
     this.job = job;

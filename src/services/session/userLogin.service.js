@@ -28,7 +28,7 @@ export const userLoginService = ({ name, password }) => {
 
   const response = {
     token,
-    user: userFound,
+    user: userFound.info(),
   };
 
   return response;
