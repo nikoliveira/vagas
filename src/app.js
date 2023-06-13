@@ -22,7 +22,7 @@ app.get("/", function (req, res) {
   res.json({
     create: "post /users/",
     readAll: "get /users/",
-    retrieve: "get /users/retrieve/:userId",
+    retrieve: "get /users/:userId",
     update1: "put /users/:userId",
     update2: "patch /users/:userId",
     delete: "delete /users/:userId",

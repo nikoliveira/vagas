@@ -1,6 +1,7 @@
+import { v4 as uuid } from "uuid";
 const fakeData = [
   {
-    id: 1,
+    id: uuid(),
     name: "João Oliveira",
     job: "Desenvolvedor",
   },
