@@ -63,3 +63,9 @@
 * Middleware de verificação de campos (se foram enviados e se são do tipo correto)
 
 
+### teste5.js
+
+* Substituição de variáveis "var" por variáveis "let" e "const".
+* Criação de um novo database que armazena os ids lidos
+* inserção de lógica no service de leitura de usuário
+* utilização de método de array para fazer a contagem
