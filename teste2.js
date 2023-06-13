@@ -1,17 +1,37 @@
-var data =  require("./fakeData");
+const data = require("./fakeData");
+const jwt = require("jsonwebtoken");
 
-module.exports = function(req, res){
-  
-    var name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
-        name: name,
-        job: job,
-    }
+const createUser = (req, res) => {
+  const { id, name, job, permissions } = req.body;
 
-    data.push(newUser)
-    
-    res.send(newUser);
+  const newUser = {
+    id: id,
+    name: name,
+    job: job,
+    permissions: permissions,
+  };
 
+  data.push(newUser);
+
+  res.send(newUser);
+};
+
+const login = (req, res) => {
+  const { role } = req.body;
+
+  if (role === "admin") {
+    const token = jwt.sign(
+      { permissions: ["delete", "update"], role },
+      process.env.SECRET_KEY
+    );
+    res.json({ token });
+  } else {
+    const token = jwt.sign({ permissions: [], role }, process.env.SECRET_KEY);
+    res.json({ token });
+  }
+};
+
+module.exports = {
+  createUser,
+  login,
 };
