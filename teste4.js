@@ -6,13 +6,13 @@ module.exports =  function(req, res) {
     const {name, job } = req.body
 
     if(!id) {
-        res.send("Por favor insira um id de usuário após a url, exemplo: ?id=1")
+        throw new Error("Por favor insira um id de usuário após a url, exemplo: ?id=1")
     }
 
     const reg = data.find(i => i.id == id); // ajuste no parâmetro da função
 
     if(!reg) {
-        res.send("Usuário não encontrado")
+        throw new Error("Usuário não encontrado")
     }
     
     reg.name = name || reg.name 

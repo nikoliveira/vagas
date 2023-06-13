@@ -5,7 +5,7 @@ module.exports = function(req, res){
     var {name, job } =  req.body; // erro de digitão na palavra job
 
     if(!name || !job) {
-        res.send("Por favor preencher os campos name e job corretamente")
+        throw new Error("Por favor preencher os campos name e job corretamente")
     }
     
     var newUser = {

@@ -5,7 +5,7 @@ module.exports = function(req, res){
     const id =  req.params.id;
     
     if(!id) {
-        res.send("Por favor insira um id de usuário")
+        throw new Error("Por favor insira um id de usuário")
     }
 
     const user = data.find(i=> {
@@ -13,7 +13,7 @@ module.exports = function(req, res){
     } )
 
     if(!user) {
-        res.send("Nenhum usuário encontrado com este id")
+        throw new Error("Nenhum usuário encontrado com este id")
     }
 
     const token = createToken({id})
