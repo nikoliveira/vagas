@@ -24,7 +24,7 @@ const createUser = (req, res, next) => {
         res.send(newUser);
 
     } catch (error) {
-        res.status(500).json({ error: 'could not create user' });
+        res.status(500).json({ error: 'Could not create user' });
     }
 };
 
