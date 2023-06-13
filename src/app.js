@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { appRoutes } from "./routes/index.js";
 import { handleErrorMiddleware } from "./errors/handleError.js";
+import "dotenv/config";
 
 const app = express();
 
