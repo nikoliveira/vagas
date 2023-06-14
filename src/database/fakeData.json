@@ -1,0 +1,9 @@
+[
+    {
+        "id": 3,
+        "name": "teste3",
+        "isAdmin": false,
+        "readCounter": 0,
+        "password": "$argon2id$v=19$m=65536,t=3,p=4$XBb+PJedWbEKwoURNZZJlA$FWB34+fUESe2feZuJD5Hms8ILgke1ivkZypC4s909as"
+    }
+]
