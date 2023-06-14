@@ -20,9 +20,7 @@ const sign = (payload: JwtPayload) => {
   return token;
 };
 
-const verify = (token: string) => jwt.verify(token, JWT_SECRET, { algorithms: ['HS256'] });
+const verify = (token: string) =>
+  jwt.verify(token, JWT_SECRET, { algorithms: ['HS256'] });
 
-export {
-  sign,
-  verify,
-};
+export { sign, verify };

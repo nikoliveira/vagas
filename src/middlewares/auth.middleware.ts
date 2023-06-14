@@ -2,12 +2,12 @@ import { RequestHandler, Request } from 'express';
 import { verify } from '../utils/jwtHelper';
 
 interface TokenPayload {
-    id: number,
-    isAdmin?: boolean,
+  id: number;
+  isAdmin?: boolean;
 }
 
 interface RequestAuth extends Request {
-  user?: TokenPayload,
+  user?: TokenPayload;
 }
 
 const tokenChecker: RequestHandler = (req: RequestAuth, res, next) => {
@@ -28,14 +28,11 @@ const tokenChecker: RequestHandler = (req: RequestAuth, res, next) => {
 };
 
 const permissionChecker: RequestHandler = (req: RequestAuth, res, next) => {
-    if (!req.user?.isAdmin) {
-        return res.status(403).json({ error: 'Acesso negado.' });
-    }
-    
-    next();
-}
+  if (!req.user?.isAdmin) {
+    return res.status(403).json({ error: 'Acesso negado.' });
+  }
 
-export {
-    tokenChecker,
-    permissionChecker,
+  next();
 };
+
+export { tokenChecker, permissionChecker };

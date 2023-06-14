@@ -1,7 +1,13 @@
-type httpCode = 'alreadyExists' | 'notFound' | 'badRequest' | 'unauthorized' | 'serverError';
+type httpCode =
+  | 'alreadyExists'
+  | 'notFound'
+  | 'badRequest'
+  | 'unauthorized'
+  | 'serverError';
 
 class APIError {
   code: httpCode;
+
   message: string;
 
   constructor(message: string, code: httpCode) {

@@ -8,6 +8,6 @@ export const createUserSchema = Joi.object({
 }).options({ convert: false });
 
 export const updateUserSchema = Joi.object({
-    name: Joi.string(),
-    job: Joi.string(),
+  name: Joi.string(),
+  job: Joi.string(),
 }).options({ convert: false });

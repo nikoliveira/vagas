@@ -6,17 +6,17 @@ import { verifyPassword } from '../utils/argon2Helper';
 
 const login = async (credentials: Creditentials) => {
   const { name, password } = credentials;
-  const data =  userService.getUsers();
-  const user = data.find((user) => user.name === name);
+  const data = userService.getUsers();
+  const user = data.find(u => u.name === name);
 
   if (!user) {
-    throw new APIError('Usuário não encontrado.', "notFound");
+    throw new APIError('Usuário não encontrado.', 'notFound');
   }
 
   const passwordIsValid = await verifyPassword(user.password, password);
 
   if (!passwordIsValid) {
-    throw new APIError('Nome ou senha incorretos.', "unauthorized");
+    throw new APIError('Nome ou senha incorretos.', 'unauthorized');
   }
 
   const payload = {
@@ -29,5 +29,5 @@ const login = async (credentials: Creditentials) => {
 };
 
 export default {
-    login,
+  login,
 };

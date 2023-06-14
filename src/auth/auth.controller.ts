@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
-import { joiValidate} from '../utils/joiValidation';
-import { loginSchema } from './auth.schema';
+import joiValidate from '../utils/joiValidation';
+import loginSchema from './auth.schema';
 import authService from './auth.service';
 
 const login: RequestHandler = async (req, res) => {
@@ -10,6 +10,4 @@ const login: RequestHandler = async (req, res) => {
   res.status(200).json({ token });
 };
 
-export {
-    login,
-};
+export default login;

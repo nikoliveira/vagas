@@ -1,12 +1,17 @@
-import { readFromDatabase, saveToDatabase } from "../database/databaseFunctions";
-import APIError from "../utils/errorClass";
-import { hashPassword } from "../utils/argon2Helper";
-import { CreateUser, UpdateUser, User } from "./user.interface";
+import {
+  readFromDatabase,
+  saveToDatabase,
+} from '../database/databaseFunctions';
+import APIError from '../utils/errorClass';
+import { hashPassword } from '../utils/argon2Helper';
+import { CreateUser, UpdateUser, User } from './user.interface';
+
+const getUsers = () => readFromDatabase() as unknown as User[];
 
 const findUser = (id: number) => {
   const users = getUsers();
-  const user = users.find((u) => u.id === id);
-  if (!user) throw new APIError("Usuário não encontrado.", "notFound");
+  const user = users.find(u => u.id === id);
+  if (!user) throw new APIError('Usuário não encontrado.', 'notFound');
   return { user, data: users };
 };
 
@@ -19,15 +24,13 @@ const getUser = (id: number) => {
   return user;
 };
 
-const getUsers = () => readFromDatabase() as unknown as User[];
-
 const createUser = async (data: CreateUser) => {
   const { name, job, password, isAdmin } = data;
   const users = getUsers();
-  const nameAlreadyExists = users.some((user) => user.name === name);
+  const nameAlreadyExists = users.some(user => user.name === name);
 
   if (nameAlreadyExists) {
-    throw new APIError("Nome já cadastrado.", "alreadyExists");
+    throw new APIError('Nome já cadastrado.', 'alreadyExists');
   }
 
   const newID = users.length > 0 ? users[users.length - 1].id + 1 : 1;

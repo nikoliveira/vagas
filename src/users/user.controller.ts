@@ -1,11 +1,12 @@
-import { RequestHandler } from "express";
-import userService from "./user.service";
-import APIError from "../utils/errorClass";
-import { joiValidate } from "../utils/joiValidation";
-import { createUserSchema, updateUserSchema } from "./user.schema";
+import { RequestHandler } from 'express';
+import userService from './user.service';
+import APIError from '../utils/errorClass';
+import joiValidate from '../utils/joiValidation';
+import { createUserSchema, updateUserSchema } from './user.schema';
 
 const validateId = (id: any) => {
-  if (isNaN(+id)) throw new APIError("O ID deve ser um número.", "badRequest");
+  if (Number.isNaN(+id))
+    throw new APIError('O ID deve ser um número.', 'badRequest');
 };
 
 const getUser: RequestHandler = (req, res) => {

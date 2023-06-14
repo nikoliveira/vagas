@@ -1,9 +1,14 @@
 import { ErrorRequestHandler } from 'express';
 import APIError from '../utils/errorClass';
 
-const errorHandler: ErrorRequestHandler = (err: APIError | Error, _req, res, _next) => {
+const errorHandler: ErrorRequestHandler = (
+  err: APIError | Error,
+  _req,
+  res,
+  _next,
+) => {
   // unexpected error
-  if(err instanceof Error) {
+  if (err instanceof Error) {
     console.log(err);
     return res.status(500).json({ error: 'Erro interno do servidor.' });
   }
@@ -14,7 +19,7 @@ const errorHandler: ErrorRequestHandler = (err: APIError | Error, _req, res, _ne
     badRequest = 400,
     unauthorized = 401,
     serverError = 500,
-  };
+  }
 
   const statusCode: number = errorMap[err.code];
 
