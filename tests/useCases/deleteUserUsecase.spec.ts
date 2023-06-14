@@ -1,4 +1,5 @@
 import fakeData from "../../src/fakeData";
+import { UserBuilder } from "../../src/modules/users/model/userBuilder";
 import { UsersRepository } from "../../src/modules/users/repositories/UsersRepository";
 import { DeleteUserUsecase } from "../../src/modules/users/useCases/deleteUser/DeleteUserUsecase";
 import { GetUserUsecase } from "../../src/modules/users/useCases/getUser/GetUserUsecase";
@@ -16,7 +17,7 @@ describe("Delete UserCase", () => {
 
   it("Deve deletar um usuario", () => {
     let user = getUserUsecase.execute({ id: 1 });
-    expect(user).toStrictEqual(fakeData[0]);
+    expect(user).toStrictEqual(UserBuilder.build(fakeData[0]));
     deleteUserUsecase.execute({ id: 1 });
     expect(() => getUserUsecase.execute({ id: 1 }))
     .toThrow("User does not exist");

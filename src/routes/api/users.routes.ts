@@ -5,7 +5,6 @@ import { createUserController } from "../../modules/users/useCases/createUser";
 import { deleteUserController } from "../../modules/users/useCases/deleteUser";
 import { updateUserController } from "../../modules/users/useCases/updateUser";
 import { authToken } from "../../middlewares/auth/auth";
-import { getUserMiddleware } from "../../middlewares/logger/getUserMiddleware";
 import { accessUserController } from "../../modules/users/useCases/accessUser";
 
 const router = Router();
@@ -14,11 +13,11 @@ router.get("/", (req: Request, res: Response) => {
   getAllUsersController.handle(req, res);
 })
 
-router.get("/:user_id", getUserMiddleware, (req: Request, res: Response) => {
+router.get("/:user_id", (req: Request, res: Response) => {
   getUserController.handle(req, res);
 })
 
-router.get("/access/user", (req: Request, res: Response) => {
+router.get("/access/:user_id", (req: Request, res: Response) => {
   accessUserController.handle(req, res);
 })
 

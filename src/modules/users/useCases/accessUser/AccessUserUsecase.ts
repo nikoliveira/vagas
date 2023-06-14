@@ -1,10 +1,14 @@
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
+interface IRequest {
+  id: number;
+}
+
 class AccessUserUsecase {
   constructor(private userRepository: IUsersRepository ){}
 
-  execute(): string {
-    return this.userRepository.access();
+  execute({ id }: IRequest): string {
+    return this.userRepository.access(id);
   }
 }
 

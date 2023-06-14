@@ -1,4 +1,5 @@
 import fakeData from "../../src/fakeData";
+import { UserBuilder } from "../../src/modules/users/model/userBuilder";
 import { UsersRepository } from "../../src/modules/users/repositories/UsersRepository"
 
 
@@ -7,6 +8,14 @@ describe("User Repository", () => {
 
   beforeEach(() => {
     usersRepository = UsersRepository.getInstance();
+  });
+
+  it("Deve retornar uma lista de user", () => {
+    const user = usersRepository.getAll();
+    expect(user).toEqual([
+      UserBuilder.build(fakeData[0]),
+      UserBuilder.build(fakeData[1])
+    ]);
   });
 
   it("Deve criar o user", () => {
@@ -21,19 +30,14 @@ describe("User Repository", () => {
     });
   })
 
-  it("Deve retornar uma lista de user", () => {
-    const user = usersRepository.getAll()
-    expect(user).toEqual(fakeData);
-  });
-
   it("Deve retornar o primeiro user", () => {
     const user = usersRepository.getUserById(1);
-    expect(user).toEqual(fakeData[0]);
+    expect(user).toEqual(UserBuilder.build(fakeData[0]));
   });
 
   it("Deve atualizar o user", () => {
     let user = usersRepository.getUserById(1);
-    expect(user).toEqual(fakeData[0]);
+    expect(user).toEqual(UserBuilder.build(fakeData[0]));
     user = usersRepository.updateUser({
       id: 1,
       name: "Doctor",
@@ -48,7 +52,7 @@ describe("User Repository", () => {
 
   it("Deve deletar o usuario", () => {
     let user = usersRepository.getUserById(1);
-    expect(user).toEqual(fakeData[0]);
+    expect(user).toEqual(UserBuilder.build(fakeData[0]));
     usersRepository.deleteUser(1)
     user = usersRepository.getUserById(1);
     expect(user).toBe(undefined);

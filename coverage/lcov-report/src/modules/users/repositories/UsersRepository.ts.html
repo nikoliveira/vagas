@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/24</span>
+                <span class='fraction'>31/31</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>25/25</span>
             </div>
         
             
@@ -120,8 +120,17 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,12 +150,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,17 +185,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span></td><td class="text"><pre class="prettyprint lang-js">import fakeData from "../../../fakeData";
+import { UserBuilder } from "../model/userBuilder";
+import UserResponse from "../model/userResponse";
 import User from "../model/users";
 import { ICreateUserDTO, IUsersRepository } from "./IUsersRepository";
 &nbsp;
 class UsersRepository implements IUsersRepository {
-  private users: User[];
+  private users: UserResponse[];
 &nbsp;
   private static INSTANCE: UsersRepository;
 &nbsp;
@@ -198,19 +214,23 @@ class UsersRepository implements IUsersRepository {
   }
   
   getAll(): User[] {
-    return this.users;
+    return this.users.map(user =&gt; UserBuilder.build(user));
   }
 &nbsp;
   getUserById(id: number): User | undefined {
     const user = this.users.find(user =&gt; user.id === id)
-    return user;
+    if (!user) {
+      return user;
+    }
+    user.count++;
+    return UserBuilder.build(user);
   }
 &nbsp;
   createUser({ name, job }: ICreateUserDTO): User {
-    const id = this.users.length + 1;
-    const user = new User(id, name, job);
+    const autoimplementOrUUIDFromDatabase = this.users.length + 1;
+    const user = new UserResponse(autoimplementOrUUIDFromDatabase, name, job);
     this.users.push(user)
-    return user;
+    return UserBuilder.build(user);
   }
 &nbsp;
   deleteUser(id: number): void {
@@ -225,11 +245,12 @@ class UsersRepository implements IUsersRepository {
       name,
       job
     }
-    return user;
+    return UserBuilder.build(user);
   }
 &nbsp;
-  access(): string {
-    return 'api/getUser.txt'
+  access(id: number): string {
+    const user = this.users.find(user =&gt; user.id === id)
+    return `O user foi lido ${user?.count} vezes`;
   }
 &nbsp;
 }
@@ -241,7 +262,7 @@ export { UsersRepository }</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-13T22:28:33.391Z
+                at 2023-06-14T12:57:33.200Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

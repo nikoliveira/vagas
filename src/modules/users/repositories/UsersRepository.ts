@@ -1,9 +1,11 @@
 import fakeData from "../../../fakeData";
+import { UserBuilder } from "../model/userBuilder";
+import UserResponse from "../model/userResponse";
 import User from "../model/users";
 import { ICreateUserDTO, IUsersRepository } from "./IUsersRepository";
 
 class UsersRepository implements IUsersRepository {
-  private users: User[];
+  private users: UserResponse[];
 
   private static INSTANCE: UsersRepository;
 
@@ -19,19 +21,23 @@ class UsersRepository implements IUsersRepository {
   }
   
   getAll(): User[] {
-    return this.users;
+    return this.users.map(user => UserBuilder.build(user));
   }
 
   getUserById(id: number): User | undefined {
     const user = this.users.find(user => user.id === id)
-    return user;
+    if (!user) {
+      return user;
+    }
+    user.count++;
+    return UserBuilder.build(user);
   }
 
   createUser({ name, job }: ICreateUserDTO): User {
-    const id = this.users.length + 1;
-    const user = new User(id, name, job);
+    const autoimplementOrUUIDFromDatabase = this.users.length + 1;
+    const user = new UserResponse(autoimplementOrUUIDFromDatabase, name, job);
     this.users.push(user)
-    return user;
+    return UserBuilder.build(user);
   }
 
   deleteUser(id: number): void {
@@ -46,11 +52,12 @@ class UsersRepository implements IUsersRepository {
       name,
       job
     }
-    return user;
+    return UserBuilder.build(user);
   }
 
-  access(): string {
-    return 'api/getUser.txt'
+  access(id: number): string {
+    const user = this.users.find(user => user.id === id)
+    return `O user foi lido ${user?.count} vezes`;
   }
 
 }

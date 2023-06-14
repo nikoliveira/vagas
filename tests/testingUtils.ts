@@ -1,4 +1,0 @@
-
-const testingToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZmVybmFuZG8iLCJqb2IiOiJBcHJlbmRpeiIsImlhdCI6MTY4NjY5NDcwNH0.RaP1Cxr-vex11EyLQQD0vDXKHWSiUxt_cvY97ZxOuRU"
-
-export { testingToken }
