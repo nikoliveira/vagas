@@ -1,6 +1,6 @@
-import data from "../database/fakeData.js";
+var data = require("./fakeData");
 
-export function updateUser(req, res) {
+module.exports = function (req, res) {
   var id = req.query.id;
 
   const reg = data.find((d) => id == id);
@@ -8,4 +8,4 @@ export function updateUser(req, res) {
   reg.job = req.body.job;
 
   res.send(reg);
-}
+};

@@ -1,6 +1,6 @@
-import data from "../database/fakeData.js";
+var data = require("./fakeData");
 
-export function deleteUser(req, res) {
+module.exports = function (req, res) {
   var name = req.query.name;
 
   for (let i = 0; i < data.length; i++) {
@@ -10,4 +10,4 @@ export function deleteUser(req, res) {
   }
 
   res.send("success");
-}
+};
