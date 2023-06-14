@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import userRouter from './users/user.router';
 import errorHandler from './middlewares/errorHandler.middleware';
 import authRouter from './auth/auth.router';
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from './swagger_output.json';
 
 const app = express();
 
@@ -13,17 +15,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res){
-  res.send(`get user/ </br>
-  get users/ </br>
-  post users/ </br>
-  delete users/ </br>
-  put users/ </br>
-  `);
-});
-
+app.use('/', (req, res) => { res.send('OK!')});
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
+
 app.use(errorHandler);
 
 const port  = 3000;
