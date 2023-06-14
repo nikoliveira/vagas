@@ -1,3 +1,5 @@
+https://github.com/IsJordanBraz/vagas/.github/workflows/main.yml/badge.svg
+
 # Considerações.
 Como o objetivo era apenas fazer o crud, tomei a liberdade para implementar
 typescript e dependencias de desenvolvimento.
