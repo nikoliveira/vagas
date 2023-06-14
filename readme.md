@@ -4,10 +4,26 @@ typescript e dependencias de desenvolvimento.
 
 ## Rotas
 
-### POST `/api/users`
-### GET `/api/users`
-### DELETE `/api/users`
-### PUT `/api/users`
+### GET `/api/users` - retorna a lista de registros
+### GET `/api/users/id` - retorna um unico registro
+### POST `/api/users` - passar objeto
+{
+  name: username,
+  job: jobname,
+}
+### DELETE `/api/users/id` - necessario token e header de authorization
+### PUT `/api/users/id` - necessario token e header de authorization, passar objeto
+{
+  name: username,
+  job: jobname,
+}
+### POST `/api/login` passar objeto. - retorna o token
+{
+  name: username,
+  job: jobname,
+}
+
+### Test 5 `/api/users/access/user` retorna um logger dos ids acessados
 
 # Este é um teste para desenvolvedores
 
