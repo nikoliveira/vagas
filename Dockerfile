@@ -2,8 +2,6 @@ FROM node:20-alpine3.16
 
 WORKDIR /app
 
-RUN apt-get update
-
 COPY ./package*.json ./
 COPY ./yarn.lock ./
 
