@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/public`));
 
-app.use('/', (req, res) => {
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.get('/', (req, res) => {
   res.send('OK!');
 });
-app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
 
