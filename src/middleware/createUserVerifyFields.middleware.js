@@ -1,7 +1,7 @@
 import { AppError } from "../errors/appError.js";
 
 export const createUserVerifyFieldsMiddleware = (req, res, next) => {
-  const { name, job } = req.body;
+  const { name, job, password } = req.body;
 
   let error = "";
 
@@ -18,7 +18,15 @@ export const createUserVerifyFieldsMiddleware = (req, res, next) => {
   }
 
   if (job && typeof job !== "string") {
-    error += "job: must be stringd";
+    error += "job: must be string";
+  }
+
+  if (!password) {
+    error += "password: is required";
+  }
+
+  if (password && typeof password !== "string") {
+    error += "password: must be string";
   }
 
   if (error) {

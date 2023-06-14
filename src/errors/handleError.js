@@ -1,6 +1,7 @@
 import { AppError } from "./appError.js";
 
 export const handleErrorMiddleware = (err, req, res, next) => {
+  console.log(err);
   if (err instanceof AppError) {
     return res.status(err.statusCode).json({
       status: "Error",

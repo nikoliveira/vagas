@@ -2,6 +2,8 @@ import { Router } from "express";
 
 import { createUserVerifyFieldsMiddleware } from "../../middleware/createUserVerifyFields.middleware.js";
 import { updatePartialUserVerifyFieldsMiddleware } from "../../middleware/updatePartialUserVerifyFields.middleware.js";
+import { isAuthenticatedMiddleware } from "../../middleware/isAuthenticated.middleware.js";
+import { isAdmMiddleware } from "../../middleware/isAdm.middleware.js";
 
 import { createUserController } from "../../controllers/user/createUser.controller.js";
 import { getAllUsersController } from "../../controllers/user/getAllUsers.controller.js";
@@ -21,8 +23,11 @@ export const userRoutes = () => {
   router.get("/:userId", retrieveUserController);
   router.get("/counter/:userId", readingsCounterController);
 
+  router.use(isAuthenticatedMiddleware, isAdmMiddleware);
+
   router.patch(
     "/:userId",
+
     updatePartialUserVerifyFieldsMiddleware,
     updatePartialUserController
   );

@@ -1,20 +1,10 @@
-import { AppError } from "../../errors/appError.js";
 import { data } from "../../database/fakeData.js";
-import { v4 as uuid } from "uuid";
+import { User } from "../../models/user.js";
 
-export const createUserService = ({ name, job }) => {
-  // colocar essa lógica num middleware
-  // if (!name || !job) {
-  //   throw new AppError(400, "name: is required, job: isRequired");
-  // }
-
-  const newUser = {
-    id: uuid(),
-    name,
-    job: job.toLowerCase(),
-  };
+export const createUserService = ({ name, job, isAdm, password }) => {
+  const newUser = new User({ name, job, isAdm, password });
 
   data.push(newUser);
 
-  return newUser;
+  return newUser.info();
 };

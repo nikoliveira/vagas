@@ -1,5 +1,3 @@
-import { v4 as uuid } from "uuid";
-import { hashSync } from "bcrypt";
 import { User } from "../models/user.js";
 
 const initialUser = {
