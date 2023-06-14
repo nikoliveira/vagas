@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  database:
+    container_name: express-container
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - DB_HOST=db
+      - DB_USER=test
+      - DB_PASSWORD=1234
+      - DB=test_database
+      - SECRET_KEY=67!7a9b2@6c5183!a5@c!abf3@426!cb8@!2a
+    volumes:
+      - .:/app
