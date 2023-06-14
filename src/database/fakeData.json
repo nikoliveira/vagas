@@ -1,25 +1,9 @@
 [
     {
-        "id": 1,
-        "name": "João Oliveira",
-        "job": "Desenvolvedor",
-        "readCounter": 2
-    },
-    {
-        "id": 2,
-        "name": "Luiz",
-        "job": "SCF New Developer",
-        "readCounter": 1
-    },
-    {
-        "id": 4,
-        "name": "Teste2",
-        "job": "SCF New Developer",
-        "readCounter": 0
-    },
-    {
-        "id": 5,
-        "name": "teste",
-        "readCounter": 0
+        "id": 3,
+        "name": "teste3",
+        "isAdmin": false,
+        "readCounter": 0,
+        "password": "$argon2id$v=19$m=65536,t=3,p=4$XBb+PJedWbEKwoURNZZJlA$FWB34+fUESe2feZuJD5Hms8ILgke1ivkZypC4s909as"
     }
 ]

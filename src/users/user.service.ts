@@ -1,6 +1,7 @@
 import { readFromDatabase, saveToDatabase } from "../database/databaseFunctions";
 import APIError from "../utils/errorClass";
-import { UpdateUser, User } from "./user.interface";
+import { hashPassword } from "../utils/argon2Helper";
+import { CreateUser, UpdateUser, User } from "./user.interface";
 
 const findUser = (id: number) => {
   const users = getUsers();
@@ -20,17 +21,26 @@ const getUser = (id: number) => {
 
 const getUsers = () => readFromDatabase() as unknown as User[];
 
-const createUser = (name: string, job: string) => {
-  const data = getUsers();
-  const newID = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+const createUser = async (data: CreateUser) => {
+  const { name, job, password, isAdmin } = data;
+  const users = getUsers();
+  const nameAlreadyExists = users.some((user) => user.name === name);
+
+  if (nameAlreadyExists) {
+    throw new APIError("Nome já cadastrado.", "alreadyExists");
+  }
+
+  const newID = users.length > 0 ? users[users.length - 1].id + 1 : 1;
+  const hashedPassword = await hashPassword(password);
   const newUser = {
     id: newID,
-    name: name,
-    job: job,
+    name,
+    job,
+    isAdmin: isAdmin || false,
     readCounter: 0,
   };
 
-  saveToDatabase([...data, newUser]);
+  saveToDatabase([...users, { ...newUser, password: hashedPassword }]);
   return newUser;
 };
 

@@ -20,10 +20,9 @@ const getUsers: RequestHandler = (req, res) => {
   res.status(200).json(users);
 };
 
-const createUser: RequestHandler = (req, res) => {
-  const { name, job } = req.body;
-  joiValidate(createUserSchema, { name, job });
-  const newUser = userService.createUser(name, job);
+const createUser: RequestHandler = async (req, res) => {
+  joiValidate(createUserSchema, req.body);
+  const newUser = await userService.createUser(req.body);
   res.status(200).json(newUser);
 };
 
