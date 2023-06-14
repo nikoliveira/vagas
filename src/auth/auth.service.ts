@@ -13,7 +13,7 @@ const login = async (credentials: Creditentials) => {
     throw new APIError('Usuário não encontrado.', "notFound");
   }
 
-  const passwordIsValid = await verifyPassword(password, user.password);
+  const passwordIsValid = await verifyPassword(user.password, password);
 
   if (!passwordIsValid) {
     throw new APIError('Nome ou senha incorretos.', "unauthorized");
