@@ -1,9 +1,9 @@
 import { AppError } from "../errors/appError.js";
 
 export const updatePartialUserVerifyFieldsMiddleware = (req, res, next) => {
-  const { name, job } = req.body;
+  const { name, job, isAdm, password } = req.body;
 
-  if (!name && !job) {
+  if (!name && !job && !password && (isAdm === undefined || isAdm === null)) {
     throw new AppError(400, "nothing to update");
   }
 
@@ -14,7 +14,15 @@ export const updatePartialUserVerifyFieldsMiddleware = (req, res, next) => {
   }
 
   if (job && typeof job !== "string") {
-    error += "job: must be stringd";
+    error += "job: must be string";
+  }
+
+  if (password && typeof password !== "string") {
+    error += "password: must be string";
+  }
+
+  if (isAdm !== undefined && isAdm !== null && typeof isAdm !== "boolean") {
+    error += "isAdm: must be boolean";
   }
 
   if (error) {

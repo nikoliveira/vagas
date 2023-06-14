@@ -1,10 +1,13 @@
 import { AppError } from "../errors/appError.js";
 
 export const updateTotalUserVerifyFieldsMiddleware = (req, res, next) => {
-  const { name, job } = req.body;
+  const { name, job, isAdm, password } = req.body;
 
-  if (!name || !job) {
-    throw new AppError(400, "fields name and job is mandatory");
+  if (!name || !job || !password || isAdm === undefined || isAdm === null) {
+    throw new AppError(
+      400,
+      "fields name, job, isAdm and password is mandatory"
+    );
   }
 
   let error = "";
@@ -15,6 +18,14 @@ export const updateTotalUserVerifyFieldsMiddleware = (req, res, next) => {
 
   if (typeof job !== "string") {
     error += "job: must be stringd";
+  }
+
+  if (typeof password !== "string") {
+    error += "password: must be string";
+  }
+
+  if (typeof isAdm !== "boolean") {
+    error += "isAdm: must be boolean";
   }
 
   if (error) {

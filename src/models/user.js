@@ -16,7 +16,7 @@ export class User {
     this.password = hashSync(password, 10);
   }
 
-  update(name, job, isAdm, password) {
+  update({ name, job, isAdm, password }) {
     name && (this.name = name);
     job && (this.job = job);
     isAdm && (this.isAdm = isAdm);

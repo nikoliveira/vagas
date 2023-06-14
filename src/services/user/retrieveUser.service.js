@@ -14,5 +14,5 @@ export const retrieveUserService = (userId) => {
 
   readings.push(userFound.id);
 
-  return userFound;
+  return userFound.info();
 };

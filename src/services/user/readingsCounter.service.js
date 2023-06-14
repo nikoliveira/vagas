@@ -19,7 +19,7 @@ export const readingsCounterService = (userId) => {
 
   const response = {
     message: `O usuário ${userFound.name} foi lido ${counter} vez${
-      counter !== 1 && "es"
+      counter !== 1 ? "es" : ""
     } no banco de dados.`,
   };
 
