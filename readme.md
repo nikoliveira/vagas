@@ -1,7 +1,30 @@
 # Sobre a Solução
 
-> para não poluir o código fonte com comentários, achei pertinente criar uma <a href="./readme-solution.md" download >arquivo</a> .md para escrever a linha de pensamento e todos os comentários relevantes da aplicação como um todo, desde mudança de sintaxe até a mudança de arquitetura, passando também pelas libs instaladas.
+> Para não poluir o código fonte com comentários, achei pertinente criar uma <a href="./readme-solution.md" download >arquivo</a> .md para escrever a linha de pensamento e todos os comentários relevantes da aplicação como um todo, desde mudança de sintaxe até a mudança de arquitetura, passando também pelas libs instaladas.
 
+## Começando...
+
+execute as etapas abaixo para rodar a aplicação.
+
+* Faça o clone da aplicação
+* Copie o arquivo .env.example e o renomeie para .env e preencha as variáveis do arquivo.
+* Se você possuir o docker instalado na sua máquina, execute:
+``` zsh
+$ docker compose up
+``` 
+* Se você não possuir o docker instalado na sua máquina basta executar:
+```zsh
+$ npm i
+$ npm run dev
+```
+
+Com isso a aplicação estará funcionando no localhost:3001
+
+<br />
+<br />
+<br />
+<br />
+<br />
 
 # Este é um teste para desenvolvedores
 
