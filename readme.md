@@ -2,6 +2,8 @@
 Como o objetivo era apenas fazer o crud, tomei a liberdade para implementar
 typescript e dependencias de desenvolvimento.
 
+linkedin: https://www.linkedin.com/in/isjordanbraz/
+
 ## Rotas
 
 ### GET `/api/users` - retorna a lista de registros
@@ -23,7 +25,7 @@ typescript e dependencias de desenvolvimento.
   job: jobname,
 }
 
-### Test 5 `/api/users/access/user` retorna um logger dos ids acessados
+### Test 5 `/api/users/access/id` retorna um logger dos ids acessados
 
 # Este é um teste para desenvolvedores
 
