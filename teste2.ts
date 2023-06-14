@@ -1,9 +1,9 @@
-var data =  require("./fakeData");
+import data from './fakeData';
 
 module.exports = function(req, res){
   
     var name =  req.body.name;
-    var jov =  req.body.job;
+    var job =  req.body.job;
     
     var newUser = {
         name: name,
