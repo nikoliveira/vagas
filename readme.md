@@ -1,3 +1,32 @@
+# Considerações.
+Como o objetivo era apenas fazer o crud, tomei a liberdade para implementar
+typescript e dependencias de desenvolvimento.
+
+linkedin: https://www.linkedin.com/in/isjordanbraz/
+
+## Rotas
+
+### GET `/api/users` - retorna a lista de registros
+### GET `/api/users/id` - retorna um unico registro
+### POST `/api/users` - passar objeto
+{
+  name: username,
+  job: jobname,
+}
+### DELETE `/api/users/id` - necessario token e header de authorization
+### PUT `/api/users/id` - necessario token e header de authorization, passar objeto
+{
+  name: username,
+  job: jobname,
+}
+### POST `/api/login` passar objeto. - retorna o token
+{
+  name: username,
+  job: jobname,
+}
+
+### Test 5 `/api/users/access/id` retorna um logger dos ids acessados
+
 # Este é um teste para desenvolvedores
 
 # possui 5 testes
@@ -14,7 +43,7 @@ Fique a vontade para fazer modificaçoes nos serviços, comentários em código,
 
 ## teste1.js
 
-GET em /user 
+GET em /users
 
 Possuimos neste arquivo um serviço que faz uma busca no banco fake e retorna um registro.
 Este código funciona, mas é possivel melhorar.
@@ -39,5 +68,7 @@ Retorne quantas vezes determinado usuário foi lido no teste1.
 
 ## teste 6
 
-Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
+Definina uma forma de criar permissão para o usuario,
+defina se o usuário pode deletar ou atualizar usuários.
+Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
 
