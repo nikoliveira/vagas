@@ -1,3 +1,8 @@
+# Sobre a Solução
+
+> para não poluir o código fonte com comentários, achei pertinente criar uma <a href="./readme-solution.md" download >arquivo</a> .md para escrever a linha de pensamento e todos os comentários relevantes da aplicação como um todo, desde mudança de sintaxe até a mudança de arquitetura, passando também pelas libs instaladas.
+
+
 # Este é um teste para desenvolvedores
 
 # possui 5 testes
