@@ -17,6 +17,11 @@ typescript e dependencias de desenvolvimento.
   name: username,
   job: jobname,
 }
+### POST `/api/login` passar objeto. - retorna o token
+{
+  name: username,
+  job: jobname,
+}
 
 ### Test 5 `/api/users/access/user` retorna um logger dos ids acessados
 
