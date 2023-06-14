@@ -1,0 +1,16 @@
+version: '3'
+services:
+  api:
+    container_name: 'api'
+    env_file: .env
+    build: 
+      context: '.'
+      dockerfile: Dockerfile
+    command: npm run dev
+    restart: 'always'
+    environment:
+      - LOCAL_PORT=$LOCAL_PORT
+    ports:
+      - $LOCAL_PORT:3000
+    expose:
+      - $LOCAL_PORT
