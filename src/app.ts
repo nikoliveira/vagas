@@ -29,7 +29,7 @@ class App {
   routes() {
     this.app.get('/user', this.userController.getUser);
     this.app.get('/users', this.userController.getUsers);
-    // this.app.post('/users', this.userController);
+    this.app.post('/users', this.userController.setUser);
     // this.app.delete('/users', this.userController);
     // this.app.put('/users', this.userController);
     // this.app.get('/users/access', this.userController);
