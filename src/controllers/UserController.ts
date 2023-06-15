@@ -42,6 +42,14 @@ class UserController {
     res.status(201).send(newUser);
   };
 
+  getCallUser = (req: Request, res: Response, _next: NextFunction) => {
+    const {name} = req.query;
+
+    const getCall = this.model.getCallUser(name as string);
+
+    res.status(201).send(getCall);
+  };
+
   // Teste 3
   deleteUser = (req: Request, res: Response, _next: NextFunction) => {
     const {name} = req.query;

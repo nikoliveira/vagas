@@ -41,6 +41,21 @@ class UserModel {
     return newUser;
   }
 
+  // Teste 5
+  getCallUser(name: string) {
+    const getUser = this.getUser(name);
+
+    if (typeof getUser === 'string') {
+      return getUser;
+    }
+
+    return {
+      id: getUser.id,
+      name: getUser.name,
+      visitors: getUser.called,
+    };
+  }
+
   deleteUser(name: string) {
     const removedName = this.data.filter(item => item.name !== name);
 
