@@ -3,11 +3,6 @@ dotenv.config();
 import express, {type Application} from 'express';
 import bodyParser from 'body-parser';
 
-import teste1 from './controllers/UserController';
-import teste2 from './controllers/teste2';
-import teste3 from './controllers/teste3';
-import teste4 from './controllers/teste4';
-import teste5 from './controllers/teste5';
 import UserController from './controllers/UserController';
 
 class App {
