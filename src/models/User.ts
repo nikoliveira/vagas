@@ -13,6 +13,10 @@ class UserModel {
 
     return findName ? findName : 'User not found';
   }
+
+  getUsers(): UserI[] {
+    return this.data;
+  }
 }
 
 export default UserModel;
