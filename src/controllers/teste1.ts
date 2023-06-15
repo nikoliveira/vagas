@@ -1,25 +1,28 @@
 import type {Request, Response, NextFunction} from 'express';
 import UserModel from '../models/User';
 
-const getUser = (req: Request, res: Response, next: NextFunction) => {
-  const {name} = req.query;
+class UserController {
+  protected model: UserModel;
 
-  if (typeof name !== 'string') {
-    res.send('Usuário inválido.');
+  constructor() {
+    this.model = new UserModel();
   }
 
-  const userModel = new UserModel();
+  getUser = (req: Request, res: Response, next: NextFunction) => {
+    const {name} = req.query;
 
-  const findUser = userModel.getUser(name as string);
+    if (typeof name !== 'string') {
+      res.send('Usuário inválido.');
+    }
 
-  res.status(200).send(findUser);
-};
+    const userModel = this.model;
 
-const getUsers = (req: Request, res: Response, next: NextFunction) => {
-  // res.send(data);
-};
+    const findUser = userModel.getUser(name as string);
 
-export default {
-  getUser,
-  getUsers,
-};
+    res.status(200).send(findUser);
+  };
+
+  getUsers = (req: Request, res: Response, next: NextFunction) => {};
+}
+
+export default UserController;
