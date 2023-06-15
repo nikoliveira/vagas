@@ -1,17 +1,25 @@
-var data =  require("./fakeData");
+const data = require("./fakeData");
 
-module.exports = function(req, res){
-  
-    var name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
-        name: name,
-        job: job,
-    }
+module.exports = function (req, res) {
+  const { name, job } = req.body;
 
-    data.push(newUser)
-    
-    res.send(newUser);
+  let newUser;
 
+  if (!!name && !!job) {
+    newUser = {
+      id: Math.random().toString(36).slice(2), // gera um ID aleatório, muda a base numérica e recorta a parte fracionada.
+      name: name,
+      job: job,
+      searched: 0,
+      admin: false,
+    };
+
+    data.push(newUser);
+
+    return res.status(201).send(newUser);
+  }
+
+  return res
+    .status(400)
+    .send({ message: 'The fields "name" and "job" must have a content' });
 };
