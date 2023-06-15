@@ -41,6 +41,18 @@ class UserController {
 
     res.status(201).send(newUser);
   };
+
+  deleteUser = (req: Request, res: Response, _next: NextFunction) => {
+    const {name} = req.query;
+
+    if (typeof name !== 'string') {
+      res.status(422).send('inválid');
+    }
+
+    const deleteUser = this.model.deleteUser(name as string);
+
+    res.status(201).send(deleteUser);
+  };
 }
 
 export default UserController;
