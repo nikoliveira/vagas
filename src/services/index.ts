@@ -4,6 +4,7 @@ import { listUsersService } from "./user/listUsers.service";
 import { createSessionService } from "./session/sessions.service";
 import { deleteUserService } from "./user/deleteUser.service";
 import { updateUserService } from "./user/updateUser.service";
+import { readingsCounterService } from "./user/readingsCounter.service";
 
 export {
   createUserService,
@@ -12,4 +13,5 @@ export {
   createSessionService,
   deleteUserService,
   updateUserService,
+  readingsCounterService,
 };
