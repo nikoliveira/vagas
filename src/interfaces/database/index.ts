@@ -5,3 +5,8 @@ export interface IDatabaseUser {
   job: string;
   isAdm?: boolean;
 }
+
+export interface IReadCounter {
+  id: string;
+  counter: number;
+}
