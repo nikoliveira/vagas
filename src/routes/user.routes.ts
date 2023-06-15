@@ -8,6 +8,7 @@ import {
   listUsersController,
   deleteUserController,
   updateUserController,
+  readingsCounterController,
 } from "../controllers";
 
 import verifyToken from "../middlewares/verifyToken.middleware";
@@ -27,5 +28,8 @@ userRoutes.patch("/:id", verifyToken, verifyAccountOwner, updateUserController);
 
 //delete user by id
 userRoutes.delete("/:id", verifyToken, verifyAccountOwner, deleteUserController);
+
+//readings counter
+userRoutes.get("/read/:id", readingsCounterController);
 
 export default userRoutes;
