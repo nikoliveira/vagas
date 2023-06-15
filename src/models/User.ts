@@ -15,7 +15,17 @@ class UserModel {
   getUser(name: string): string | UserI {
     const findName = this.data.find((user: UserI) => user.name === name);
 
-    return findName ? findName : 'User not found';
+    if (!findName) {
+      return 'User not found';
+    }
+
+    const removeOldObject = this.data.filter(item => item.name !== name);
+
+    findName.called += 1;
+
+    removeOldObject.push(findName);
+
+    return findName;
   }
 
   getUsers(): UserI[] {
