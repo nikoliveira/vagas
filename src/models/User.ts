@@ -30,6 +30,14 @@ class UserModel {
 
     return newUser;
   }
+
+  deleteUser(name: string) {
+    const removedName = this.data.filter(item => item.name !== name);
+
+    this.data = removedName;
+
+    return 'success';
+  }
 }
 
 export default UserModel;
