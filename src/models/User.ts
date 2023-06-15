@@ -38,6 +38,25 @@ class UserModel {
 
     return 'success';
   }
+
+  updateUser(id: string, updateData: {name: string; job: string}) {
+    const {name, job} = updateData;
+
+    const findUser = this.data.find(obj => obj.id.toString() === id);
+
+    if (!findUser?.name) {
+      return 'Inválid user';
+    }
+
+    findUser.name = name;
+    findUser.job = job;
+
+    const removeOldObject = this.data.filter(item => item.id.toString() !== id);
+
+    removeOldObject.push(findUser);
+
+    return findUser;
+  }
 }
 
 export default UserModel;
