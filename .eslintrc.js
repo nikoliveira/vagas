@@ -12,6 +12,8 @@ module.exports = {
         '@typescript-eslint/indent': ['error', 2],
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/consistent-type-definitions': 'off',
+        'capitalized-comments': 'off',
       },
     },
   ],
