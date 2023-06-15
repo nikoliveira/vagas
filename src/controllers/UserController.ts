@@ -42,6 +42,7 @@ class UserController {
     res.status(201).send(newUser);
   };
 
+  // Teste 3
   deleteUser = (req: Request, res: Response, _next: NextFunction) => {
     const {name} = req.query;
 
@@ -52,6 +53,16 @@ class UserController {
     const deleteUser = this.model.deleteUser(name as string);
 
     res.status(201).send(deleteUser);
+  };
+
+  // Teste 4
+  updateUser = (req: Request, res: Response, _next: NextFunction) => {
+    const {id} = req.query;
+    const {name, job} = req.body;
+
+    const updateUser = this.model.updateUser(id as string, {name, job});
+
+    res.status(201).send(updateUser);
   };
 }
 
