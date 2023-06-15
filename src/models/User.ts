@@ -1,5 +1,6 @@
 import User from '../classes/User';
 import data from '../data/fakeData';
+import JwtMethods from '../helper/jwt';
 import type UserI from '../interfaces/IUser';
 
 /**
@@ -7,9 +8,11 @@ import type UserI from '../interfaces/IUser';
  */
 class UserModel {
   protected data: UserI[];
+  protected auth: JwtMethods;
 
   constructor() {
     this.data = data;
+    this.auth = new JwtMethods();
   }
 
   getUser(name: string): string | UserI {
@@ -81,6 +84,12 @@ class UserModel {
     removeOldObject.push(findUser);
 
     return findUser;
+  }
+
+  generateToken(userdata: {name: string; role: string}) {
+    const token = this.auth.jwtSign(userdata);
+
+    return token;
   }
 }
 
