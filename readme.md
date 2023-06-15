@@ -22,6 +22,7 @@ Pré-requisitos
 yarn install
 ```
 2 - Na raiz do projeto crie um novo arquivo chamado **`.env`**, defina as variáveis de ambinete como na imagem abaixo:
+
 ![scf-test-env](https://github.com/kennedybm/kennedybm-teste-scf/assets/91641613/6ecf0081-8be2-4fc2-ba4d-f9e1699eae5c)
 
 3 - Criando docker container e rodando projeto localmente:
