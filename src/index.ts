@@ -1,8 +1,5 @@
-import app from './app';
-import dotenv from 'dotenv';
-dotenv.config();
+import App from './app';
 
-const port = process.env.PORT ?? 3000;
-app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`);
-});
+const app = new App();
+
+app.start();
