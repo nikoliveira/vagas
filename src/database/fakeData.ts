@@ -1,6 +1,6 @@
-import { IDatabaseUser } from "../interfaces/database";
+import { IDatabaseUser, IReadCounter } from "../interfaces/database";
 
-export const readingsCounter = [];
+export const readingsCounter: Array<IReadCounter> = [];
 
 const fakeData: IDatabaseUser[] = [
   {
