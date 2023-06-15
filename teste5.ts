@@ -1,7 +1,5 @@
-export default function(req, res){
-    
-    var name =  req.query.name;
+export default function (req, res) {
+  const {name} = req.query;
 
-    res.send("Usuário " +  name  + "  foi lido 0 vezes.");
-
-};
+  res.send('');
+}

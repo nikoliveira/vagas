@@ -1,13 +1,11 @@
 import data from './fakeData';
 
-module.exports =  function(req, res) {
-  
-    var id =  req.query.id;
+export default function (req, res) {
+  const {id} = req.query;
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
+  const reg = data.find(d => id == id);
+  reg.name = req.body.name;
+  reg.job = req.body.job;
 
-    res.send(reg);
-
-};
+  res.send(reg);
+}
