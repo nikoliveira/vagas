@@ -8,7 +8,7 @@ class UserController {
     this.model = new UserModel();
   }
 
-  getUser = (req: Request, res: Response, next: NextFunction) => {
+  getUser = (req: Request, res: Response, _next: NextFunction) => {
     const {name} = req.query;
 
     if (typeof name !== 'string') {
@@ -22,7 +22,11 @@ class UserController {
     res.status(200).send(findUser);
   };
 
-  getUsers = (req: Request, res: Response, next: NextFunction) => {};
+  getUsers = (_req: Request, res: Response, _next: NextFunction) => {
+    const users = this.model.getUsers();
+
+    res.status(200).send(users);
+  };
 }
 
 export default UserController;
