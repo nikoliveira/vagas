@@ -72,6 +72,18 @@ class UserController {
 
     res.status(201).send(updateUser);
   };
+
+  generateToken = (req: Request, res: Response, _next: NextFunction) => {
+    const {name} = req.body;
+
+    if (!name) {
+      return res.status(404).send('Inválid name');
+    }
+
+    const getToken = this.model.generateToken(name as string);
+
+    res.status(200).json(getToken);
+  };
 }
 
 export default UserController;

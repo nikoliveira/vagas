@@ -1,7 +1,14 @@
 import type {NextFunction, Request, Response} from 'express';
 import JwtMethods from '../helper/jwt';
+import type {JwtPayload} from 'jsonwebtoken';
 
 class Authorization {
+  protected authMethods: JwtMethods;
+
+  constructor() {
+    this.authMethods = new JwtMethods();
+  }
+
   verifyAuth = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
 
@@ -12,7 +19,9 @@ class Authorization {
     const isAdm = 'adm';
 
     try {
-      const decoded = JwtMethods.verifyToken(token) as any;
+      JwtMethods.verifyToken(token);
+
+      const decoded = JwtMethods.decodeToken(token) as JwtPayload;
       if (!decoded) {
         throw new Error();
       }

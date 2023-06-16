@@ -4,16 +4,19 @@ import express, {type Application} from 'express';
 import bodyParser from 'body-parser';
 
 import UserController from './controllers/UserController';
+import Authorization from './middleware/authorization';
 
 class App {
   protected app: Application;
   protected userController: UserController;
   protected port: string | 3000;
+  protected auth: Authorization;
 
   constructor() {
     this.app = express();
     this.userController = new UserController();
     this.setConfig();
+    this.auth = new Authorization();
     this.routes();
     this.port = process.env.PORT ?? 3000;
   }
@@ -29,10 +32,11 @@ class App {
   routes() {
     this.app.get('/user', this.userController.getUser);
     this.app.get('/users', this.userController.getUsers);
-    this.app.post('/users', this.userController.setUser);
-    this.app.delete('/users', this.userController.deleteUser);
-    this.app.put('/users', this.userController.updateUser);
     this.app.get('/users/access', this.userController.getCallUser);
+    this.app.get('/pseudologin', this.userController.generateToken);
+    this.app.post('/users', this.userController.setUser);
+    this.app.delete('/users', this.auth.verifyAuth, this.userController.deleteUser);
+    this.app.put('/users', this.auth.verifyAuth, this.userController.updateUser);
   }
 
   start() {

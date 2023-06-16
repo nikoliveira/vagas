@@ -86,8 +86,17 @@ class UserModel {
     return findUser;
   }
 
-  generateToken(userdata: {name: string; role: string}) {
-    const token = this.auth.jwtSign(userdata);
+  generateToken(username: string) {
+    const findUser = this.data.find((user: UserI) => user.name === username);
+
+    if (!findUser) {
+      return 'Inválid user';
+    }
+
+    const token = this.auth.jwtSign({
+      name: findUser.name,
+      role: findUser.role,
+    });
 
     return token;
   }
