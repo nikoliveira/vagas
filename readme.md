@@ -41,3 +41,10 @@ Retorne quantas vezes determinado usuário foi lido no teste1.
 
 Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
 
+## Antes de iniciar projeto
+
+Rodar o comando no terminal "npm install"
+
+## Para inicializar o servidor
+
+Rodar o comando no terminal "npm run dev"
