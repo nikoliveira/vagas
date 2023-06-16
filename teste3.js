@@ -1,15 +1,32 @@
-var data =  require("./fakeData");
+let data = require("./src/fakeData");
 
-module.exports = function(req, res) {
+const deleteUser = (req, res) => {
+  const idUser = req.body.id
+
+  const result = data.findIndex( element  => element.id == idUser)
+
+  if(result === -1){
+
+    return res.status(404).json({message: "User not found"})
+  }
+
+  const user = data[result];
+
+
+  if(user.adm === true || user.id === idUser){
+      
+    data.splice(result, 1)
+    
+    return res.status(204).json()
+    
+  }
+
+  return res.status(403).json({message: "missing admin permissions"})
   
-    var name =  req.query.name;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
-    }
+};
 
-    res.send("success");
 
+module.exports = {
+  deleteUser
 };

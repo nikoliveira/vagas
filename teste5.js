@@ -1,9 +1,18 @@
 
+let data = require("./src/fakeData");
 
-module.exports = function(req, res){
+
+const listUser = (req, res) => {
     
-    var name =  req.query.name;
+    let idUser =  req.params.id;
 
-    res.send("Usuário " +  name  + "  foi lido 0 vezes.");
+    const result = data.find( element  => element.id == idUser)
+
+    return res.status(200).json({messsage:`Usuário ${result.name} foi lido ${result.n} vezes.`})
 
 };
+
+
+module.exports = {
+    listUser
+  };

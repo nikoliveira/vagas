@@ -1,13 +1,35 @@
-var data =  require("./fakeData");
+let data = require("./src/fakeData");
 
-module.exports =  function(req, res) {
+const update = (req, res) => {
   
-    var id =  req.query.id;
+  const idUser = req.body.id
+  const upUser = req.body
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
 
-    res.send(reg);
+  const result = data.findIndex( element  => element.id == idUser)
 
+  if(result === -1){
+
+    return res.status(404).json({message: "User not found"})
+  }
+
+  const user = data[result];
+ 
+  if(user.adm === true || user.id === idUser){
+    
+    newUser = {
+      ...user,
+      ...upUser
+    }
+    return res.status(200).json(newUser)
+  }
+    
+  return res.status(403).json({message: "missing admin permissions"})
+ 
+
+};
+
+
+module.exports = {
+  update
 };
