@@ -2,16 +2,20 @@ var data =  require("./fakeData");
 
 module.exports = function(req, res){
   
-    var name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
+    const {name, job} = req.body
+   
+    const newUser = {
+        id: data[data.length-1].id+1,
         name: name,
         job: job,
     }
 
-    data.push(newUser)
+    try {
+        data.push(newUser)
+        res.send(newUser);
+    } catch (error) {
+        res.status(404).send("Erro ao adicionar usuário");
+    }
     
-    res.send(newUser);
 
 };
