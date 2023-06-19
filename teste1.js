@@ -1,6 +1,6 @@
 var data =  require("./fakeData");
 
-const getUser = (req, res) => {
+const getUser = ( req, res, next ) => {
     const { name, id, job } = req.query;
 
     // Buscar o usuário com base no nome, id ou job
@@ -19,7 +19,7 @@ const getUser = (req, res) => {
     }
 };
 
-const getUsers = (res ) => {
+const getUsers = ( req, res, next ) => {
     res.send(data);
 };
 

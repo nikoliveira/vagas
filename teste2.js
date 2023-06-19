@@ -1,6 +1,6 @@
 var data =  require("./fakeData");
 
-module.exports = function(req, res){
+module.exports = function(req, res, next){
   
     const {name, job} = req.body
    
