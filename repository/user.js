@@ -1,4 +1,6 @@
-var data =  require("../fakeData");
+const data =  require("../fakeData");
+
+const userSearched = []
 
 const getUsers = ( ) => {
     try {
@@ -25,6 +27,12 @@ const getOneUser = ( conditions, fromUser ) => {
                 position = idx;
             }
         })
+
+        if(fromUser){
+            if(user){
+                userSearched.push({userId: user.id, find: true})
+            }
+        }
 
         if (user) {
             return { user, index: position}
@@ -81,11 +89,25 @@ const updateUser = ( id, user ) => {
     }
 };
 
+const timesUserSearched = ( id ) => {
+    try {
+        const {user} = getOneUser({id})
+        let count = 0;
+        userSearched.forEach(user =>{
+            if(user.userId.toString() === id) count +=1
+        })
+        return {user, count};
+    } catch (error) {
+        return undefined;
+    }
+};
+
 
 module.exports = {
     getUsers,
     getOneUser,
     createUser,
     deleteUser,
-    updateUser
+    updateUser,
+    timesUserSearched
 };

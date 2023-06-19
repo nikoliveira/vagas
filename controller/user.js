@@ -5,7 +5,7 @@ const getUser = ( req, res, next ) => {
     try {
         const {user} = userRepository.getOneUser(req.query, true)
         if (user) {
-            res.send(user);
+            res.send({id: user.id, name: user.name, job: user.job});
         } else {
             res.status(404).send("Usuário não encontrado");
         }
@@ -52,10 +52,22 @@ const putUser = ( req, res, next ) => {
   }
 };
 
+const timesUserSearched = ( req, res, next ) => {
+  try {
+      const { id } =  req.query;
+
+      const {user, count} = userRepository.timesUserSearched(id);
+      res.send("Usuário " +  user.name  + "  foi lido " + count + " vezes.");
+  } catch (error) {
+      res.status(404).send(error);
+  }
+};
+
 module.exports = {
     getUser,
     getUsers,
     postUser,
     deleteUser,
-    putUser
+    putUser,
+    timesUserSearched
 };

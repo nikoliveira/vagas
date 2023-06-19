@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const teste5 = require("./teste5");
 const userController = require("./controller/user.js");
 const validateToken = require("./middlewares/validateToken.js");
 
@@ -30,7 +29,7 @@ app.get("/users", userController.getUsers);
 app.post("/users", userController.postUser);
 app.delete("/users", validateToken, userController.deleteUser);
 app.put("/users", validateToken, userController.putUser);
-app.get("/users/access", teste5);
+app.get("/users/access", userController.timesUserSearched);
 
 
 const port  = 3000;
