@@ -9,7 +9,7 @@ const getUsers = ( ) => {
     }
 };
 
-const getOneUser = ( conditions ) => {
+const getOneUser = ( conditions, fromUser ) => {
     // Buscar o usuário com base no nome, id ou job
     const {name, id, job} =  conditions;
 

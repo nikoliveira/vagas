@@ -3,7 +3,7 @@ const userRepository = require("../repository/user.js");
 const getUser = ( req, res, next ) => {
   
     try {
-        const {user} = userRepository.getOneUser(req.query)
+        const {user} = userRepository.getOneUser(req.query, true)
         if (user) {
             res.send(user);
         } else {

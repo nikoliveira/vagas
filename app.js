@@ -4,7 +4,7 @@ const app = express();
 
 const teste5 = require("./teste5");
 const userController = require("./controller/user.js");
-
+const validateToken = require("./middlewares/validateToken.js");
 
 app.set('view engine', 'jade');
 
@@ -28,8 +28,8 @@ app.get('/', function(req, res){
 app.get("/user", userController.getUser);
 app.get("/users", userController.getUsers);
 app.post("/users", userController.postUser);
-app.delete("/users", userController.deleteUser);
-app.put("/users", userController.putUser);
+app.delete("/users", validateToken, userController.deleteUser);
+app.put("/users", validateToken, userController.putUser);
 app.get("/users/access", teste5);
 
 
