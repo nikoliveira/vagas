@@ -1,21 +1,26 @@
 var data =  require("./fakeData");
 
-const getUser = ( req, res, next ) => {
-    
-    var name =  req.query.name;
+const getUser = (req, res) => {
+    const { name, id, job } = req.query;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
+    // Buscar o usuário com base no nome, id ou job
+    const user = data.find((user) => {
+        return (
+        (name && user.name.toLowerCase().includes(name.toLowerCase())) ||
+        (id && user.id.toString() === id) ||
+        (job && user.job.toLowerCase().includes(job.toLowerCase()))
+        );
+    });
+
+    if (user) {
+        res.send(user);
+    } else {
+        res.status(404).send("Usuário não encontrado");
     }
-
 };
 
-const getUsers = ( req, res, next ) => {
-    
+const getUsers = (res ) => {
     res.send(data);
-    
 };
 
 module.exports = {
