@@ -14,6 +14,7 @@ module.exports = {
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/consistent-type-definitions': 'off',
         'capitalized-comments': 'off',
+        '@typescript-eslint/consistent-type-assertions': 'off'
       },
     },
   ],
