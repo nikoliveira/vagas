@@ -13,7 +13,7 @@ class UserController {
   }
 
   // Teste 1
-  getUser = (req: Request, res: Response, _next: NextFunction) => {
+  getUser = (req: Request, res: Response) => {
     const {name} = req.query;
 
     if (typeof name !== 'string') {
@@ -24,17 +24,17 @@ class UserController {
 
     const findUser = userModel.getUser(name as string);
 
-    res.status(200).send(findUser);
+    res.status(200).json(findUser);
   };
 
-  getUsers = (_req: Request, res: Response, _next: NextFunction) => {
+  getUsers = (_req: Request, res: Response) => {
     const users = this.model.getUsers();
 
     res.status(200).send(users);
   };
 
   // Teste 2
-  setUser = (req: BodyRequest<{name: string; job: string}>, res: Response, _next: NextFunction) => {
+  setUser = (req: BodyRequest<{name: string; job: string}>, res: Response) => {
     const {name, job} = req.body;
 
     const newUser = this.model.setUser({name, job});
@@ -42,7 +42,7 @@ class UserController {
     res.status(201).send(newUser);
   };
 
-  getCallUser = (req: Request, res: Response, _next: NextFunction) => {
+  getCallUser = (req: Request, res: Response) => {
     const {name} = req.query;
 
     const getCall = this.model.getCallUser(name as string);
@@ -51,7 +51,7 @@ class UserController {
   };
 
   // Teste 3
-  deleteUser = (req: Request, res: Response, _next: NextFunction) => {
+  deleteUser = (req: Request, res: Response) => {
     const {name} = req.query;
 
     if (typeof name !== 'string') {
@@ -64,7 +64,7 @@ class UserController {
   };
 
   // Teste 4
-  updateUser = (req: Request, res: Response, _next: NextFunction) => {
+  updateUser = (req: Request, res: Response) => {
     const {id} = req.query;
     const {name, job} = req.body;
 
@@ -73,7 +73,7 @@ class UserController {
     res.status(201).send(updateUser);
   };
 
-  generateToken = (req: Request, res: Response, _next: NextFunction) => {
+  generateToken = (req: Request, res: Response) => {
     const {name} = req.body;
 
     if (!name) {
