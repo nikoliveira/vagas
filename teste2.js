@@ -1,17 +1,24 @@
-var data =  require("./fakeData");
+var data = require("./fakeData");
 
 module.exports = function(req, res){
-  
-    var name =  req.body.name;
-    var jov =  req.body.job;
     
-    var newUser = {
-        name: name,
-        job: job,
+    const { name, job } = req.body;
+
+    if (!name || !job) {
+        return res.status(400).send({
+            message: "Nome e cargo são campos obrigatórios."
+        });
     }
 
-    data.push(newUser)
-    
-    res.send(newUser);
+    const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
 
+    const newUser = {
+        id: newId,
+        name: name,
+        job: job,
+    };
+
+    data.push(newUser);
+
+    res.status(201).send(newUser);
 };

@@ -1,24 +1,31 @@
-var data =  require("./fakeData");
+var data = require("./fakeData");
 
-const getUser = ( req, res, next ) => {
+const accessCount = {};
+
+const getUser = (req, res, next) => {
+    const id = parseInt(req.query.id);
     
-    var name =  req.query.name;
+    const user = data.find(user => user.id === id);
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
+    if (user) {
+        accessCount[user.id] = (accessCount[user.id] || 0) + 1;
+
+        res.status(200).send(user);
+    } else {
+        res.status(404).send({ message: "Usuário não encontrado." });
     }
-
 };
 
-const getUsers = ( req, res, next ) => {
-    
-    res.send(data);
-    
+const getUsers = (req, res, next) => {
+    res.status(200).send(data);
+};
+
+const getAccessCount = (req, res) => {
+    res.status(200).send(accessCount);
 };
 
 module.exports = {
     getUser,
-    getUsers
+    getUsers,
+    getAccessCount
 };
