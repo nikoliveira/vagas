@@ -1,15 +1,16 @@
-var data =  require("./fakeData");
+var data = require("./fakeData");
 
 module.exports = function(req, res) {
   
-    var name =  req.query.name;
+    const idToDelete = parseInt(req.query.id);
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
+    const initialLength = data.length;
+    data = data.filter(user => user.id !== idToDelete);
+    const finalLength = data.length;
+
+    if (finalLength < initialLength) {
+        res.status(200).send({ message: `Usuário com ID ${idToDelete} excluído com sucesso.` });
+    } else {
+        res.status(404).send({ message: `Usuário com ID ${idToDelete} não encontrado.` });
     }
-
-    res.send("success");
-
 };
