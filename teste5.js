@@ -1,9 +1,12 @@
+const { readCount } = require("./teste1");
 
+module.exports = function (req, res) {
+  const { name } = req.query;
 
-module.exports = function(req, res){
-    
-    var name =  req.query.name;
+  if (!name) {
+    return res.status(400).send({ error: "Parâmetro 'name' é obrigatório" });
+  }
 
-    res.send("Usuário " +  name  + "  foi lido 0 vezes.");
-
+  const count = readCount[name.toLowerCase()] || 0;
+  res.send({message:`Usuário ${name} foi lido ${count} vezes.`});
 };
