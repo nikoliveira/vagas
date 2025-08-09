@@ -2,11 +2,12 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-var teste1 = require("./teste1");
-var teste2 = require("./teste2");
-var teste3 = require("./teste3");
-var teste4 = require("./teste4");
-var teste5 = require("./teste5");
+const teste1 = require("./teste1");
+const teste2 = require("./teste2");
+const teste3 = require("./teste3");
+const teste4 = require("./teste4");
+const teste5 = require("./teste5");
+const teste6 = require("./teste6");
 
 
 app.set('view engine', 'jade');
@@ -26,6 +27,15 @@ app.get('/', function(req, res){
   delete users/ </br>
   put users/ </br>
   `);
+});
+
+app.post("/users/permissions", (req, res) => {
+  const { id, canDelete, canUpdate } = req.body;
+  if (!id) {
+    return res.status(400).send({ error: "Parâmetro 'id' é obrigatório" });
+  }
+  teste6.setPermission(id, { canDelete, canUpdate });
+  res.send({ message: `Permissões definidas para o usuário ${id}` });
 });
 
 app.get("/user", teste1.getUser);

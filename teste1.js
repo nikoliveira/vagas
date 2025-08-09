@@ -1,24 +1,33 @@
-var data =  require("./fakeData");
+const data = require("./fakeData");
 
-const getUser = ( req, res, next ) => {
-    
-    var name =  req.query.name;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
-    }
+const readCount = {}; // contador em memória
 
+const getUser = (req, res) => {
+  const { name } = req.query;
+  if (!name) {
+    return res.status(400).send({ error: "Parâmetro 'name' é obrigatório" });
+  }
+
+  const user = data.find(u => u.name.toLowerCase() === name.toLowerCase());
+
+  if (!user) {
+    return res.status(404).send({ error: "Usuário não encontrado" });
+  }
+
+  // Incrementa contador
+  readCount[name.toLowerCase()] = (readCount[name.toLowerCase()] || 0) + 1;
+
+  return res.send(user);
 };
 
-const getUsers = ( req, res, next ) => {
-    
-    res.send(data);
-    
+const getUsers = (req, res) => {
+  return res.send(data);
 };
 
 module.exports = {
-    getUser,
-    getUsers
+  getUser,
+  getUsers,
+  readCount
 };
+
