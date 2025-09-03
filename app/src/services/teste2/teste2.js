@@ -1,8 +1,8 @@
-var data =  require("../../../../fakeData");
+const data = require('../../db/fake')
 
 module.exports = function(req, res){
   
-    var name =  req.body.name;
+    let name =  req.body.name;
     var jov =  req.body.job;
     
     var newUser = {

@@ -1,4 +1,4 @@
-
+const data = require("../../db/fake");
 
 module.exports = function(req, res){
     
