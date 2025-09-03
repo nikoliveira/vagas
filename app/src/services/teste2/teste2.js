@@ -1,4 +1,4 @@
-const { data } = require("../../db/fake");
+const data = require("../../db/fake");
 
 /*
  *
