@@ -9,7 +9,7 @@ const data = require("../../db/fake");
  */
 
 module.exports = (req, res, next) => {
-  const name = (req.query?.name || "").trim();
+  const name = (req.query?.name || "");
 
   if (!name) {
     return res.status(400).send({ message: "Missing query param: name" });

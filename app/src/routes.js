@@ -8,12 +8,19 @@ const teste3 = require("./services/teste3/teste3");
 const teste4 = require("./services/teste4/teste4");
 const teste5 = require("./services/teste5/teste5");
 
+const { auth } = require("./middlewares/auth");
+const { requirePermission, PERMS } = require("./middlewares/permissions");
+
+router.use(auth);
+
 router.get("/", teste.getAllUser);
 router.get("/user", teste1.getUser);
 router.get("/users", teste1.getUsers);
 router.post("/users", teste2);
-router.delete("/users", teste3);
-router.put("/users", teste4);
+
+router.delete("/users", requirePermission(PERMS.DELETE_USER), teste3);
+router.put("/users", requirePermission(PERMS.UPDATE_USER), teste4);
+
 router.get("/users/access", teste5);
 
 module.exports = router;
