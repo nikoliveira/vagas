@@ -1,17 +1,17 @@
-const data = require('../../db/fake')
+const { data } = require("../../db/fake");
 
-module.exports = function(req, res){
-  
-    let name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
-        name: name,
-        job: job,
-    }
+/*
+ *
+ *  POST em /users, descubra a intenção dele e o corrija.
+ *
+ */
 
-    data.push(newUser)
-    
-    res.send(newUser);
+module.exports = function (req, res) {
+  const { name, job } = req.body;
 
+  const newUser = { name, job };
+
+  data.push(newUser);
+
+  return res.status(201).send(newUser);
 };
