@@ -1,11 +1,8 @@
-
-const fakeData  =  [
-    {
-        id: 1,
-        name: "João Oliveira",
-        job: "Desenvolvedor"
-    }
-]
-
-
-module.exports = fakeData;
+export default [
+  {
+    id: 1,
+    name: "João Oliveira",
+    password: "senha123",
+    job: "Desenvolvedor",
+  },
+];
